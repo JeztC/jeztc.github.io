@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.d65c5dd2.css",
-    "main.js": "/static/js/main.add30e11.js",
-    "static/media/avatar.jpg": "/static/media/avatar.2dc7e3891626df7ddfce.jpg",
-    "index.html": "/index.html",
-    "main.d65c5dd2.css.map": "/static/css/main.d65c5dd2.css.map",
-    "main.add30e11.js.map": "/static/js/main.add30e11.js.map"
+    "main.css": "/jeztc.github.io/static/css/main.d65c5dd2.css",
+    "main.js": "/jeztc.github.io/static/js/main.18cb5400.js",
+    "static/media/avatar.jpg": "/jeztc.github.io/static/media/avatar.2dc7e3891626df7ddfce.jpg",
+    "index.html": "/jeztc.github.io/index.html",
+    "main.d65c5dd2.css.map": "/jeztc.github.io/static/css/main.d65c5dd2.css.map",
+    "main.18cb5400.js.map": "/jeztc.github.io/static/js/main.18cb5400.js.map"
   },
   "entrypoints": [
     "static/css/main.d65c5dd2.css",
-    "static/js/main.add30e11.js"
+    "static/js/main.18cb5400.js"
   ]
 }
