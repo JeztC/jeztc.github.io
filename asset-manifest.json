@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d65c5dd2.css",
+    "main.js": "/static/js/main.de780c92.js",
+    "static/media/demo.gif": "/static/media/demo.cfbbc5437acb6cf6a094.gif",
+    "static/media/avatar.png": "/static/media/avatar.ef7c79678a41b5dbe4cc.png",
+    "static/media/img.png": "/static/media/img.b86c6c3d4005ae198f5f.png",
+    "static/media/hakalahti.png": "/static/media/hakalahti.222ae68fe30dbbfb88dd.png",
+    "static/media/ksl.png": "/static/media/ksl.baa957a6a14f342034ad.png",
+    "static/media/centria.png": "/static/media/centria.a8f02971104f80511b57.png",
+    "index.html": "/index.html",
+    "main.d65c5dd2.css.map": "/static/css/main.d65c5dd2.css.map",
+    "main.de780c92.js.map": "/static/js/main.de780c92.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d65c5dd2.css",
+    "static/js/main.de780c92.js"
+  ]
+}
