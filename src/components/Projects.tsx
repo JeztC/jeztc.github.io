@@ -92,7 +92,7 @@ const Projects = () => {
                     </ProjectInfo>
                 </ProjectCard>
                 <ProjectCard
-                    href="https://github.com/JeztC/portfolio"
+                    href="https://github.com/JeztC/jeztc.github.io"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
