@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Card, CardContent, CardHeader, CircularProgress, Grid, Link, Typography, css} from '@mui/material';
+import React, {useEffect, useMemo, useState} from 'react';
+import {Card, CardContent, CardHeader, CircularProgress, Grid, Link, Typography, css, Box} from '@mui/material';
 import axios from 'axios';
 import GithubIcon from "./GithubIcon";
 import '../index.css'
@@ -46,29 +46,31 @@ const StyledUserCard = styled(Card)`
   ${() => {
     const currentTheme = useTheme().theme;
     return currentTheme.palette.mode === 'light'
-            ? css`
+        ? css`
               border: 1px solid #D0D7DE;
             ` : css`
               border: 1px solid rgb(35, 35, 35);
             `
-  }}
+}}
 `;
 
-const ProjectCard = styled(Card)`
+const ProjectBox = styled(Box)`
  background : inherit;
  margin: 10px 0;
- border-radius: 5%;
+ border-radius: 0;
  border-width: 1px;
+ width: 420px;
+ height: 150px;
  box-shadow : none;
   ${() => {
     const currentTheme = useTheme().theme;
     return currentTheme.palette.mode === 'light'
-            ? css`
+        ? css`
               border: 1px solid #D0D7DE;
             ` : css`
               border: 1px solid rgb(35, 35, 35);
             `
-  }}
+}}
 `;
 
 const GitHubCard: React.FC = () => {
@@ -88,29 +90,36 @@ const GitHubCard: React.FC = () => {
         total_starred: 0,
         created_at: '1970-1-1T00:00:00Z'
     });
-    const [repositories, setRepositories] = React.useState<Repository[]>([]);
-    const [loading, setLoading] = React.useState<boolean>(true);
-    
+    const [repositories, setRepositories] = useState<Repository[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    const formattedDate = useMemo(() => {
+        return moment(user.created_at).format('DD/MM/YYYY');
+    }, [user.created_at]);
+
+    const filteredRepositories = useMemo(() => {
+        return repositories
+            .filter(repo => repo.language !== null)
+            .slice(0, 10);
+    }, [repositories]);
+
     useEffect(() => {
         const fetchUser = async () => {
-            const result = await axios.get<User>("https://api.github.com/users/JeztC" === undefined ? "" : "https://api.github.com/users/JeztC");
-            const starredResult = await axios.get("https://api.github.com/users/JeztC/starred" === undefined ? "" : "https://api.github.com/users/JeztC/starred");
-            const totalStarred = starredResult.data.length;
-
+            const result = await axios.get<User>("https://api.github.com/users/JeztC");
+            const starredResult = await axios.get("https://api.github.com/users/JeztC/starred");
             setUser({
                 ...result.data,
-                total_starred: totalStarred
+                total_starred: starredResult.data.length,
             });
-
             setLoading(false);
-        }
+        };
         fetchUser();
     }, []);
 
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios.get<Repository[]>(
-                `https://api.github.com/users/JeztC/repos?sort=updated&direction=desc&type=all&per_page=100&page=1&affiliation=owner,collaborator&sort=pushed`,
+                `https://api.github.com/users/JeztC/repos?sort=updated&direction=desc&type=all&per_page=100&page=1&affiliation=owner,collaborator&sort=pushed`
             );
             setRepositories(result.data);
         };
@@ -119,92 +128,62 @@ const GitHubCard: React.FC = () => {
 
     return (
         <div>
-            {/* Render the profile information panel */}
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                paddingTop : '50px',
-                marginBottom: '50px',
-                marginTop: '25px',
-                boxSizing: 'border-box',
-                borderRadius: '5px',
-            }}>
-                {loading ? <CircularProgress/> :
+            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '50px', marginBottom: '50px', marginTop: '25px', boxSizing: 'border-box', borderRadius: '5px' }}>
+                {loading ? (
+                    <CircularProgress />
+                ) : (
                     <StyledUserCard>
-                    <CardHeader
-                        avatar={
-                            <img
-                                src={user.avatar_url}
-                                alt={`Avatar for ${user.login}`}
-                                style={{
-                                    borderRadius: '50%',
-                                    borderColor: 'rgb(31, 35, 40)',
-                                    borderStyle: 'solid',
-                                    borderWidth: '2px',
-                                }}
-                            />
-                        }
-                        title={<Typography variant="h6">{user.name}</Typography>}
-                    />
-                    <CardContent>
-                        <Typography sx={{fontSize : '20px', fontFamily : 'Segoe UI'}} color="rgb(139, 148, 158)" variant="h5">
-                            <Link href={user.html_url} target="_blank">
-                                {user.login}
-                            </Link>
-                        </Typography>
-                        <Typography sx={{marginTop : '20px', marginBottom : '20px', fontSize : '18px', fontFamily : 'Segoe UI'}} color="inherit" variant="subtitle1">{user.bio} </Typography>
-                        {/* Display the user's followers, following, repositories, and stars */}
-                        <div style={{ display: 'flex', alignItems: 'center', paddingBottom : '10px' }}>
-                            <GroupIcon style={{ color : "rgb(139, 148, 158)", marginRight: '5px' }} />
-                            <Typography color="#999999" variant="body2">{user.followers} followers · {user.following} following </Typography>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', paddingBottom : '10px' }}>
-                            <GithubIcon/>
-                            <Typography style={{paddingLeft : '5px'}} color="#999999" variant="body2">Repositories: {user.public_repos}</Typography>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', paddingBottom : '10px' }}>
-                            <Star style={{ color : "rgb(139, 148, 158)", marginRight: '5px' }} />
-                            <Typography color="#999999" variant="body2">Stars: {user.total_starred}</Typography>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', paddingBottom : '10px' }}>
-                            <CalendarMonthIcon style={{ color : "rgb(139, 148, 158)", marginRight: '5px' }} />
-                            <Typography color="#999999" variant="body2">Registered: {moment(user.created_at).format('DD/MM/YYYY')}</Typography>
-                        </div>
-                    </CardContent>
-                </StyledUserCard>
-                }
+                        <CardHeader
+                            avatar={<img src={user.avatar_url} alt={`Avatar for ${user.login}`} style={{ borderRadius: '50%', borderColor: 'rgb(31, 35, 40)', borderStyle: 'solid', borderWidth: '1px' }} />}
+                            title={<Typography variant="h6">{user.name}</Typography>}
+                        />
+                        <CardContent>
+                            <Typography sx={{ fontSize: '20px', fontFamily: 'Segoe UI' }} color="rgb(139, 148, 158)" variant="h5">
+                                <Link href={user.html_url} target="_blank">{user.login}</Link>
+                            </Typography>
+                            <Typography sx={{ marginTop: '20px', marginBottom: '20px', fontSize: '18px', fontFamily: 'Segoe UI' }} color="inherit" variant="subtitle1">{user.bio}</Typography>
+                            <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
+                                <GroupIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
+                                <Typography color="#999999" variant="body2">{user.followers} followers · {user.following} following</Typography>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
+                                <GithubIcon />
+                                <Typography style={{ paddingLeft: '5px' }} color="#999999" variant="body2">Repositories: {user.public_repos}</Typography>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
+                                <Star style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
+                                <Typography color="#999999" variant="body2">Stars: {user.total_starred}</Typography>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
+                                <CalendarMonthIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
+                                <Typography color="#999999" variant="body2">Registered: {formattedDate}</Typography>
+                            </div>
+                        </CardContent>
+                    </StyledUserCard>
+                )}
             </div>
-            <Grid container spacing={2} style={{ marginTop: '40px', marginLeft: '250px', marginBottom: '5%' }}>
-                {repositories.map((repository) => (
-                    <Grid item xs={12} sm={6} md={5} key={repository.id}>
-                        <ProjectCard>
+            <Grid container style={{ marginTop: '40px', marginLeft: '20px', marginBottom: '5%' }}>
+                {filteredRepositories.map((repository) => (
+                    <Grid item md={3} key={repository.id}>
+                        <ProjectBox>
                             <CardHeader
                                 avatar={<GithubIcon />}
-                                title=
-                                    {
-                                        <Link href={repository.html_url} target="_blank">
-                                            {repository.name}
-                                        </Link>}
-                                subheader={
-                                    <Typography variant="body2" color="rgb(139, 148, 158)" component="p">
-                                        {`${repository.stargazers_count} stars • ${repository.forks} forks`}
-                                    </Typography>}
+                                title={<Link href={repository.html_url} target="_blank">{repository.name}</Link>}
+                                subheader={<Typography variant="body2" color="rgb(139, 148, 158)" component="p">{`${repository.stargazers_count} stars • ${repository.forks} forks`}</Typography>}
                             />
                             <CardContent>
-                                <Typography style={{marginTop : '-30px'}} variant="body2" color="rgb(139, 148, 158)">
-                                    {repository.description}
-                                </Typography>
+                                <Typography style={{ marginTop: '-30px' }} variant="body2" color="rgb(139, 148, 158)">{repository.description}</Typography>
                                 {repository.language === null ? (
-                                    <Typography variant="body2" color="rgb(139, 148, 158)" style={{marginTop : '20px', display: 'flex', alignItems: 'center'}}>
+                                    <Typography variant="body2" color="rgb(139, 148, 158)" style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }}>
                                         Language: Unknown
                                     </Typography>
                                 ) : (
-                                    <Typography variant="body2" color="rgb(139, 148, 158)" component="p" style={{marginTop : '20px', display: 'flex', alignItems: 'center'}} className={`language-text ${repository.language.toLowerCase().replace("c#", "csharp")}`}>
+                                    <Typography variant="body2" color="rgb(139, 148, 158)" component="p" style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }} className={`language-text ${repository.language.toLowerCase().replace('c#', 'csharp')}`}>
                                         {repository.language}
                                     </Typography>
                                 )}
                             </CardContent>
-                        </ProjectCard>
+                        </ProjectBox>
                     </Grid>
                 ))}
             </Grid>

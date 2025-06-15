@@ -4,11 +4,11 @@ import { createTheme } from '@mui/material/styles';
 const darkTheme = createTheme({
     palette: {
         background: {
-            default: '#0D1117',
+            default: '#000000',
         },
         mode: 'dark',
         primary: {
-            main: 'rgb(29, 155, 240)'
+            main: 'rgb(26, 140, 216)'
         },
         secondary: {
             main: '#fff', // this is the secondary color
@@ -23,7 +23,7 @@ const lightTheme = createTheme({
             default: 'white',
         },
         primary: {
-            main: 'rgb(29, 155, 240)'
+            main: 'rgb(26, 140, 216)'
         },
         text: {
             primary: '#000000',

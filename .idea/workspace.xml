@@ -5,12 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a24e9d79-1cf1-413f-8133-82ff862d46e0" name="Changes" comment="feat: commit all changes">
+      <change afterPath="$PROJECT_DIR$/src/assets/pictures/avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/pictures/centria.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/pictures/hakalahti.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/pictures/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/pictures/ksl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Projects.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/fi.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/fi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/pictures/avatar.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/About.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/About.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/About.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/About.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Check.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Check.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Contact.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DiscordIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DiscordIcon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Education.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Education.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FloatingIcons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FloatingIcons.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GithubCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GithubCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GithubIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GithubIcon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Icon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Icon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Links.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Links.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/VerificationIcon.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/data.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/themes/DarkModeToggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/DarkModeToggle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/themes/theme-context.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/theme-context.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +65,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/JeztC/jeztc.github.io.git&quot;,
-    &quot;accountId&quot;: &quot;8d4691a1-8b11-4c75-9417-2e11c758313a&quot;
+    &quot;accountId&quot;: &quot;b44eecf8-8204-465b-9898-3979b1c54620&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -54,29 +83,33 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Jesse/WebstormProjects/jeztc.github.io&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jesse/Development/react-test&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;C:/Users/Jesse/AppData/Roaming/JetBrains/WebStorm2024.3/node/versions/22.11.0/node&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.build.executor&quot;: &quot;Debug&quot;,
+    &quot;npm.deploy.executor&quot;: &quot;Run&quot;,
     &quot;npm.predeploy.executor&quot;: &quot;Run&quot;,
     &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Jesse\\WebstormProjects\\jeztc.github.io\\node_modules\\typescript\\lib&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/jesse/WebstormProjects/jeztc.github.io/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets/pictures" />
       <recent name="C:\Users\Jesse\WebstormProjects\jeztc.github.io" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.deploy">
+  <component name="RunManager" selected="npm.start">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -113,23 +146,23 @@
       <scripts>
         <script value="start" />
       </scripts>
-      <node-interpreter value="$APPLICATION_CONFIG_DIR$/node/versions/20.15.0/node" />
+      <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.deploy" />
-        <item itemvalue="npm.predeploy" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.deploy" />
+        <item itemvalue="npm.predeploy" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+        <option value="bundled-js-predefined-d6986cc7102b-e0793c8bcbd6-JavaScript-WS-252.21735.34" />
       </set>
     </attachedChunks>
   </component>
@@ -143,6 +176,70 @@
       <updated>1733778591551</updated>
       <workItem from="1733778593361" duration="3697000" />
       <workItem from="1733790290033" duration="13000" />
+      <workItem from="1740654361107" duration="3731000" />
+      <workItem from="1740664164616" duration="11657000" />
+      <workItem from="1740751384003" duration="2907000" />
+      <workItem from="1740833999502" duration="5914000" />
+      <workItem from="1740925515447" duration="9107000" />
+      <workItem from="1740991518148" duration="306000" />
+      <workItem from="1741789898885" duration="3143000" />
+      <workItem from="1741807267805" duration="1341000" />
+      <workItem from="1741947890634" duration="6491000" />
+      <workItem from="1742071579621" duration="3137000" />
+      <workItem from="1742120464028" duration="1480000" />
+      <workItem from="1742140880937" duration="312000" />
+      <workItem from="1742404285457" duration="323000" />
+      <workItem from="1742510417258" duration="1650000" />
+      <workItem from="1742563476417" duration="846000" />
+      <workItem from="1742773969154" duration="1486000" />
+      <workItem from="1742825827883" duration="2005000" />
+      <workItem from="1742906377759" duration="1046000" />
+      <workItem from="1742907548450" duration="4731000" />
+      <workItem from="1742938709651" duration="607000" />
+      <workItem from="1743116967590" duration="915000" />
+      <workItem from="1743179966662" duration="4030000" />
+      <workItem from="1743337065439" duration="35000" />
+      <workItem from="1743851628353" duration="18000" />
+      <workItem from="1743857671602" duration="22000" />
+      <workItem from="1743857701412" duration="2465000" />
+      <workItem from="1743922507520" duration="347000" />
+      <workItem from="1743922862379" duration="12000" />
+      <workItem from="1743922880877" duration="7000" />
+      <workItem from="1743923145747" duration="1000" />
+      <workItem from="1743923171777" duration="3000" />
+      <workItem from="1743924490504" duration="2000" />
+      <workItem from="1743924592010" duration="2000" />
+      <workItem from="1743924617112" duration="69000" />
+      <workItem from="1743957116683" duration="3000" />
+      <workItem from="1744017406217" duration="3000" />
+      <workItem from="1744126261829" duration="3576000" />
+      <workItem from="1744230170447" duration="25000" />
+      <workItem from="1744357938371" duration="2327000" />
+      <workItem from="1744369886514" duration="127000" />
+      <workItem from="1744370028733" duration="200000" />
+      <workItem from="1744370238225" duration="2531000" />
+      <workItem from="1744553229586" duration="5853000" />
+      <workItem from="1744967566352" duration="1738000" />
+      <workItem from="1745097537708" duration="934000" />
+      <workItem from="1745138872660" duration="1000" />
+      <workItem from="1745138901345" duration="459000" />
+      <workItem from="1745665329548" duration="2204000" />
+      <workItem from="1745789463446" duration="6000" />
+      <workItem from="1745789496239" duration="18000" />
+      <workItem from="1745789525053" duration="2454000" />
+      <workItem from="1745917479129" duration="64000" />
+      <workItem from="1746096658399" duration="1961000" />
+      <workItem from="1746185023864" duration="25000" />
+      <workItem from="1746459602155" duration="7193000" />
+      <workItem from="1746715934233" duration="10000" />
+      <workItem from="1746736148106" duration="24000" />
+      <workItem from="1746739611419" duration="614000" />
+      <workItem from="1746818975941" duration="2730000" />
+      <workItem from="1747174384836" duration="2349000" />
+      <workItem from="1747731683071" duration="4000" />
+      <workItem from="1749659101752" duration="75000" />
+      <workItem from="1750005402651" duration="816000" />
+      <workItem from="1750007950050" duration="3991000" />
     </task>
     <task id="LOCAL-00001" summary="feat: commit all changes">
       <option name="closed" value="true" />

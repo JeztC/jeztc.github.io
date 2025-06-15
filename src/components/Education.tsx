@@ -22,114 +22,108 @@ import {
     Instagram,
     Language,
 } from '@mui/icons-material'
+import XIcon from '@mui/icons-material/X';
 import styled from "@emotion/styled";
 import {css} from "@emotion/react";
 import { useTheme } from '../themes/theme-context'
+import {isMobile} from 'react-device-detect';
 
 const Root = styled.div`
-  flex-grow: 1;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  ${() => {
-    const theme = useMuiTheme()
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-    return isMobile
-            ? css`
-    flex-direction: column;
-    margin-left: 20px;
-    padding-bottom: 100px;
-    ` : css`
-    margin-left: 250px;
-    flex-direction: row;
-    `
-  }}
-  margin-top: 120px;
+    flex-grow: 1;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    ${() => {
+        return isMobile
+                ? css`
+                    flex-direction: column;
+                    margin-left: 20px;
+                    padding-bottom: 100px;
+                ` : css`
+                    margin-left: 250px;
+                    flex-direction: row;
+                `
+    }}
+    margin-top: 120px;
 `
 
 const TabStyled = styled(Tabs)`
-${() => {
-    const theme = useMuiTheme()
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-    return isMobile
-            ? css`
-    width: inherit;
-    height: inherit;
-    max-width: inherit;
-    min-width: inherit;
-    ` : css`
-    border-right: 1px solid #2C394B;
-    width: 200px;
-    height: 550px;
-    `
-  }}
+    ${() => {
+        return isMobile
+                ? css`
+                    width: inherit;
+                    height: inherit;
+                    max-width: inherit;
+                    min-width: inherit;
+                ` : css`
+                    border-right: 1px solid rgb(62, 65, 68);
+                    width: 200px;
+                    height: 550px;
+                `
+    }}
 `
 
 const EducationTab = styled(Tab)`
-  ${() => {
-    const currentTheme = useTheme().theme;
-    return currentTheme.palette.mode === 'light'
-        ? css`
-        &.Mui-hover {
-            color: #EAEDF1;
-        }
-        &.Mui-selected {
-            color: #000 !important;
-            background-color: #EAEDF1;
-        }
-        &:hover {
-            background-color: #EAEDF1;
-        }
-      ` : css`
-      &.Mui-hover {
-          color: #161A20 !important;
-      }
-      &.Mui-selected {
-          color: #fff !important;
-          background-color: #161A20;
-      }
-      &:hover {
-          background-color: #161A20;
-      }
-    `
-  }}
+    ${() => {
+        const currentTheme = useTheme().theme;
+        return currentTheme.palette.mode === 'light'
+                ? css`
+                    &.Mui-hover {
+                        color: #EAEDF1;
+                    }
+                    &.Mui-selected {
+                        color: #000 !important;
+                        background-color: #EAEDF1;
+                    }
+                    &:hover {
+                        background-color: #EAEDF1;
+                    }
+                ` : css`
+                    &.Mui-hover {
+                        color: #181919 !important;
+                    }
+                    &.Mui-selected {
+                        color: #fff !important;
+                        background-color: #181919;
+                    }
+                    &:hover {
+                        background-color: #181919;
+                    }
+                `
+    }}
 `;
 
 
 const TabShowMore = styled(ShowMoreText)`
-  margin-top: 30px;
-  margin-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 `
 
 const StyledTableContainer = styled(TableContainer)`
-  '& .MuiTableCell-root': {
-    border-top: 1px solid rgba(224, 224, 224, 1);
-    border-right: 1px solid rgba(224, 224, 224, 1);
-    border-left: 1px solid rgba(224, 224, 224, 1);
-}
-`
+    & .MuiTableCell-root {
+        border: 1px solid rgb(62, 65, 68);
+    }
+`;
 
 const StyledLink = styled(Link)`
-  color: #999999;
-  ${() => {
-    const currentTheme = useTheme().theme;
-    return currentTheme.palette.mode === 'light'
-            ? css`
-      &:hover {
-        color: black;
-      }
-    ` : css`
-      &:hover {
-        color: white;
-      }
-    `
-  }}
+    color: #999999;
+    ${() => {
+        const currentTheme = useTheme().theme;
+        return currentTheme.palette.mode === 'light'
+                ? css`
+                    &:hover {
+                        color: black;
+                    }
+                ` : css`
+                    &:hover {
+                        color: white;
+                    }
+                `
+    }}
 `
 
 const Education = () => {
-    const theme = useMuiTheme()
     const { t } = useTranslation()
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
     const [value, setValue] = React.useState<number>(0)
     const [expand, setExpand] = React.useState<boolean>(false)
     const iconFontSize = isMobile ? '37px' : '25px';
@@ -168,7 +162,7 @@ const Education = () => {
                             {t(`experience_${elem.id}_education`)}
                             <Link
                                 href={
-                                    elem.links.website || elem.links.facebook || elem.links.instagram
+                                    elem.links.website || elem.links.x || elem.links.facebook || elem.links.instagram
                                 }
                                 color="#ffffff"
                                 target="_blank"
@@ -187,10 +181,12 @@ const Education = () => {
                         <TabShowMore
                             onClick={onClick}
                             expanded={expand}
+                            more={t("show_courses")}
+                            less={t("hide_courses")}
                             truncatedEndingComponent=""
-                            width={30}
+                            width={expand ? 1000 : 1}
                         >
-                            <StyledTableContainer>
+                            {<StyledTableContainer>
                                 <Table aria-label="simple table">
                                     <TableHead>
                                         <TableRow>
@@ -203,6 +199,9 @@ const Education = () => {
                                             <TableCell align="right">
                                                 <b>{t('grade')}</b>
                                             </TableCell>
+                                            <TableCell align="right">
+                                                <b>{t('completed_date')}</b>
+                                            </TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -213,19 +212,25 @@ const Education = () => {
                                                 </TableCell>
                                                 <TableCell align="center"><Link href={course.schoolLink} target={`_blank`}>{course.schoolName}</Link></TableCell>
                                                 <TableCell align="right">{course.grade}</TableCell>
+                                                <TableCell align="right">{course.dateFinished}</TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>
                                 </Table>
-                            </StyledTableContainer>
+                            </StyledTableContainer>}
                         </TabShowMore>
                     )}
-                    {elem.links.website || elem.links.facebook || elem.links.instagram ? (
+                    {elem.links.website || elem.links.x || elem.links.facebook || elem.links.instagram ? (
                         <Box mt={4}>
                             <Box mt={1}>
                                 {elem.links.website && (
                                     <StyledLink href={elem.links.website} target="_blank">
                                         <Language sx={{ fontSize: iconFontSize }} />
+                                    </StyledLink>
+                                )}
+                                {elem.links.x && (
+                                    <StyledLink href={elem.links.x} target="_blank">
+                                        <XIcon sx={{ fontSize: iconFontSize }} />
                                     </StyledLink>
                                 )}
                                 {elem.links.facebook && (
@@ -249,8 +254,6 @@ const Education = () => {
 
 const TabPanel: React.FC<{ children : ReactNode, value: number; index: number }> = (props) => {
     const { children, value, index, ...other } = props
-    const theme = useMuiTheme()
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
     return (
         <div
             role="tabpanel"
