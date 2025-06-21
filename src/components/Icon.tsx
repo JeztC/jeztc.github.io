@@ -1,8 +1,6 @@
-import styled from "@emotion/styled";
-import {css} from "@emotion/react";
-import {useTheme} from "../themes/theme-context";
+import { styled } from "@mui/material/styles";
 
-const Icon = styled.a<{ size: number }>`
+const Icon = styled('a')<{ size: number }>`
   width: ${props => props.size}px;
   height: ${props => props.size}px;
   display: flex;
@@ -22,19 +20,9 @@ const Icon = styled.a<{ size: number }>`
     font-size: ${props => props.size * 0.6}px;
   }
 
-  ${() => {
-    const currentTheme = useTheme().theme;
-    return currentTheme.palette.mode === 'light' 
-        ? css`
-      &:hover svg {
-        fill: black;
-      }
-    ` : css`
-      &:hover svg {
-        fill: white;
-      }
-    `
-  }}
+  &:hover svg {
+    fill: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'};
+  }
 `;
 
 export default Icon;

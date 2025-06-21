@@ -1,6 +1,6 @@
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import styled from "@emotion/styled";
+import { styled } from "@mui/material/styles";
 import React from "react";
 import {Link, useLocation} from "react-router-dom";
 import {
@@ -18,12 +18,11 @@ import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
 import {DarkModeToggle} from "../themes/DarkModeToggle";
-import {useTheme} from "../themes/theme-context";
+import {useTheme} from "../themes/ThemeContext";
 import {css} from "@emotion/react";
 import {isMobile} from "react-device-detect";
 
-
-const HeaderWrapper = styled.header`
+const HeaderWrapper = styled('header')`
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
@@ -33,55 +32,27 @@ const HeaderWrapper = styled.header`
     position: fixed;
     top: 0;
     z-index: 1000;
-    ${() => {
-        const currentTheme = useTheme().theme;
-        return currentTheme.palette.mode === 'light'
-                ? css`
-                    background-color: #fff;
-                ` : css`
-                    background-color: rgb(0, 0, 0);
-                `
-    }}
+    background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
     border-bottom: 1px solid rgb(62, 65, 68);
     color: #fff;
 `;
 
 const StyledLink = styled(Link)`
     width: 150px;
-    border: 1px solid rgb(62, 65, 68) !important;  // adds a grey border around the sides and top of the button
+    border: 1px solid rgb(62, 65, 68) !important;
     border-bottom: none !important;
-    ${() => {
-        const currentTheme = useTheme().theme;
-        return currentTheme.palette.mode === 'light'
-                ? css`
-                    &.Mui-selected {
-                        background-color: #fff !important;
-                        color: #000 !important;  // use the !important flag to give this style higher precedence
-                        border-bottom : 2px solid #1D9BF0 !important; // adds the indicator
-                    }
-                ` : css`
-                    background-color : #000 !important;
-                    &.Mui-selected {
-                        background-color: inherit;
-                        color: #fff !important;  // use the !important flag to give this style higher precedence
-                        border-bottom : 2px solid #1D9BF0 !important; // adds the indicator
-                    }
-                `
-    }}
+    background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
+    border-bottom: 2px solid #1D9BF0;
+    
+    &.Mui-selected {
+        background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : 'inherit'} !important;
+        color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'} !important;
+        border-bottom: 2px solid #1D9BF0 !important;
+    }
 
-    ${() => {
-        const currentTheme = useTheme().theme;
-        return currentTheme.palette.mode === 'light'
-                ? css`
-                    &:hover {
-                        background-color: #EAEDF1;
-                    }
-                ` : css`
-                    &:hover {
-                        background-color: #181919 !important;
-                    }
-                `
-    }}
+    &:hover {
+        background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'} !important;
+    }
 `
 
 const LanguageMenuItem = styled(MenuItem)`
@@ -99,27 +70,16 @@ const StyledHeader = styled(Link)`
         text-decoration: none;
     }
     padding-bottom: 15px;
-    color: ${() => {
-        const currentTheme = useTheme().theme;
-        return currentTheme.palette.mode === 'light'
-                ? '#000'
-                : '#fff'
-    }};
+    color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'};
 `;
 
-const StyledDrawer = styled.div`
+const StyledDrawer = styled('div')`
     flex-shrink: 0;
     width: 250px;
     height: 1000px;
     padding: 16px;
-    background-color: ${() => {
-        const currentTheme = useTheme().theme;
-        return currentTheme.palette.mode === 'light'
-                ? '#fff'
-                : '#000'
-    }};
+    background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
 `;
-
 
 const Header = () => {
     const [, setValue] = React.useState<string>('about')

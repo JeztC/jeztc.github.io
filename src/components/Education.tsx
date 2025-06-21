@@ -4,12 +4,10 @@ import {
     Tab,
     Typography,
     Box,
-    useMediaQuery,
     TableContainer,
     Table,
     TableHead,
     TableRow,
-    useTheme as useMuiTheme,
     TableCell,
     TableBody,
     Link,
@@ -23,76 +21,50 @@ import {
     Language,
 } from '@mui/icons-material'
 import XIcon from '@mui/icons-material/X';
-import styled from "@emotion/styled";
 import {css} from "@emotion/react";
-import { useTheme } from '../themes/theme-context'
 import {isMobile} from 'react-device-detect';
+import { styled } from "@mui/material/styles";
 
-const Root = styled.div`
+const Root = styled('div')`
     flex-grow: 1;
     display: flex;
     width: 100%;
     height: 100%;
-    ${() => {
-        return isMobile
-                ? css`
-                    flex-direction: column;
-                    margin-left: 20px;
-                    padding-bottom: 100px;
-                ` : css`
-                    margin-left: 250px;
-                    flex-direction: row;
-                `
-    }}
     margin-top: 120px;
+    margin-left: ${({ }) => (isMobile ? '20px' : '250px')};
+    flex-direction: ${({ }) => (isMobile ? 'column' : 'row')};
+    ${({ }) => isMobile && 'padding-bottom: 100px;'}
 `
 
 const TabStyled = styled(Tabs)`
-    ${() => {
-        return isMobile
-                ? css`
-                    width: inherit;
-                    height: inherit;
-                    max-width: inherit;
-                    min-width: inherit;
-                ` : css`
-                    border-right: 1px solid rgb(62, 65, 68);
-                    width: 200px;
-                    height: 550px;
-                `
-    }}
-`
-
-const EducationTab = styled(Tab)`
-    ${() => {
-        const currentTheme = useTheme().theme;
-        return currentTheme.palette.mode === 'light'
-                ? css`
-                    &.Mui-hover {
-                        color: #EAEDF1;
-                    }
-                    &.Mui-selected {
-                        color: #000 !important;
-                        background-color: #EAEDF1;
-                    }
-                    &:hover {
-                        background-color: #EAEDF1;
-                    }
-                ` : css`
-                    &.Mui-hover {
-                        color: #181919 !important;
-                    }
-                    &.Mui-selected {
-                        color: #fff !important;
-                        background-color: #181919;
-                    }
-                    &:hover {
-                        background-color: #181919;
-                    }
-                `
-    }}
+    ${() => (isMobile ? css`
+    width: inherit;
+    height: inherit;
+    max-width: inherit;
+    min-width: inherit;
+  ` : css`
+    border-right: 1px solid rgb(62, 65, 68);
+    width: 200px;
+    height: 550px;
+  `)}
 `;
 
+const EducationTab = styled(Tab)`
+    ${({ theme }) => css`
+    &.Mui-hover {
+      color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'} !important;
+    }
+    
+    &.Mui-selected {
+      color: ${theme.palette.mode === 'light' ? '#000' : '#fff'} !important;
+      background-color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'};
+    }
+    
+    &:hover {
+      background-color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'};
+    }
+  `}
+`;
 
 const TabShowMore = styled(ShowMoreText)`
     margin-top: 30px;
@@ -107,20 +79,10 @@ const StyledTableContainer = styled(TableContainer)`
 
 const StyledLink = styled(Link)`
     color: #999999;
-    ${() => {
-        const currentTheme = useTheme().theme;
-        return currentTheme.palette.mode === 'light'
-                ? css`
-                    &:hover {
-                        color: black;
-                    }
-                ` : css`
-                    &:hover {
-                        color: white;
-                    }
-                `
-    }}
-`
+    &:hover {
+        color: ${({ theme }) => theme.palette.mode === 'light' ? 'black' : 'white'};
+    }
+`;
 
 const Education = () => {
     const { t } = useTranslation()

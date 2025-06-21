@@ -6,16 +6,17 @@ import {
 import About from "./components/About";
 import {ThemeProvider, Theme} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import {ThemeContext} from './themes/theme-context';
+import {ThemeContext} from './themes/ThemeContext';
 import Education from "./components/Education";
 import Header from "./components/Header";
 import Contact from "./components/Contact";
 import Links from "./components/Links";
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import './index.css'
-import {darkTheme, lightTheme} from "./themes/theme-context";
+import {darkTheme, lightTheme} from "./themes/ThemeContext";
 import GithubCard from "./components/GithubCard";
 import Projects from "./components/Projects";
+import {GlobalStyles} from "@mui/material";
 
 const App = () => {
     const initialTheme = localStorage.getItem('mode') === 'light' ? lightTheme : darkTheme;
@@ -33,7 +34,7 @@ const App = () => {
     };
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider defaultMode="system" theme={theme}>
             <ThemeContext.Provider value={{ theme, toggleMode }}>
                 <CssBaseline />
                 <Router>

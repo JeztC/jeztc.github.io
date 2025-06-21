@@ -10,6 +10,9 @@ const darkTheme = createTheme({
         primary: {
             main: 'rgb(26, 140, 216)'
         },
+        text:{
+            primary: "#FFFFFF"
+        },
         secondary: {
             main: '#fff', // this is the secondary color
         },

@@ -6,7 +6,7 @@ import { useTheme as useMuiTheme } from "@mui/material";
 import demo from '../assets/demo.gif';
 // @ts-ignore
 import portfolio from '../assets/pictures/img.png';
-import {isMobile} from "react-device-detect";
+import {isMobile} from 'react-device-detect';
 
 const Container = styled.div`
     display: flex;
@@ -16,18 +16,14 @@ const Container = styled.div`
 `;
 
 const ProjectsContainer = styled.div`
-    ${() => {
-        return css`
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: ${isMobile ? "40px 20px" : "100px 0"};
-            flex-direction: ${isMobile ? "column" : "row"};
-            gap: ${isMobile ? "40px" : "60px"};
-            max-width: 1200px;
-            margin: 0 auto;
-        `;
-    }}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: ${isMobile ? "40px 20px" : "100px 0"};
+    flex-direction: ${isMobile ? "column" : "row"};
+    gap: ${isMobile ? "40px" : "60px"};
+    max-width: 1200px;
+    margin: 0 auto;
 `;
 
 const ProjectCard = styled.a`
@@ -92,7 +88,7 @@ const Projects = () => {
                     </ProjectInfo>
                 </ProjectCard>
                 <ProjectCard
-                    href="https://github.com/JeztC/jeztc.github.io"
+                    href="https://github.com/JeztC/portfolio"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
