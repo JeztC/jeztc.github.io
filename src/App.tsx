@@ -16,19 +16,13 @@ import './index.css'
 import {darkTheme, lightTheme} from "./themes/ThemeContext";
 import GithubCard from "./components/GithubCard";
 import Projects from "./components/Projects";
-import {GlobalStyles} from "@mui/material";
 
 const App = () => {
-    const initialTheme = localStorage.getItem('mode') === 'light' ? lightTheme : darkTheme;
-    const [mode, setMode] = React.useState<'light' | 'dark'>(localStorage.getItem('mode') as 'light' | 'dark');
-    const [theme, setTheme] = React.useState<Theme>(initialTheme);
-    const newMode = mode === 'light' ? 'dark' : 'light';
-
-    React.useEffect(() => {
-        setTheme(newMode === 'light' ? darkTheme : lightTheme);
-    }, [mode]);
+    const [mode, setMode] = React.useState<'light' | 'dark'>((localStorage.getItem('mode') as 'light' | 'dark') || 'dark');
+    const theme = mode === 'light' ? lightTheme : darkTheme;
 
     const toggleMode = () => {
+        const newMode = mode === 'light' ? 'dark' : 'light';
         setMode(newMode);
         localStorage.setItem('mode', newMode);
     };
