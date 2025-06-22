@@ -140,7 +140,7 @@ const Header = () => {
                                     </ListItem>
                                     <ListItem component={Link} to="/experience" onClick={handleDrawerClose}>
                                         <ListItemIcon><Work /></ListItemIcon>
-                                        <ListItemText primary={t('menu_education')} />
+                                        <ListItemText primary={t('menu_experience')} />
                                     </ListItem>
                                     <ListItem component={Link} to="/projects" onClick={handleDrawerClose}>
                                         <ListItemIcon><Folder /></ListItemIcon>
