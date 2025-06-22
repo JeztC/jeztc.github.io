@@ -62,6 +62,15 @@ const ProjectBox = styled(Box)`
     box-shadow: none;
 `;
 
+const AvatarContainer = styled('img')`
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; 
+    border-style: solid;
+    border-width: 1px;
+    border-color: ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
+`
+
 const GitHubCard: React.FC = () => {
     const [user, setUser] = useState<User>({
         login: '',
@@ -127,7 +136,7 @@ const GitHubCard: React.FC = () => {
                         <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '50px', marginBottom: '50px', marginTop: '25px', boxSizing: 'border-box', borderRadius: '5px' }}>
                             <StyledUserCard>
                                 <CardHeader
-                                    avatar={<img src={user.avatar_url} alt={`Avatar for ${user.login}`} style={{ width: '100px', height: '100px', borderRadius: '50%', borderColor: 'rgb(31, 35, 40)', borderStyle: 'solid', borderWidth: '1px' }} />}
+                                    avatar={<AvatarContainer src={user.avatar_url} alt={`Avatar for ${user.login}`} />}
                                     title={<Typography variant="h6">{user.name}</Typography>}
                                 />
                                 <CardContent>

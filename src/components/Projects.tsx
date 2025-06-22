@@ -68,6 +68,14 @@ const ProjectTitle = styled.h3`
     font-weight: 600;
 `;
 
+interface CardProps {
+    href: string;
+    target?: string;
+    rel?: string;
+    src?: string;
+    alt?: string;
+}
+
 const Projects = () => {
     return (
         <Container>

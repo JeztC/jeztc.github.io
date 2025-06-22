@@ -11,7 +11,7 @@ import {
     Link as LinkIcon,
     Menu as MenuIcon,
     Close,
-    Folder
+    Folder, Work
 } from "@mui/icons-material";
 import {Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem, useMediaQuery} from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
@@ -29,7 +29,7 @@ const HeaderWrapper = styled('header')`
     padding: 0 16px;
     height: 58px;
     width: 100%;
-    position: fixed;
+    position: sticky;
     top: 0;
     z-index: 1000;
     background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
@@ -138,6 +138,10 @@ const Header = () => {
                                         <ListItemIcon><School /></ListItemIcon>
                                         <ListItemText primary={t('menu_education')} />
                                     </ListItem>
+                                    <ListItem component={Link} to="/experience" onClick={handleDrawerClose}>
+                                        <ListItemIcon><Work /></ListItemIcon>
+                                        <ListItemText primary={t('menu_education')} />
+                                    </ListItem>
                                     <ListItem component={Link} to="/projects" onClick={handleDrawerClose}>
                                         <ListItemIcon><Folder /></ListItemIcon>
                                         <ListItemText primary={"Projects"} />
@@ -195,6 +199,14 @@ const Header = () => {
                         id='education'
                         label={t('menu_education')}
                         icon={<School />}
+                    />
+                    <BottomNavigationAction
+                        component={StyledLink}
+                        to="/experience"
+                        value="experience"
+                        id='experience'
+                        label={t('menu_experience')}
+                        icon={<Work />}
                     />
                     <BottomNavigationAction
                         component={StyledLink}

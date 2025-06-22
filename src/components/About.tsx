@@ -25,6 +25,16 @@ const SkillBox = styled('div')`
     text-align: center; /* Center text */
 `;
 
+const AvatarContainer = styled('img')`
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
+`
+
 const SkillsColumn = styled('div')`
     display: flex;
     flex-wrap: wrap;
@@ -68,14 +78,7 @@ const About: React.FC = () => {
                 overlap="circular"
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
-                <img src={AvatarImg} alt="Description" style={{
-                    width: '300px',
-                    height: '300px',
-                    objectFit: 'cover',
-                    borderRadius: '50%', // Makes it a circle
-                    borderWidth: '1px',
-                    borderColor : 'rgb(35, 35, 35)'
-                }} />
+                <AvatarContainer src={AvatarImg} alt="Description"/>
             </Badge>
             <div style={{ marginLeft: '0', marginTop: '16px', textAlign: 'center' }}>
                 <h1>{t('menu_about')}</h1>
@@ -85,7 +88,7 @@ const About: React.FC = () => {
                         {skillsList.map(skill => (
                             <SkillBox key={skill.title}>
                                 {skill.title}
-                                <Rating value={skill.value * 5} precision={1} />
+                                <Rating value={skill.value * 5} precision={1} size="large" />
                             </SkillBox>
                         ))}
                     </SkillsColumn>

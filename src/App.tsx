@@ -16,6 +16,7 @@ import './index.css'
 import {darkTheme, lightTheme} from "./themes/ThemeContext";
 import GithubCard from "./components/GithubCard";
 import Projects from "./components/Projects";
+import Experience from "./components/Experience";
 
 const App = () => {
     const [mode, setMode] = React.useState<'light' | 'dark'>((localStorage.getItem('mode') as 'light' | 'dark') || 'dark');
@@ -44,6 +45,7 @@ const App = () => {
                                 <Routes>
                                     <Route path="/about" element={<About/>} />
                                     <Route path="/education" element={<Education/>} />
+                                    <Route path="/experience" element={<Experience/>} />
                                     <Route path="/contact" element={<Contact/>} />
                                     <Route path="/links" element={<Links/>} />
                                     <Route path="/projects" element={<Projects/>} />

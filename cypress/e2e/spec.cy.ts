@@ -1,10 +1,12 @@
+import i18n from "i18next";
+
 describe('Portfolio app', function () {
   beforeEach(function () {
     cy.visit('http://localhost:3000')
   });
 
   it('About page can be opened', function () {
-    cy.contains('Tietoa')
+    cy.contains(i18n.t('information'))
     cy.contains('Neljännen vuoden tieto- ja viestintätekniikan opiskelija. Kiinnostunut videopelien pelaamisesta sekä ohjelmoinnista 😊.')
   })
 
