@@ -4,6 +4,13 @@ import Centria from './assets/pictures/centria.png';
 import Ksl from './assets/pictures/ksl.png';
 // @ts-ignore
 import Hakalahti from './assets/pictures/hakalahti.png';
+// @ts-ignore
+import JobImage from './assets/pictures/vitec.png';
+import {Job} from "./components/Experience";
+
+const jobs: Job[] = [
+    { company: 'Vitec Alma OY', duration: 'May 2025 - Present', logo: JobImage, link: 'https://www.vitec-alma.com/' },
+];
 
 const skillsList = [
     { title: 'JavaScript', value: 0.85 },
@@ -313,4 +320,4 @@ const education = [
     },
 ]
 
-export { skillsList, education }
+export { skillsList, education, jobs }

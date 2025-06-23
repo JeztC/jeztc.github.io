@@ -4,8 +4,9 @@ import { Box, Card, Avatar, Typography, Link } from '@mui/material';
 import AvatarImg from '../assets/pictures/vitec.png';
 import {useTranslation} from "react-i18next";
 import { styled } from "@mui/material/styles";
+import {jobs} from "../data";
 
-type Job = {
+export type Job = {
     company: string;
     duration: string;
     logo: string;
@@ -25,10 +26,6 @@ const Container = styled('div')`
         box-shadow: 0 12px 24px ${({ theme }) => theme.palette.mode === 'light' ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.12)'};
     }
 `;
-
-const jobs: Job[] = [
-    { company: 'Vitec Alma OY', duration: 'May 2025 - Present', logo: AvatarImg, link: 'https://www.vitec-alma.com/' },
-];
 
 const Experience = () => {
     const { t } = useTranslation();
