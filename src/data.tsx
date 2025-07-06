@@ -9,7 +9,7 @@ import JobImage from './assets/pictures/vitec.png';
 import {Job} from "./components/Experience";
 
 const jobs: Job[] = [
-    { company: 'Vitec Alma OY', duration: 'May 2025 - Present', logo: JobImage, link: 'https://www.vitec-alma.com/' },
+    { company: 'Vitec Alma OY', duration: 'May 2025', logo: JobImage, link: 'https://www.vitec-alma.com/' },
 ];
 
 const skillsList = [

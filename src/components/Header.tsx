@@ -18,8 +18,6 @@ import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
 import {DarkModeToggle} from "../themes/DarkModeToggle";
-import {useTheme} from "../themes/ThemeContext";
-import {css} from "@emotion/react";
 import {isMobile} from "react-device-detect";
 
 const HeaderWrapper = styled('header')`

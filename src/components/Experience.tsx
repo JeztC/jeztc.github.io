@@ -69,7 +69,7 @@ const Experience = () => {
                                 {job.company}
                             </Typography>
                             <Typography variant="body2" color="text.secondary" sx={{mt: 0.5}}>
-                                {job.duration}
+                                {t(`job_${index}_duration`)}
                             </Typography>
                         </Box>
                     </Link>
