@@ -1,12 +1,12 @@
-// @ts-ignore
+// @ts-expect-error TypeScript cannot resolve PNG imports
 import Centria from './assets/pictures/centria.png';
-// @ts-ignore
+// @ts-expect-error TypeScript cannot resolve PNG imports
 import Ksl from './assets/pictures/ksl.png';
-// @ts-ignore
+// @ts-expect-error TypeScript cannot resolve PNG imports
 import Hakalahti from './assets/pictures/hakalahti.png';
-// @ts-ignore
+// @ts-expect-error TypeScript cannot resolve PNG imports
 import JobImage from './assets/pictures/vitec.png';
-import {Job} from "./components/Experience";
+import { Job } from "./components/Experience";
 
 const jobs: Job[] = [
     { company: 'Vitec Alma OY', duration: 'May 2025', logo: JobImage, link: 'https://www.vitec-alma.com/' },
@@ -30,7 +30,7 @@ const skillsList = [
     { title: 'C++', value: 0.50 },
     { title: 'SQL', value: 0.80 },
     { title: 'Linux', value: 1 },
-    { title: 'Redux ', value: 0.70},
+    { title: 'Redux ', value: 0.70 },
     { title: 'MongoDB ', value: 0.70 },
     { title: 'Cypress & Jest ', value: 0.70 },
     { title: 'CI/CD', value: 0.70 },

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import {GitHub, Email} from '@mui/icons-material';
+import { GitHub, Email } from '@mui/icons-material';
 import Icon from "./Icon";
 
 const IconContainer = styled.div`

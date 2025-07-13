@@ -1,12 +1,10 @@
 import styled from "@emotion/styled";
-import { useMediaQuery } from "@mui/material";
-import { css } from "@emotion/react";
-import { useTheme as useMuiTheme } from "@mui/material";
-// @ts-ignore
+// @ts-expect-error TypeScript cannot resolve PNG imports
 import demo from '../assets/demo.gif';
-// @ts-ignore
+// @ts-expect-error TypeScript cannot resolve PNG imports
 import portfolio from '../assets/pictures/img.png';
-import {isMobile} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
+import React from 'react';
 
 const Container = styled.div`
     display: flex;
@@ -68,15 +66,7 @@ const ProjectTitle = styled.h3`
     font-weight: 600;
 `;
 
-interface CardProps {
-    href: string;
-    target?: string;
-    rel?: string;
-    src?: string;
-    alt?: string;
-}
-
-const Projects = () => {
+const Projects: React.FC = () => {
     return (
         <Container>
             <ProjectsContainer>

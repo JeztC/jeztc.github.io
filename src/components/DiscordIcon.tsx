@@ -1,6 +1,7 @@
-import {SvgIcon} from "@mui/material";
+import { SvgIcon } from "@mui/material";
+import React from "react";
 
-const DiscordIcon = () => {
+const DiscordIcon: React.FC = () => {
     return (
         <SvgIcon width="12" height="12" viewBox="0 0 12 12" className="bi bi-discord">
             <path

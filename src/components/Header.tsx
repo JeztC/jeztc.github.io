@@ -2,7 +2,7 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { styled } from "@mui/material/styles";
 import React from "react";
-import {Link, useLocation} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
     AccountCircle,
     School,
@@ -13,12 +13,12 @@ import {
     Close,
     Folder, Work
 } from "@mui/icons-material";
-import {Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem, useMediaQuery} from "@mui/material";
+import { Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
-import {DarkModeToggle} from "../themes/DarkModeToggle";
-import {isMobile} from "react-device-detect";
+import { DarkModeToggle } from "../themes/DarkModeToggle";
+import { isMobile } from "react-device-detect";
 
 const HeaderWrapper = styled('header')`
     display: flex;
@@ -95,7 +95,7 @@ const Header = () => {
         setIsDrawerOpen(false);
     };
 
-    const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
+    const handleChange = (event: React.ChangeEvent<object>, newValue: string) => {
         setValue(newValue);
     }
 

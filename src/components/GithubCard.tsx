@@ -1,14 +1,13 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {Card, CardContent, CardHeader, CircularProgress, Grid, Link, Typography, css, Box} from '@mui/material';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Card, CardContent, CardHeader, CircularProgress, Grid, Link, Typography, Box } from '@mui/material';
 import axios from 'axios';
 import GithubIcon from "./GithubIcon";
 import '../index.css'
 import GroupIcon from '@mui/icons-material/Group';
-import {Star} from "@mui/icons-material";
+import { Star } from "@mui/icons-material";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import moment from "moment/moment";
 import { styled } from "@mui/material/styles";
-import {useTheme} from "../themes/ThemeContext";
 
 interface Repository {
     id: number;

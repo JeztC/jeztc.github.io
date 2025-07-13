@@ -1,4 +1,4 @@
-import {createContext, useContext} from 'react';
+import { createContext, useContext } from 'react';
 import { createTheme } from '@mui/material/styles';
 
 const darkTheme = createTheme({

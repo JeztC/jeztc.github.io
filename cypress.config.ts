@@ -6,9 +6,4 @@ export default defineConfig({
     mochaFile: 'results/my-test-output.xml',
     toConsole: true,
   },
-  e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
-  },
 });

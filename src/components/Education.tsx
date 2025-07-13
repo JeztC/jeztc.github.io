@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react'
+import React, { ReactNode } from 'react'
 import {
     Tabs,
     Tab,
@@ -21,8 +21,8 @@ import {
     Language,
 } from '@mui/icons-material'
 import XIcon from '@mui/icons-material/X';
-import {css} from "@emotion/react";
-import {isMobile} from 'react-device-detect';
+import { css } from "@emotion/react";
+import { isMobile } from 'react-device-detect';
 import { styled } from "@mui/material/styles";
 
 const Root = styled('div')`
@@ -31,9 +31,9 @@ const Root = styled('div')`
     width: 100%;
     height: 100%;
     margin-top: 120px;
-    margin-left: ${({ }) => (isMobile ? '20px' : '250px')};
-    flex-direction: ${({ }) => (isMobile ? 'column' : 'row')};
-    ${({ }) => isMobile && 'padding-bottom: 100px;'}
+    margin-left: ${() => (isMobile ? '20px' : '250px')};
+    flex-direction: ${() => (isMobile ? 'column' : 'row')};
+    ${() => isMobile && 'padding-bottom: 100px;'}
 `
 
 const TabStyled = styled(Tabs)`
@@ -94,7 +94,7 @@ const Education = () => {
         setExpand(!expand)
     }
 
-    const handleChange = (event: React.ChangeEvent<{}>, newValue : number) => {
+    const handleChange = (event: React.ChangeEvent<object>, newValue : number) => {
         setValue(newValue)
     }
 

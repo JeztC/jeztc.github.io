@@ -1,10 +1,10 @@
 import React from 'react';
-import {useFormik} from 'formik';
+import { useFormik } from 'formik';
 import * as yup from 'yup';
-import {Box, Button, Container, TextField, Typography} from '@mui/material';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import emailjs from '@emailjs/browser';
-import {useTranslation} from "react-i18next";
-import {AnimatePresence, motion} from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { AnimatePresence, motion } from "framer-motion";
 import Check from "./Check";
 
 const Contact = () => {
@@ -45,12 +45,12 @@ const Contact = () => {
     })
 
     return (
-        <Container maxWidth="md" style={{marginTop : '100px', marginBottom : '200px'}}>
+        <Container maxWidth="md" style={{ marginTop : '100px', marginBottom : '200px' }}>
 
             <Box overflow="hidden" style={{ paddingTop : '20px', paddingRight : '30px', paddingLeft : '30px', position: 'relative', minHeight: '300px', border: '1px solid #1D9BF0' }}>
                 <AnimatePresence>
                     {!sendEmailSuccess && (
-                        <form style={{width: '100%'}} onSubmit={formik.handleSubmit}>
+                        <form style={{ width: '100%' }} onSubmit={formik.handleSubmit}>
                             <TextField
                                 style={{ backgroundColor: 'inherit' }}
                                 error={Boolean(formik.touched.from_name && formik.errors.from_name)}
@@ -67,7 +67,7 @@ const Contact = () => {
                             />
                             <TextField
                                 error={Boolean(formik.touched.from_email && formik.errors.from_email)}
-                                InputProps={{ inputProps: { style: { backgroundColor: 'inherit' }}}}
+                                InputProps={{ inputProps: { style: { backgroundColor: 'inherit' } } }}
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange}
                                 value={formik.values.from_email}
@@ -81,7 +81,7 @@ const Contact = () => {
                             />
                             <TextField
                                 error={Boolean(formik.touched.message && formik.errors.message)}
-                                InputProps={{ inputProps: { style: { backgroundColor: 'inherit' }}}}
+                                InputProps={{ inputProps: { style: { backgroundColor: 'inherit' } } }}
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange}
                                 value={formik.values.message}
@@ -95,11 +95,11 @@ const Contact = () => {
                                 id="message"
                                 label={<Typography variant="body1">{t('contact_message')}</Typography>}
                                 name="message"
-                                style={{height: '200px', overflow: 'visible'}}
+                                style={{ height: '200px', overflow: 'visible' }}
                             />
                             <Box display="flex" justifyContent="center" mt={2}>
                                 <Button
-                                    style={{width: '200px'}}
+                                    style={{ width: '200px' }}
                                     type="submit"
                                     fullWidth
                                     variant="contained"

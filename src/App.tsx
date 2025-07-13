@@ -1,22 +1,23 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import {
     BrowserRouter as Router,
     Routes, Route, Navigate
 } from "react-router-dom"
 import About from "./components/About";
-import {ThemeProvider, Theme} from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import {ThemeContext} from './themes/ThemeContext';
+import { ThemeContext } from './themes/ThemeContext';
 import Education from "./components/Education";
 import Header from "./components/Header";
 import Contact from "./components/Contact";
 import Links from "./components/Links";
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './index.css'
-import {darkTheme, lightTheme} from "./themes/ThemeContext";
+import { darkTheme, lightTheme } from "./themes/ThemeContext";
 import GithubCard from "./components/GithubCard";
 import Projects from "./components/Projects";
 import Experience from "./components/Experience";
+import PageNotFound from './components/PageNotFound';
 
 const App = () => {
     const [mode, setMode] = React.useState<'light' | 'dark'>((localStorage.getItem('mode') as 'light' | 'dark') || 'dark');
@@ -29,7 +30,7 @@ const App = () => {
     };
 
     return (
-        <ThemeProvider defaultMode="system" theme={theme}>
+        <ThemeProvider theme={theme}>
             <ThemeContext.Provider value={{ theme, toggleMode }}>
                 <CssBaseline />
                 <Router>
@@ -51,6 +52,7 @@ const App = () => {
                                     <Route path="/projects" element={<Projects/>} />
                                     <Route path="/github" element={<GithubCard/>} />
                                     <Route path="/" element={<Navigate replace to="/about" />} />
+                                    <Route path="*" element={<PageNotFound />} />
                                 </Routes>
                             </CSSTransition>
                         </TransitionGroup>

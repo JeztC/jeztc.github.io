@@ -1,27 +1,18 @@
-import {Email, GitHub, LinkedIn} from "@mui/icons-material";
+import { Email, GitHub, LinkedIn } from "@mui/icons-material";
 import Icon from "./Icon";
 import styled from "@emotion/styled";
-import {useTranslation} from "react-i18next";
-import {css} from "@emotion/react";
+import { useTranslation } from "react-i18next";
 import React from "react";
-import {isMobile} from "react-device-detect";
+import { isMobile } from "react-device-detect";
 
 const LinksContainer = styled.div`
-    ${() => {
-        return isMobile
-                ? css`
-                    flex-direction: column;
-                    margin-bottom: 150px;
-                    padding-top: 40px;
-                ` : css`
-                    padding-top: 150px;
-                    flex-direction: row;
-                `
-    }}
     display: flex;
     align-items: center;
     justify-content: center;
-`
+    flex-direction: ${isMobile ? 'column' : 'row'};
+    padding-top: ${isMobile ? '40px' : '150px'};
+    margin-bottom: ${isMobile ? '150px' : '0'};
+`;
 
 const Box = styled.div`
     display: flex;
@@ -46,7 +37,7 @@ const Links = () => {
                 <p>GitHub</p>
             </Box>
             <Box>
-                <Icon size={250} href={`mailto:"jesse.lagland@gmail.com`} target="_blank">
+                <Icon size={250} href={`mailto:"jesse.lagland@gmail.com"`} target="_blank">
                     <Email />
                 </Icon>
                 <p>{t('links_email')}</p>

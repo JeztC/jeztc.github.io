@@ -1,28 +1,28 @@
 import React from "react";
-// @ts-ignore
+// @ts-expect-error TypeScript cannot resolve PNG imports
 import AvatarImg from '../assets/pictures/avatar.png';
-import {Badge, Rating} from "@mui/material";
+import { Badge, Rating } from "@mui/material";
 import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
 
 const SkillBox = styled('div')`
     display: flex;
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #1D9BF0;
     color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'};
     min-width: 50px;
     width: auto;
-    height: auto; /* Allow height to adjust based on content */
+    height: auto;
     font-size: 16px;
     font-weight: bold;
     border-radius: 4px;
     margin-right: 8px;
     margin-bottom: 8px;
-    padding: 10px; /* Adjust padding for better spacing */
-    text-align: center; /* Center text */
+    padding: 10px;
+    text-align: center;
 `;
 
 const AvatarContainer = styled('img')`
@@ -39,7 +39,7 @@ const SkillsColumn = styled('div')`
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    width: 100%; /* Adjust width for smaller screens */
+    width: 100%;
 `;
 
 const SkillsContainer = styled('div')`
@@ -52,7 +52,7 @@ const SkillsContainer = styled('div')`
 
 const MainContainer = styled('div')`
     display: flex;
-    flex-direction: column; /* Change to column layout for smaller screens */
+    flex-direction: column;
     align-items: center;
     margin-top : 50px;
     padding-top: 60px;

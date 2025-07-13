@@ -1,10 +1,8 @@
 import React from 'react';
-import { Box, Card, Avatar, Typography, Link } from '@mui/material';
-// @ts-ignore
-import AvatarImg from '../assets/pictures/vitec.png';
-import {useTranslation} from "react-i18next";
+import { Box, Avatar, Typography, Link } from '@mui/material';
+import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
-import {jobs} from "../data";
+import { jobs } from "../data";
 
 export type Job = {
     company: string;
@@ -30,7 +28,7 @@ const Container = styled('div')`
 const Experience = () => {
     const { t } = useTranslation();
     return (
-        <Box sx={{p: 4, maxWidth: 600, mx: 'auto'}}>
+        <Box sx={{ p: 4, maxWidth: 600, mx: 'auto' }}>
             <Typography variant="h4" component="h1" gutterBottom>
                 {t('menu_experience')}
             </Typography>
@@ -49,7 +47,7 @@ const Experience = () => {
                             borderRadius: 3,
                             border: theme => `1px solid ${theme.palette.divider}`,
                             transition: 'box-shadow 0.2s',
-                            '&:hover': {boxShadow: 6},
+                            '&:hover': { boxShadow: 6 },
                         }}
                     >
                         <Avatar
@@ -68,8 +66,11 @@ const Experience = () => {
                             <Typography variant="subtitle1" fontWeight="bold">
                                 {job.company}
                             </Typography>
-                            <Typography variant="body2" color="text.secondary" sx={{mt: 0.5}}>
+                            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
                                 {t(`job_${index}_duration`)}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, fontWeight: 'bold' }}>
+                                {t(`experience_${index}_job`)}
                             </Typography>
                         </Box>
                     </Link>

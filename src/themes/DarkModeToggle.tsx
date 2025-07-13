@@ -3,7 +3,7 @@ import { useTheme } from './ThemeContext';
 import { IconButton } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import {isMobile} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 export const DarkModeToggle: React.FC = () => {
     const { theme, toggleMode } = useTheme();
