@@ -69,28 +69,13 @@ const AvatarContainer = styled('img')`
 `
 
 const GitHubCard: React.FC = () => {
-    const [user, setUser] = useState<User>({
-        login: '',
-        id: 0,
-        avatar_url: '',
-        name: '',
-        bio: '',
-        html_url: '',
-        followers: 0,
-        following: 0,
-        description: '',
-        public_repos: 0,
-        public_gists: 0,
-        starred_url: '',
-        total_starred: 0,
-        created_at: '1970-1-1T00:00:00Z'
-    });
+    const [user, setUser] = useState<User | null>(null);
     const [repositories, setRepositories] = useState<Repository[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
     const formattedDate = useMemo(() => {
-        return moment(user.created_at).format('DD/MM/YYYY');
-    }, [user.created_at]);
+        return moment(user?.created_at).format('DD/MM/YYYY');
+    }, [user?.created_at]);
 
     const filteredRepositories = useMemo(() => {
         return repositories
@@ -131,25 +116,25 @@ const GitHubCard: React.FC = () => {
                         <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '50px', marginBottom: '50px', marginTop: '25px', boxSizing: 'border-box', borderRadius: '5px' }}>
                             <StyledUserCard>
                                 <CardHeader
-                                    avatar={<AvatarContainer src={user.avatar_url} alt={`Avatar for ${user.login}`} />}
-                                    title={<Typography variant="h6">{user.name}</Typography>}
+                                    avatar={<AvatarContainer src={user?.avatar_url} alt={`Avatar for ${user?.login}`} />}
+                                    title={<Typography variant="h6">{user?.name}</Typography>}
                                 />
                                 <CardContent>
                                     <Typography sx={{ fontSize: '20px', fontFamily: 'Segoe UI' }} color="rgb(139, 148, 158)" variant="h5">
-                                        <Link href={user.html_url} target="_blank">{user.login}</Link>
+                                        <Link href={user?.html_url} target="_blank">{user?.login}</Link>
                                     </Typography>
-                                    <Typography sx={{ marginTop: '20px', marginBottom: '20px', fontSize: '18px', fontFamily: 'Segoe UI' }} color="inherit" variant="subtitle1">{user.bio}</Typography>
+                                    <Typography sx={{ marginTop: '20px', marginBottom: '20px', fontSize: '18px', fontFamily: 'Segoe UI' }} color="inherit" variant="subtitle1">{user?.bio}</Typography>
                                     <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
                                         <GroupIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
-                                        <Typography color="#999999" variant="body2">{user.followers} followers · {user.following} following</Typography>
+                                        <Typography color="#999999" variant="body2">{user?.followers} followers · {user?.following} following</Typography>
                                     </div>
                                     <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
                                         <GithubIcon />
-                                        <Typography style={{ paddingLeft: '5px' }} color="#999999" variant="body2">Repositories: {user.public_repos}</Typography>
+                                        <Typography style={{ paddingLeft: '5px' }} color="#999999" variant="body2">Repositories: {user?.public_repos}</Typography>
                                     </div>
                                     <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
                                         <Star style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
-                                        <Typography color="#999999" variant="body2">Stars: {user.total_starred}</Typography>
+                                        <Typography color="#999999" variant="body2">Stars: {user?.total_starred}</Typography>
                                     </div>
                                     <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
                                         <CalendarMonthIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
