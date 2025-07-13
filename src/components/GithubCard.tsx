@@ -53,9 +53,7 @@ const ProjectBox = styled(Box)`
     background: inherit;
     margin: 23px;
     border-radius: 0;
-    border: 1px solid ${({ theme }) =>
-            theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'
-    };
+    border: 1px solid ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
     width: 420px;
     height: 150px;
     box-shadow: none;
@@ -101,25 +99,23 @@ const GitHubCard: React.FC = () => {
     }, [repositories]);
 
     useEffect(() => {
-        const fetchUser = async () => {
-            const result = await axios.get<User>("https://api.github.com/users/JeztC");
-            const starredResult = await axios.get("https://api.github.com/users/JeztC/starred");
+        const fetchData = async () => {
+            const [userResult, starredResult, reposResult] = await Promise.all([
+                axios.get<User>("https://api.github.com/users/JeztC"),
+                axios.get("https://api.github.com/users/JeztC/starred"),
+                axios.get<Repository[]>(
+                    "https://api.github.com/users/JeztC/repos?sort=updated&direction=desc&type=all&per_page=100&page=1&affiliation=owner,collaborator&sort=pushed"
+                ),
+            ]);
+
             setUser({
-                ...result.data,
+                ...userResult.data,
                 total_starred: starredResult.data.length,
             });
+            setRepositories(reposResult.data);
             setLoading(false);
         };
-        fetchUser();
-    }, []);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios.get<Repository[]>(
-                `https://api.github.com/users/JeztC/repos?sort=updated&direction=desc&type=all&per_page=100&page=1&affiliation=owner,collaborator&sort=pushed`
-            );
-            setRepositories(result.data);
-        };
         fetchData();
     }, []);
 
