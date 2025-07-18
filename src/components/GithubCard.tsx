@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader, CircularProgress, Grid, Link, Typography, Box } from '@mui/material';
 import axios from 'axios';
 import GithubIcon from "./GithubIcon";
-import '../index.css'
 import GroupIcon from '@mui/icons-material/Group';
 import { Star } from "@mui/icons-material";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -44,8 +43,8 @@ const StyledUserCard = styled(Card)`
     background: inherit;
     border: 1px solid ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
     @media (max-width: 768px) {
-        width: 90%; /* Adjust width for mobile screens */
-        margin: 0 auto; /* Center the card */
+        width: 90%;
+        margin: 0 auto;
     }
 `;
 
@@ -62,11 +61,62 @@ const ProjectBox = styled(Box)`
 const AvatarContainer = styled('img')`
     width: 100px;
     height: 100px;
-    border-radius: 50%; 
+    border-radius: 50%;
     border-style: solid;
     border-width: 1px;
     border-color: ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
 `
+
+const DescriptionTypography = styled(Typography)(() => ({
+    marginTop: '-30px',
+    color: 'rgb(139, 148, 158)',
+}));
+
+interface LanguageProps {
+    language: string;
+}
+
+const LanguageTypography = styled(Typography)<LanguageProps>(({ language }) => ({
+    marginTop: '20px',
+    display: 'flex',
+    alignItems: 'center',
+    color: 'rgb(139, 148, 158)',
+    '&:before': {
+        content: '""',
+        display: 'inline-block',
+        width: '14px',
+        height: '14px',
+        borderRadius: '50%',
+        marginRight: '5px',
+        backgroundColor: getLanguageColor(language),
+    },
+}));
+
+const getLanguageColor = (language : string) => {
+    if (!language) return 'transparent';
+
+    const normalizedLang = language.trim().toLowerCase();
+
+    const colorMap: Record<string, string> = {
+        javascript: '#f1e05a',
+        python: '#3572A5',
+        java: '#b07219',
+        'c++': '#f34b7d',
+        c: '#555555',
+        ruby: '#701516',
+        swift: '#ffac45',
+        go: '#00ADD8',
+        php: '#4F5D95',
+        html: '#e44b23',
+        css: '#563d7c',
+        kotlin: '#F18E33',
+        'c#': '#178600',
+        typescript: '#3178C6',
+        nix: '#7e7eff',
+        shell: '#89e051',
+    };
+    return colorMap[normalizedLang] || 'transparent';
+};
 
 const GitHubCard: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
@@ -80,17 +130,14 @@ const GitHubCard: React.FC = () => {
     const filteredRepositories = useMemo(() => {
         return repositories
             .filter(repo => repo.language !== null)
-            .slice(0, 10);
     }, [repositories]);
 
     useEffect(() => {
         const fetchData = async () => {
             const [userResult, starredResult, reposResult] = await Promise.all([
-                axios.get<User>("https://api.github.com/users/JeztC"),
-                axios.get("https://api.github.com/users/JeztC/starred"),
-                axios.get<Repository[]>(
-                    "https://api.github.com/users/JeztC/repos?sort=updated&direction=desc&type=all&per_page=100&page=1&affiliation=owner,collaborator&sort=pushed"
-                ),
+                axios.get<User>('https://api.github.com/users/JeztC'),
+                axios.get('https://api.github.com/users/JeztC/starred'),
+                axios.get<Repository[]>('https://api.github.com/users/JeztC/repos?sort=updated&direction=desc&type=all&per_page=100&page=1&affiliation=owner,collaborator&sort=pushed'),
             ]);
 
             setUser({
@@ -105,7 +152,7 @@ const GitHubCard: React.FC = () => {
     }, []);
 
     return (
-        <div>
+        <>
             {loading ? (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
                     <CircularProgress size="30px" />
@@ -153,16 +200,12 @@ const GitHubCard: React.FC = () => {
                                             subheader={<Typography variant="body2" color="rgb(139, 148, 158)" component="p">{`${repository.stargazers_count} stars • ${repository.forks} forks`}</Typography>}
                                         />
                                         <CardContent>
-                                            <Typography style={{ marginTop: '-30px' }} variant="body2" color="rgb(139, 148, 158)">{repository.description}</Typography>
-                                            {repository.language === null ? (
-                                                <Typography variant="body2" color="rgb(139, 148, 158)" style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }}>
-                                                    Language: Unknown
-                                                </Typography>
-                                            ) : (
-                                                <Typography variant="body2" color="rgb(139, 148, 158)" component="p" style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }} className={`language-text ${repository.language.toLowerCase().replace('c#', 'csharp')}`}>
-                                                    {repository.language}
-                                                </Typography>
-                                            )}
+                                            <DescriptionTypography variant="body2">
+                                                {repository.description}
+                                            </DescriptionTypography>
+                                            <LanguageTypography variant="body2" language={repository.language}>
+                                                {repository.language}
+                                            </LanguageTypography>
                                         </CardContent>
                                     </ProjectBox>
                                 </Grid>
@@ -171,7 +214,7 @@ const GitHubCard: React.FC = () => {
                     </>
                 )
             )}
-        </div>
+        </>
     );
 };
 

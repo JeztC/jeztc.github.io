@@ -1,5 +1,6 @@
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { createTheme } from '@mui/material/styles';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 
 const darkTheme = createTheme({
     palette: {
@@ -14,7 +15,7 @@ const darkTheme = createTheme({
             primary: "#FFFFFF"
         },
         secondary: {
-            main: '#fff', // this is the secondary color
+            main: '#fff',
         },
     },
 });
@@ -32,7 +33,7 @@ const lightTheme = createTheme({
             primary: '#000000',
         },
         secondary: {
-            main: '#000', // this is the secondary color
+            main: '#000',
         },
     },
 });
@@ -44,6 +45,25 @@ const ThemeContext = createContext({
 
 export function useTheme() {
     return useContext(ThemeContext);
+}
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+    const [mode, setMode] = useState<'light' | 'dark'>((localStorage.getItem('mode') as 'light' | 'dark') || 'dark');
+    const theme = mode === 'light' ? lightTheme : darkTheme;
+
+    const toggleMode = () => {
+        const newMode = mode === 'light' ? 'dark' : 'light';
+        setMode(newMode);
+        localStorage.setItem('mode', newMode);
+    };
+
+    return (
+        <MuiThemeProvider theme={theme}>
+            <ThemeContext.Provider value={{ theme, toggleMode }}>
+                {children}
+            </ThemeContext.Provider>
+        </MuiThemeProvider>
+    );
 }
 
 export { ThemeContext, darkTheme, lightTheme };
