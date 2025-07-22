@@ -12,7 +12,6 @@ const SkillBox = styled('div')`
     align-items: center;
     justify-content: center;
     background-color: #1D9BF0;
-    color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'};
     min-width: 50px;
     width: auto;
     height: auto;

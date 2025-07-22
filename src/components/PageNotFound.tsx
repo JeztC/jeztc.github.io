@@ -21,9 +21,6 @@ const PageNotFound = () => {
 
     return (
         <CenteredContainer>
-            <Typography variant="h2" color="text.secondary" gutterBottom>
-                404
-            </Typography>
             <Typography variant="h5" gutterBottom>
                 {t('pageNotFound')}
             </Typography>
