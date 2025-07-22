@@ -135,9 +135,6 @@ const GitHubCard: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             const [userResult, starredResult, reposResult] = await Promise.all([
-                axios.get<User>(process.env.USER_API_URL || ''),
-                axios.get(process.env.USER_API_URL_STARRED || ''),
-                axios.get<Repository[]>(process.env.USER_API_PROJECTS || ''),
                 axios.get<User>('https://api.github.com/users/JeztC'),
                 axios.get('https://api.github.com/users/JeztC/starred'),
                 axios.get<Repository[]>('https://api.github.com/users/JeztC/repos?sort=updated&direction=desc&type=all&per_page=100&page=1&affiliation=owner,collaborator&sort=pushed'),
