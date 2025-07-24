@@ -11,7 +11,8 @@ const SkillBox = styled('div')`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #1D9BF0;
+    background-color: #90caf9;
+    color: black;
     min-width: 50px;
     width: auto;
     height: auto;
