@@ -26,7 +26,10 @@ const HeaderWrapper = styled('header')`
     align-items: flex-end;
     padding: 0 16px;
     height: 58px;
-    width: 100%;
+    width: 100vw;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal overflow */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -40,12 +43,12 @@ const StyledLink = styled(Link)`
     border: 1px solid rgb(62, 65, 68) !important;
     border-bottom: none !important;
     background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
-    border-bottom: 2px solid #90caf9;
+    border-bottom: 2px solid #76b8ec;
     
     &.Mui-selected {
         background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : 'inherit'} !important;
         color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'} !important;
-        border-bottom: 2px solid #90caf9 !important;
+        border-bottom: 2px solid #76b8ec !important;
     }
 
     &:hover {

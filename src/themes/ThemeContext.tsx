@@ -9,7 +9,7 @@ const darkTheme = createTheme({
         },
         mode: 'dark',
         primary: {
-            main: '#90caf9'
+            main: '#76b8ec'
         },
         text:{
             primary: "#FFFFFF"
@@ -27,7 +27,7 @@ const lightTheme = createTheme({
             default: 'white',
         },
         primary: {
-            main: '#90caf9'
+            main: '#76b8ec'
         },
         text: {
             primary: '#000000',

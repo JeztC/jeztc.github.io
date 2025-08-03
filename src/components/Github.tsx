@@ -67,6 +67,12 @@ const AvatarContainer = styled('img')`
     border-color: ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
 `
 
+const StyledUserCardSection = styled('div')`
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+`
+
 const DescriptionTypography = styled(Typography)(() => ({
     marginTop: '-30px',
     color: 'rgb(139, 148, 158)',
@@ -118,7 +124,7 @@ const getLanguageColor = (language : string) => {
     return colorMap[normalizedLang] || 'transparent';
 };
 
-const GitHubCard: React.FC = () => {
+const Github: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
     const [repositories, setRepositories] = useState<Repository[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -171,22 +177,22 @@ const GitHubCard: React.FC = () => {
                                         <Link href={user?.html_url} target="_blank">{user?.login}</Link>
                                     </Typography>
                                     <Typography sx={{ marginTop: '20px', marginBottom: '20px', fontSize: '18px', fontFamily: 'Segoe UI' }} color="inherit" variant="subtitle1">{user?.bio}</Typography>
-                                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
+                                    <StyledUserCardSection>
                                         <GroupIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
                                         <Typography color="#999999" variant="body2">{user?.followers} followers · {user?.following} following</Typography>
-                                    </div>
-                                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
+                                    </StyledUserCardSection>
+                                    <StyledUserCardSection>
                                         <GithubIcon />
                                         <Typography style={{ paddingLeft: '5px' }} color="#999999" variant="body2">Repositories: {user?.public_repos}</Typography>
-                                    </div>
-                                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
+                                    </StyledUserCardSection>
+                                    <StyledUserCardSection>
                                         <Star style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
                                         <Typography color="#999999" variant="body2">Stars: {user?.total_starred}</Typography>
-                                    </div>
-                                    <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '10px' }}>
+                                    </StyledUserCardSection>
+                                    <StyledUserCardSection>
                                         <CalendarMonthIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
                                         <Typography color="#999999" variant="body2">Registered: {formattedDate}</Typography>
-                                    </div>
+                                    </StyledUserCardSection>
                                 </CardContent>
                             </StyledUserCard>
                         </div>
@@ -218,4 +224,4 @@ const GitHubCard: React.FC = () => {
     );
 };
 
-export default GitHubCard;
+export default Github;

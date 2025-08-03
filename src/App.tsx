@@ -9,7 +9,7 @@ import Education from "./components/Education";
 import Header from "./components/Header";
 import Links from "./components/Links";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import GithubCard from "./components/GithubCard";
+import Github from "./components/Github";
 import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import PageNotFound from './components/PageNotFound';
@@ -34,7 +34,7 @@ const App = () => {
                                 <Route path="/experience" element={<Experience/>} />
                                 <Route path="/links" element={<Links/>} />
                                 <Route path="/projects" element={<Projects/>} />
-                                <Route path="/github" element={<GithubCard/>} />
+                                <Route path="/github" element={<Github/>} />
                                 <Route path="/" element={<Navigate replace to="/about" />} />
                                 <Route path="*" element={<PageNotFound />} />
                             </Routes>
