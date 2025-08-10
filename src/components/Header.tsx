@@ -13,12 +13,13 @@ import {
     Close,
     Folder, Work
 } from "@mui/icons-material";
-import { Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
+import { Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
 import { DarkModeToggle } from "../themes/DarkModeToggle";
 import { isMobile } from "react-device-detect";
+import Flag from 'react-world-flags';
 
 const HeaderWrapper = styled('header')`
     display: flex;
@@ -117,7 +118,7 @@ const Header = () => {
 
     return (
         <HeaderWrapper>
-            <StyledHeader to="/about">Jesse Lågland Portfolio</StyledHeader>
+            <StyledHeader to="/about">Portfolio</StyledHeader>
             {isMobile ?
                 <>
                     <IconButton onClick={handleDrawerOpen} style={{ marginRight: '10px' }}>
@@ -172,7 +173,10 @@ const Header = () => {
                                     open={Boolean(languageMenuAnchor)}
                                     onClose={handleLanguageMenuClose}
                                 >
-                                    <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>🇫🇮  Finnish</LanguageMenuItem>
+                                    <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
+                                        <Flag code="FI" style={{ width: 24, height: 16 }} />
+                                        Finnish
+                                    </LanguageMenuItem>
                                     <LanguageMenuItem onClick={() => handleLanguageChange('en')}>🇬🇧  English</LanguageMenuItem>
                                 </Menu>
                             </div>
@@ -246,8 +250,18 @@ const Header = () => {
                         open={Boolean(languageMenuAnchor)}
                         onClose={handleLanguageMenuClose}
                     >
-                        <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>🇫🇮  Finnish</LanguageMenuItem>
-                        <LanguageMenuItem onClick={() => handleLanguageChange('en')}>🇬🇧  English</LanguageMenuItem>
+                        <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
+                            <Box display="flex" alignItems="center" gap={1}>
+                                <Flag code="FI" style={{ width: 24, height: 16 }} />
+                                Finnish
+                            </Box>
+                        </LanguageMenuItem>
+                        <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
+                            <Box display="flex" alignItems="center" gap={1}>
+                                <Flag code="GB" style={{ width: 24, height: 16 }} />
+                                English
+                            </Box>
+                        </LanguageMenuItem>
                     </Menu>
                 </div> : <div/>}
         </HeaderWrapper>

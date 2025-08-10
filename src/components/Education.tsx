@@ -66,13 +66,19 @@ const Education = () => {
 
     return (
         <Box
-            sx={{ flexGrow: 1, display: 'flex', height: '200%' }}
+            sx={{ display: 'flex', height: '200%' }}
         >
             <TabStyled
                 orientation={isMobile ? 'horizontal' : 'vertical'}
                 value={value}
                 onChange={handleChange}
                 centered={!isMobile}
+                sx={{
+                    position: 'sticky',
+                    top: 0,
+                    zIndex: 1,
+                    flexShrink: 0
+                }}
             >
                 {education.map((elem) => (
                     <EducationTab

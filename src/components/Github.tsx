@@ -7,6 +7,7 @@ import { Star } from "@mui/icons-material";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import moment from "moment/moment";
 import { styled } from "@mui/material/styles";
+import { useTranslation } from "react-i18next";
 
 interface Repository {
     id: number;
@@ -128,6 +129,7 @@ const Github: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
     const [repositories, setRepositories] = useState<Repository[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const { t } = useTranslation();
 
     const formattedDate = useMemo(() => {
         return moment(user?.created_at).format('DD/MM/YYYY');
@@ -179,19 +181,19 @@ const Github: React.FC = () => {
                                     <Typography sx={{ marginTop: '20px', marginBottom: '20px', fontSize: '18px', fontFamily: 'Segoe UI' }} color="inherit" variant="subtitle1">{user?.bio}</Typography>
                                     <StyledUserCardSection>
                                         <GroupIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
-                                        <Typography color="#999999" variant="body2">{user?.followers} followers · {user?.following} following</Typography>
+                                        <Typography color="#999999" variant="body2">{user?.followers} {t('followers')} · {user?.following} {t('following')}</Typography>
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
                                         <GithubIcon />
-                                        <Typography style={{ paddingLeft: '5px' }} color="#999999" variant="body2">Repositories: {user?.public_repos}</Typography>
+                                        <Typography style={{ paddingLeft: '5px' }} color="#999999" variant="body2">{t('repositories')}: {user?.public_repos}</Typography>
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
                                         <Star style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
-                                        <Typography color="#999999" variant="body2">Stars: {user?.total_starred}</Typography>
+                                        <Typography color="#999999" variant="body2">{t('stars')}: {user?.total_starred}</Typography>
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
                                         <CalendarMonthIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
-                                        <Typography color="#999999" variant="body2">Registered: {formattedDate}</Typography>
+                                        <Typography color="#999999" variant="body2">{t('registered')}: {formattedDate}</Typography>
                                     </StyledUserCardSection>
                                 </CardContent>
                             </StyledUserCard>
@@ -203,7 +205,7 @@ const Github: React.FC = () => {
                                         <CardHeader
                                             avatar={<GithubIcon />}
                                             title={<Link href={repository.html_url} target="_blank">{repository.name}</Link>}
-                                            subheader={<Typography variant="body2" color="rgb(139, 148, 158)" component="p">{`${repository.stargazers_count} stars • ${repository.forks} forks`}</Typography>}
+                                            subheader={<Typography variant="body2" color="rgb(139, 148, 158)" component="p">{`${repository.stargazers_count} ${t('stars').toLowerCase()} • ${repository.forks} ${t('forks')}`}</Typography>}
                                         />
                                         <CardContent>
                                             <DescriptionTypography variant="body2">
