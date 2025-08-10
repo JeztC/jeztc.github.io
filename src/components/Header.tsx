@@ -13,12 +13,22 @@ import {
     Close,
     Folder, Work
 } from "@mui/icons-material";
-import { Box, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
+import {
+    Box,
+    Drawer,
+    IconButton,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Menu,
+    MenuItem,
+    useMediaQuery
+} from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
 import { DarkModeToggle } from "../themes/DarkModeToggle";
-import { isMobile } from "react-device-detect";
 import Flag from 'react-world-flags';
 
 const HeaderWrapper = styled('header')`
@@ -88,6 +98,7 @@ const Header = () => {
     const [languageMenuAnchor, setLanguageMenuAnchor] = React.useState<null | HTMLElement>(null);
     const { t } = useTranslation();
     const location = useLocation()
+    const isMobile = useMediaQuery('(max-width:600px)');
     const tabOpened = location === null ? 'about' : location.pathname.replace('/', '')
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 

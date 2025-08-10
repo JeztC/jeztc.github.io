@@ -4,7 +4,7 @@ import {
     Tab,
     Typography,
     Box,
-    Link,
+    Link, useMediaQuery,
 } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { education } from '../data'
@@ -15,11 +15,10 @@ import {
 } from '@mui/icons-material'
 import XIcon from '@mui/icons-material/X';
 import { css } from "@emotion/react";
-import { isMobile } from 'react-device-detect';
 import { styled } from "@mui/material/styles";
 
 const TabStyled = styled(Tabs)`
-    ${() => (isMobile ? css`
+    ${() => (useMediaQuery('(max-width:600px)') ? css`
     width: inherit;
     height: inherit;
     max-width: inherit;
@@ -58,6 +57,7 @@ const StyledLink = styled(Link)`
 const Education = () => {
     const { t } = useTranslation()
     const [value, setValue] = React.useState<number>(0)
+    const isMobile = useMediaQuery('(max-width:600px)')
     const iconFontSize = isMobile ? '37px' : '25px';
 
     const handleChange = (event: React.ChangeEvent<object>, newValue : number) => {

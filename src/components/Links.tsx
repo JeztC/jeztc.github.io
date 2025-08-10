@@ -3,15 +3,20 @@ import Icon from "./Icon";
 import styled from "@emotion/styled";
 import { useTranslation } from "react-i18next";
 import React from "react";
-import { isMobile } from "react-device-detect";
 
 const LinksContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: ${isMobile ? 'column' : 'row'};
-    padding-top: ${isMobile ? '40px' : '150px'};
-    margin-bottom: ${isMobile ? '150px' : '0'};
+    flex-direction: row;
+    padding-top: 150px;
+    margin-bottom: 0;
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        padding-top: 40px;
+        margin-bottom: 150px;
+    }
 `;
 
 const Box = styled.div`

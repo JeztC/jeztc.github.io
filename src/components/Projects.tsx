@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import demo from '../assets/demo.gif';
 // @ts-expect-error TypeScript cannot resolve PNG imports
 import portfolio from '../assets/pictures/img.png';
-import { isMobile } from 'react-device-detect';
 import React from 'react';
 
 const Container = styled.div`
@@ -17,11 +16,17 @@ const ProjectsContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: ${isMobile ? "40px 20px" : "100px 0"};
-    flex-direction: ${isMobile ? "column" : "row"};
-    gap: ${isMobile ? "40px" : "60px"};
+    padding: 100px 0;
+    flex-direction: row;
+    gap: 60px;
     max-width: 1200px;
     margin: 0 auto;
+
+    @media (max-width: 600px) {
+        padding: 40px 20px;
+        flex-direction: column;
+        gap: 40px;
+    }
 `;
 
 const ProjectCard = styled.a`

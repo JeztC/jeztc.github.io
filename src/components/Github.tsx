@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Card, CardContent, CardHeader, CircularProgress, Grid, Link, Typography, Box } from '@mui/material';
+import { Card, CardContent, CardHeader, Grid, Link, Typography, Box } from '@mui/material';
 import axios from 'axios';
 import GithubIcon from "./GithubIcon";
 import GroupIcon from '@mui/icons-material/Group';
