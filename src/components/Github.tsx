@@ -8,6 +8,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import moment from "moment/moment";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
+import FacebookCircularProgress from "./FacebookCircularProgress";
 
 interface Repository {
     id: number;
@@ -163,7 +164,7 @@ const Github: React.FC = () => {
         <>
             {loading ? (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
-                    <CircularProgress size="30px" />
+                    <FacebookCircularProgress />
                 </div>
             ) : (
                 !loading && (
