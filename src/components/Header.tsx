@@ -31,23 +31,26 @@ import i18n from "i18next";
 import { DarkModeToggle } from "../themes/DarkModeToggle";
 import Flag from 'react-world-flags';
 
-const HeaderWrapper = styled('header')`
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    padding: 0 16px;
-    height: 58px;
-    width: 100vw;
-    max-width: 100vw;
-    box-sizing: border-box;
-    overflow-x: hidden; /* Prevent horizontal overflow */
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
-    border-bottom: 1px solid rgb(62, 65, 68);
-    color: #fff;
-`;
+const HeaderWrapper = styled('header')(({ theme }) => ({
+    display: 'flex',
+    justifyContent: 'flex-end', // Align content to the right
+    alignItems: 'flex-end',
+    padding: theme.spacing(0, 2), // 0 16px
+    height: '58px',
+    width: '100vw',
+    maxWidth: '100vw',
+    boxSizing: 'border-box',
+    overflowX: 'hidden',
+    position: 'sticky',
+    top: 0,
+    zIndex: 1000,
+    backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
+    borderBottom: '1px solid rgb(62, 65, 68)',
+    color: '#fff',
+    [theme.breakpoints.down('sm')]: {
+        padding: theme.spacing(0, 1), // Adjust padding for mobile (8px)
+    },
+}));
 
 const StyledLink = styled(Link)`
     width: 150px;
@@ -129,7 +132,7 @@ const Header = () => {
 
     return (
         <HeaderWrapper>
-            <StyledHeader to="/about">Portfolio</StyledHeader>
+            {!isMobile && <StyledHeader to="/about">Portfolio</StyledHeader>}
             {isMobile ?
                 <>
                     <IconButton onClick={handleDrawerOpen} style={{ marginRight: '10px' }}>
