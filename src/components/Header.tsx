@@ -184,10 +184,17 @@ const Header = () => {
                                     onClose={handleLanguageMenuClose}
                                 >
                                     <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
-                                        <Flag code="FI" style={{ width: 24, height: 16 }} />
-                                        Finnish
+                                        <Box display="flex" alignItems="center" gap={1}>
+                                            <Flag code="FI" style={{ width: 24, height: 16 }} />
+                                            {t('finnish')}
+                                        </Box>
                                     </LanguageMenuItem>
-                                    <LanguageMenuItem onClick={() => handleLanguageChange('en')}>🇬🇧  English</LanguageMenuItem>
+                                    <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
+                                        <Box display="flex" alignItems="center" gap={1}>
+                                            <Flag code="GB" style={{ width: 24, height: 16 }} />
+                                            {t('english')}
+                                        </Box>
+                                    </LanguageMenuItem>
                                 </Menu>
                             </div>
                         </StyledDrawer>
@@ -263,13 +270,13 @@ const Header = () => {
                         <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
                             <Box display="flex" alignItems="center" gap={1}>
                                 <Flag code="FI" style={{ width: 24, height: 16 }} />
-                                Finnish
+                                {t('finnish')}
                             </Box>
                         </LanguageMenuItem>
                         <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
                             <Box display="flex" alignItems="center" gap={1}>
                                 <Flag code="GB" style={{ width: 24, height: 16 }} />
-                                English
+                                {t('english')}
                             </Box>
                         </LanguageMenuItem>
                     </Menu>

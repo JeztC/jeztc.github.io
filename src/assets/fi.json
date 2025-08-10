@@ -52,5 +52,7 @@
   "repositories": "Repositoriota",
   "stars": "Tähdet",
   "registered": "Rekisteröitynyt",
-  "forks": "haarautukset"
+  "forks": "haarautukset",
+  "finnish": "Suomi",
+  "english": "Englanti"
 }

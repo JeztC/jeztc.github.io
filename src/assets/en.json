@@ -61,5 +61,7 @@
   "repositories": "Repositories",
   "stars": "Stars",
   "registered": "Registered",
-  "forks": "forks"
+  "forks": "forks",
+  "finnish": "Finnish",
+  "english": "English"
 }
