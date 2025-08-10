@@ -44,12 +44,12 @@ const StyledLink = styled(Link)`
     border: 1px solid rgb(62, 65, 68) !important;
     border-bottom: none !important;
     background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
-    border-bottom: 2px solid #76b8ec;
+    border-bottom: 2px solid #308fe8;
     
     &.Mui-selected {
         background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : 'inherit'} !important;
         color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'} !important;
-        border-bottom: 2px solid #76b8ec !important;
+        border-bottom: 2px solid #308fe8 !important;
     }
 
     &:hover {
