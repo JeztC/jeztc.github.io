@@ -163,10 +163,6 @@ const Header = () => {
                                         <ListItemIcon><GitHub /></ListItemIcon>
                                         <ListItemText primary={"Github"} />
                                     </ListItem>
-                                    <ListItem component={Link} to="/contact" onClick={handleDrawerClose}>
-                                        <ListItemIcon><ContactMail /></ListItemIcon>
-                                        <ListItemText primary={t('menu_contact')} />
-                                    </ListItem>
                                     <ListItem component={Link} to="/links" onClick={handleDrawerClose}>
                                         <ListItemIcon><LinkIcon /></ListItemIcon>
                                         <ListItemText primary={t('menu_links')} />
