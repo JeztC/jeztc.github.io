@@ -6,7 +6,6 @@ import { Link, useLocation } from "react-router-dom";
 import {
     AccountCircle,
     School,
-    ContactMail,
     GitHub,
     Link as LinkIcon,
     Menu as MenuIcon,

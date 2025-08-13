@@ -58,6 +58,9 @@ const ProjectBox = styled(Box)`
     width: 420px;
     height: 150px;
     box-shadow: none;
+    @media (max-width: 768px) {
+        width: 300px;
+    }
 `;
 
 const AvatarContainer = styled('img')`

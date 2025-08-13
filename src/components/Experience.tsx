@@ -16,19 +16,35 @@ const Container = styled('div')`
     flex-direction: column;
     margin-top: 32px;
     gap: 3;
-    width : 600px;
+    width: 100%;
+    max-width: 600px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
         transform: translateY(-10px);
         box-shadow: 0 12px 24px ${({ theme }) => theme.palette.mode === 'light' ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.12)'};
     }
+
+    @media (max-width: 600px) {
+        margin-top: 16px;
+        gap: 2;
+    }
 `;
 
 const Experience = () => {
     const { t } = useTranslation();
     return (
-        <Box sx={{ p: 4, maxWidth: 600, mx: 'auto' }}>
+        <Box
+            sx={{
+                p: { xs: 2, sm: 4 },
+                maxWidth: '100%',
+                width: '100%',
+                display: 'flex', // Add flexbox to center content
+                flexDirection: 'column',
+                alignItems: 'center', // Center horizontally
+                minHeight: '100vh', // Optional: ensures content is vertically centered if needed
+            }}
+        >
             <Typography variant="h4" component="h1" gutterBottom>
                 {t('menu_experience')}
             </Typography>
@@ -39,11 +55,11 @@ const Experience = () => {
                         href={job.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        underline="none" // disables underline
+                        underline="none"
                         sx={{
                             display: 'flex',
                             alignItems: 'center',
-                            p: 2,
+                            p: { xs: 1.5, sm: 2 },
                             borderRadius: 3,
                             border: theme => `1px solid ${theme.palette.divider}`,
                             transition: 'box-shadow 0.2s',
@@ -54,9 +70,9 @@ const Experience = () => {
                             src={job.logo}
                             alt={`${job.company} logo`}
                             sx={{
-                                width: 400,
-                                height: 150,
-                                mr: 2.5,
+                                width: { xs: 100, sm: 200, md: 400 },
+                                height: { xs: 50, sm: 75, md: 150 },
+                                mr: { xs: 1.5, sm: 2.5 },
                                 borderRadius: 2,
                                 bgcolor: '#f5f5f5',
                             }}

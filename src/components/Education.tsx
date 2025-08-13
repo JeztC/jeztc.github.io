@@ -54,6 +54,15 @@ const StyledLink = styled(Link)`
     }
 `;
 
+const ResponsiveBox = styled(Box)(({ theme }) => ({
+    height: '200%',
+    display: 'block',
+    [theme.breakpoints.up('sm')]: {
+        display: 'flex',
+    },
+}));
+
+
 const Education = () => {
     const { t } = useTranslation()
     const [value, setValue] = React.useState<number>(0)
@@ -65,9 +74,7 @@ const Education = () => {
     }
 
     return (
-        <Box
-            sx={{ display: 'flex', height: '200%' }}
-        >
+        <ResponsiveBox>
             <TabStyled
                 orientation={isMobile ? 'horizontal' : 'vertical'}
                 value={value}
@@ -145,7 +152,7 @@ const Education = () => {
                     ) : null}
                 </TabPanel>
             ))}
-        </Box>
+        </ResponsiveBox>
     )
 }
 
