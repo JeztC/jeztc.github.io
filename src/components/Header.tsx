@@ -103,13 +103,13 @@ const StyledDrawer = styled('div')`
 `;
 
 const Header = () => {
-    const [, setValue] = React.useState<string>('about')
+    const [, setValue] = React.useState<string>('/')
     const [languageMenuAnchor, setLanguageMenuAnchor] = React.useState<null | HTMLElement>(null);
     const { t } = useTranslation();
     const location = useLocation()
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const tabOpened = !location || location.pathname === '/' ? 'about' : location.pathname.slice(1);
+    const tabOpened = location?.pathname?.slice(1) || '/';
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -139,7 +139,7 @@ const Header = () => {
 
     return (
         <HeaderWrapper>
-            {!isMobile && <StyledHeader to="/about">Portfolio</StyledHeader>}
+            {!isMobile && <StyledHeader to="/">Portfolio</StyledHeader>}
             {isMobile ?
                 <>
                     <IconButton onClick={handleDrawerOpen} style={{ marginRight: '10px' }}>
@@ -153,7 +153,7 @@ const Header = () => {
                         <StyledDrawer>
                             <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                                 <List>
-                                    <ListItem component={Link} to="/about" onClick={handleDrawerClose}>
+                                    <ListItem component={Link} to="/" onClick={handleDrawerClose}>
                                         <ListItemIcon><AccountCircle /></ListItemIcon>
                                         <ListItemText primary={t('menu_about')} />
                                     </ListItem>
@@ -216,8 +216,8 @@ const Header = () => {
                         component={StyledLink}
                         to="/"
                         label={t('menu_about')}
-                        value="about"
-                        id='about'
+                        value="/"
+                        id='/'
                         icon={<AccountCircle />}
                     />
                     <BottomNavigationAction
