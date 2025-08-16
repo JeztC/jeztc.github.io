@@ -6,6 +6,12 @@ import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
 
+const AboutContainer = styled('div')`
+    margin-left: 0;
+    margin-top: 16px;
+    text-align: center
+`
+
 const SkillBox = styled('div')`
     display: flex;
     flex-direction: column;
@@ -80,7 +86,7 @@ const About: React.FC = () => {
             >
                 <AvatarContainer src={AvatarImg} alt="Description"/>
             </Badge>
-            <div style={{ marginLeft: '0', marginTop: '16px', textAlign: 'center' }}>
+            <AboutContainer>
                 <h1>{t('menu_about')}</h1>
                 <p>{t('about_desc')}</p>
                 <SkillsContainer>
@@ -93,7 +99,7 @@ const About: React.FC = () => {
                         ))}
                     </SkillsColumn>
                 </SkillsContainer>
-            </div>
+            </AboutContainer>
         </MainContainer>
     );
 };

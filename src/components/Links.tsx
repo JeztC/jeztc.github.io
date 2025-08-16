@@ -1,25 +1,25 @@
 import { Email, GitHub, LinkedIn } from "@mui/icons-material";
 import Icon from "./Icon";
-import styled from "@emotion/styled";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import React from "react";
 
-const LinksContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    padding-top: 150px;
-    margin-bottom: 0;
+const LinksContainer = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    paddingTop: '150px',
+    marginBottom: 0,
 
-    @media (max-width: 600px) {
-        flex-direction: column;
-        padding-top: 40px;
-        margin-bottom: 150px;
-    }
-`;
+    [theme.breakpoints.down('sm')]: {
+        flexDirection: 'column',
+        paddingTop: '40px',
+        marginBottom: '150px',
+    },
+}));
 
-const Box = styled.div`
+const Box = styled('div')`
     display: flex;
     align-items: center;
     justify-content: center;

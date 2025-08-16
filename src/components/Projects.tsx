@@ -1,35 +1,35 @@
-import styled from "@emotion/styled";
+import { styled } from "@mui/material/styles";
 // @ts-expect-error TypeScript cannot resolve PNG imports
 import demo from '../assets/demo.gif';
 // @ts-expect-error TypeScript cannot resolve PNG imports
 import portfolio from '../assets/pictures/img.png';
 import React from 'react';
 
-const Container = styled.div`
+const Container = styled('div')`
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 `;
 
-const ProjectsContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 100px 0;
-    flex-direction: row;
-    gap: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
+const ProjectsContainer = styled('div')(({ theme }) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '100px 0',
+    flexDirection: 'row',
+    gap: '60px',
+    maxWidth: '1200px',
+    margin: '0 auto',
 
-    @media (max-width: 600px) {
-        padding: 40px 20px;
-        flex-direction: column;
-        gap: 40px;
-    }
-`;
+    [theme.breakpoints.down('sm')]: {
+        padding: '40px 20px',
+        flexDirection: 'column',
+        gap: '40px',
+    },
+}));
 
-const ProjectCard = styled.a`
+const ProjectCard = styled('a')`
     display: flex;
     flex-direction: column;
     width: 600px;
@@ -47,24 +47,24 @@ const ProjectCard = styled.a`
     }
 `;
 
-const PreviewContainer = styled.div`
+const PreviewContainer = styled('div')`
     width: 100%;
     height: 300px;
     overflow: hidden;
 `;
 
-const PreviewGif = styled.img`
+const PreviewGif = styled('img')`
     width: 100%;
     height: 100%;
     object-fit: cover;
 `;
 
-const ProjectInfo = styled.div`
+const ProjectInfo = styled('div')`
     padding: 20px;
     text-align: center;
 `;
 
-const ProjectTitle = styled.h3`
+const ProjectTitle = styled('h3')`
     margin: 0;
     color: #333;
     font-size: 1.25rem;

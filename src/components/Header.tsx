@@ -22,7 +22,7 @@ import {
     ListItemText,
     Menu,
     MenuItem,
-    useMediaQuery
+    useMediaQuery, useTheme
 } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
@@ -32,9 +32,9 @@ import Flag from 'react-world-flags';
 
 const HeaderWrapper = styled('header')(({ theme }) => ({
     display: 'flex',
-    justifyContent: 'flex-end', // Align content to the right
+    justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    padding: theme.spacing(0, 2), // 0 16px
+    padding: theme.spacing(0, 2),
     height: '58px',
     width: '100vw',
     maxWidth: '100vw',
@@ -50,6 +50,13 @@ const HeaderWrapper = styled('header')(({ theme }) => ({
         padding: theme.spacing(0, 1), // Adjust padding for mobile (8px)
     },
 }));
+
+const BottomNavigationStyled = styled(BottomNavigation)`
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+`
 
 const StyledLink = styled(Link)`
     width: 150px;
@@ -100,7 +107,8 @@ const Header = () => {
     const [languageMenuAnchor, setLanguageMenuAnchor] = React.useState<null | HTMLElement>(null);
     const { t } = useTranslation();
     const location = useLocation()
-    const isMobile = useMediaQuery('(max-width:600px)');
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const tabOpened = location === null ? 'about' : location.pathname.replace('/', '')
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
@@ -199,11 +207,10 @@ const Header = () => {
                         </StyledDrawer>
                     </Drawer>
                 </>
-                : <BottomNavigation
+                : <BottomNavigationStyled
                     value={tabOpened}
                     onChange={handleChange}
                     showLabels
-                    style={{ marginLeft: 'auto', marginRight: 'auto', display: 'flex', justifyContent: 'center' }}
                 >
                     <BottomNavigationAction
                         component={StyledLink}
@@ -253,7 +260,7 @@ const Header = () => {
                         label={t('menu_links')}
                         icon={<LinkIcon />}
                     />
-                </BottomNavigation>}
+                </BottomNavigationStyled>}
             {!isMobile ?
                 <div>
                     <DarkModeToggle/>

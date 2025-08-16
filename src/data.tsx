@@ -6,9 +6,8 @@ import Ksl from './assets/pictures/ksl.png';
 import Hakalahti from './assets/pictures/hakalahti.png';
 // @ts-expect-error TypeScript cannot resolve PNG imports
 import JobImage from './assets/pictures/vitec.png';
-import { Job } from "./components/Experience";
 
-const jobs: Job[] = [
+const jobs = [
     { company: 'Vitec Alma OY', duration: 'May 2025', logo: JobImage, link: 'https://www.vitec-alma.com/' },
 ];
 

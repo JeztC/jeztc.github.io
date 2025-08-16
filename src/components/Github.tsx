@@ -166,9 +166,16 @@ const Github: React.FC = () => {
     return (
         <>
             {loading ? (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40vh' }}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: '40vh',
+                    }}
+                >
                     <FacebookCircularProgress />
-                </div>
+                </Box>
             ) : (
                 !loading && (
                     <>

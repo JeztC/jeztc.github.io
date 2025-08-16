@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
     Tabs,
     Tab,
     Typography,
     Box,
-    Link, useMediaQuery,
+    Link, useMediaQuery, useTheme,
 } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { education } from '../data'
@@ -17,40 +17,41 @@ import XIcon from '@mui/icons-material/X';
 import { css } from "@emotion/react";
 import { styled } from "@mui/material/styles";
 
-const TabStyled = styled(Tabs)`
-    ${() => (useMediaQuery('(max-width:600px)') ? css`
-    width: inherit;
-    height: inherit;
-    max-width: inherit;
-    min-width: inherit;
-  ` : css`
-    border-right: 1px solid rgb(62, 65, 68);
-    width: 200px;
-    height: 100vh;
-  `)}
-`;
+const TabStyled = styled(Tabs)(({ theme }) => ({
+    borderRight: '1px solid rgb(62, 65, 68)',
+    width: '200px',
+    height: '100vh',
+
+    [theme.breakpoints.down('sm')]: {
+        width: 'inherit',
+        height: 'inherit',
+        maxWidth: 'inherit',
+        minWidth: 'inherit',
+        borderRight: 'none',
+    },
+}));
 
 const EducationTab = styled(Tab)`
     ${({ theme }) => css`
-    &.Mui-hover {
-      color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'} !important;
-    }
-    
-    &.Mui-selected {
-      color: ${theme.palette.mode === 'light' ? '#000' : '#fff'} !important;
-      background-color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'};
-    }
-    
-    &:hover {
-      background-color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'};
-    }
-  `}
+        &.Mui-hover {
+            color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'} !important;
+        }
+
+        &.Mui-selected {
+            color: ${theme.palette.text.primary} !important;
+            background-color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'};
+        }
+
+        &:hover {
+            background-color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'};
+        }
+    `}
 `;
 
 const StyledLink = styled(Link)`
     color: #999999;
     &:hover {
-        color: ${({ theme }) => theme.palette.mode === 'light' ? 'black' : 'white'};
+        color: ${({ theme }) => theme.palette.text.primary };
     }
 `;
 
@@ -66,12 +67,13 @@ const ResponsiveBox = styled(Box)(({ theme }) => ({
 const Education = () => {
     const { t } = useTranslation()
     const [value, setValue] = React.useState<number>(0)
-    const isMobile = useMediaQuery('(max-width:600px)')
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const iconFontSize = isMobile ? '37px' : '25px';
 
-    const handleChange = (event: React.ChangeEvent<object>, newValue : number) => {
-        setValue(newValue)
-    }
+    const handleChange = useCallback((event: React.ChangeEvent<object>, newValue: number) => {
+        setValue(newValue);
+    }, []);
 
     return (
         <ResponsiveBox>
