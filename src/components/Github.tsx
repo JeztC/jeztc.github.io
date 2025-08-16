@@ -146,18 +146,39 @@ const Github: React.FC = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const [userResult, starredResult, reposResult] = await Promise.all([
-                axios.get<User>('https://api.github.com/users/JeztC'),
-                axios.get('https://api.github.com/users/JeztC/starred'),
-                axios.get<Repository[]>('https://api.github.com/users/JeztC/repos?sort=updated&direction=desc&type=all&per_page=100&page=1&affiliation=owner,collaborator&sort=pushed'),
-            ]);
+            const cachedUser = localStorage.getItem('user');
+            const cachedRepos = localStorage.getItem('repositories');
 
-            setUser({
-                ...userResult.data,
-                total_starred: starredResult.data.length,
-            });
-            setRepositories(reposResult.data);
-            setLoading(false);
+            if (cachedUser && cachedRepos) {
+                setUser(JSON.parse(cachedUser));
+                setRepositories(JSON.parse(cachedRepos));
+                setLoading(false);
+                return;
+            }
+
+            try {
+                const [userResult, starredResult, reposResult] = await Promise.all([
+                    axios.get<User>('https://api.github.com/users/JeztC'),
+                    axios.get('https://api.github.com/users/JeztC/starred'),
+                    axios.get<Repository[]>('https://api.github.com/users/JeztC/repos?sort=updated&direction=desc&type=all&per_page=100&page=1&affiliation=owner,collaborator&sort=pushed'),
+                ]);
+
+                const userData = {
+                    ...userResult.data,
+                    total_starred: starredResult.data.length,
+                };
+
+                setUser(userData);
+                setRepositories(reposResult.data);
+                setLoading(false);
+
+                // Save to localStorage
+                localStorage.setItem('user', JSON.stringify(userData));
+                localStorage.setItem('repositories', JSON.stringify(reposResult.data));
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setLoading(false);
+            }
         };
 
         fetchData();
