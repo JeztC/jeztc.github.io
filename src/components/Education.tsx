@@ -14,7 +14,6 @@ import {
     Language,
 } from '@mui/icons-material'
 import XIcon from '@mui/icons-material/X';
-import { css } from "@emotion/react";
 import { styled } from "@mui/material/styles";
 
 const TabStyled = styled(Tabs)(({ theme }) => ({
@@ -31,22 +30,16 @@ const TabStyled = styled(Tabs)(({ theme }) => ({
     },
 }));
 
-const EducationTab = styled(Tab)`
-    ${({ theme }) => css`
-        &.Mui-hover {
-            color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'} !important;
-        }
+const EducationTab = styled(Tab)(({ theme }) => ({
+    '&.Mui-selected': {
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.mode === 'light' ? '#EAEDF1' : '#181919',
+    },
+    '&:hover': {
+        backgroundColor: theme.palette.mode === 'light' ? '#EAEDF1' : '#181919',
+    },
+}));
 
-        &.Mui-selected {
-            color: ${theme.palette.text.primary} !important;
-            background-color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'};
-        }
-
-        &:hover {
-            background-color: ${theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'};
-        }
-    `}
-`;
 
 const StyledLink = styled(Link)`
     color: #999999;
