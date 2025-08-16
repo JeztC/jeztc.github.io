@@ -31,7 +31,7 @@ const education = [
     {
         id: 0,
         school: 'Centria University of Applied Sciences',
-        schoolAlias: 'Centria',
+        schoolAlias: 'centria',
         links: {
             website: 'https://net.centria.fi/',
             facebook: 'https://www.facebook.com/centriaamk/',
@@ -42,7 +42,7 @@ const education = [
     {
         id: 1,
         school: 'Kokkolan suomalainen lukio',
-        schoolAlias: 'Ksl',
+        schoolAlias: 'ksl',
         links: {
             website: 'https://ksl2016.blogspot.com/',
             x : 'https://twitter.com/KokkolaKarleby',
@@ -50,7 +50,7 @@ const education = [
     },
     {
         id: 2,
-        schoolAlias: 'Hakalahti',
+        schoolAlias: 'hakalahti',
         school: 'Hakalahden koulu',
         links: {
             website : 'https://hakalahdenkoulu.wordpress.com/',
