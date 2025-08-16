@@ -1,7 +1,7 @@
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { styled } from "@mui/material/styles";
-import React from "react";
+import React, { ChangeEvent, useState, MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
     AccountCircle,
@@ -103,14 +103,14 @@ const StyledDrawer = styled('div')`
 `;
 
 const Header = () => {
-    const [, setValue] = React.useState<string>('/')
-    const [languageMenuAnchor, setLanguageMenuAnchor] = React.useState<null | HTMLElement>(null);
+    const [, setValue] = useState<string>('/')
+    const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
     const { t } = useTranslation();
     const location = useLocation()
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const tabOpened = location?.pathname?.slice(1) || '/';
-    const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+    const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
     const handleDrawerOpen = () => {
         setIsDrawerOpen(true);
@@ -120,11 +120,11 @@ const Header = () => {
         setIsDrawerOpen(false);
     };
 
-    const handleChange = (event: React.ChangeEvent<object>, newValue: string) => {
+    const handleChange = (event: ChangeEvent<object>, newValue: string) => {
         setValue(newValue);
     }
 
-    const handleLanguageMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    const handleLanguageMenuOpen = (event: MouseEvent<HTMLElement>) => {
         setLanguageMenuAnchor(event.currentTarget);
     };
 
