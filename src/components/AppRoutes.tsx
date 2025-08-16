@@ -17,7 +17,7 @@ const AppRoutes = () => {
             <Route path="/links" element={<Links/>} />
             <Route path="/projects" element={<Projects/>} />
             <Route path="/github" element={<Github/>} />
-            <Route path="/" element={<Navigate replace to="/about" />} />
+            <Route path="/" element={<About/>} />
             <Route path="*" element={<PageNotFound />} />
         </Routes>
     );

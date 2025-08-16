@@ -109,7 +109,7 @@ const Header = () => {
     const location = useLocation()
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const tabOpened = location === null ? 'about' : location.pathname.replace('/', '')
+    const tabOpened = !location || location.pathname === '/' ? 'about' : location.pathname.slice(1);
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -214,7 +214,7 @@ const Header = () => {
                 >
                     <BottomNavigationAction
                         component={StyledLink}
-                        to="/about"
+                        to="/"
                         label={t('menu_about')}
                         value="about"
                         id='about'
