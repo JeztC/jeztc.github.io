@@ -94,7 +94,12 @@ const About: React.FC = () => {
                         {skillsList.map(skill => (
                             <SkillBox key={skill.title}>
                                 {skill.title}
-                                <Rating value={skill.value * 5} precision={1} size="large" />
+                                <Rating
+                                    value={skill.value * 5}
+                                    precision={1}
+                                    size="large"
+                                    readOnly
+                                />
                             </SkillBox>
                         ))}
                     </SkillsColumn>
