@@ -5,10 +5,10 @@ import GithubIcon from "./GithubIcon";
 import GroupIcon from '@mui/icons-material/Group';
 import { Star } from "@mui/icons-material";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import moment from "moment/moment";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import FacebookCircularProgress from "./FacebookCircularProgress";
+import dayjs from "dayjs";
 
 interface Repository {
     id: number;
@@ -136,7 +136,7 @@ const Github: React.FC = () => {
     const { t } = useTranslation();
 
     const formattedDate = useMemo(() => {
-        return moment(user?.created_at).format('DD/MM/YYYY');
+        return dayjs(user?.created_at).format('DD/MM/YYYY');
     }, [user?.created_at]);
 
     const filteredRepositories = useMemo(() => {
