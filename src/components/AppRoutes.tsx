@@ -11,13 +11,12 @@ import React from "react";
 const AppRoutes = () => {
     return (
         <Routes>
-            <Route path="/about" element={<About/>} />
+            <Route path="/" element={<About/>} />
             <Route path="/education" element={<Education/>} />
             <Route path="/experience" element={<Experience/>} />
             <Route path="/links" element={<Links/>} />
             <Route path="/projects" element={<Projects/>} />
             <Route path="/github" element={<Github/>} />
-            <Route path="/" element={<About/>} />
             <Route path="*" element={<PageNotFound />} />
         </Routes>
     );
