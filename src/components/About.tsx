@@ -1,6 +1,4 @@
 import React from "react";
-// @ts-expect-error TypeScript cannot resolve PNG imports
-import AvatarImg from '../assets/pictures/avatar.png';
 import { Badge, Rating } from "@mui/material";
 import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";
@@ -84,7 +82,7 @@ const About: React.FC = () => {
                 overlap="circular"
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
-                <AvatarContainer src={AvatarImg} alt="Description"/>
+                <AvatarContainer src={process.env.PUBLIC_URL + '/media/avatar.png'} alt="Description"/>
             </Badge>
             <AboutContainer>
                 <h1>{t('menu_about')}</h1>

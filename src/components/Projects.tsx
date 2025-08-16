@@ -1,8 +1,4 @@
 import { styled } from "@mui/material/styles";
-// @ts-expect-error TypeScript cannot resolve PNG imports
-import demo from '../assets/demo.gif';
-// @ts-expect-error TypeScript cannot resolve PNG imports
-import portfolio from '../assets/pictures/img.png';
 import React from 'react';
 
 const Container = styled('div')`
@@ -82,7 +78,7 @@ const Projects: React.FC = () => {
                 >
                     <PreviewContainer>
                         <PreviewGif
-                            src={demo}
+                            src={process.env.PUBLIC_URL + `/media/demo.gif`}
                             alt="Project Preview"
                         />
                     </PreviewContainer>
@@ -97,7 +93,7 @@ const Projects: React.FC = () => {
                 >
                     <PreviewContainer>
                         <PreviewGif
-                            src={portfolio}
+                            src={process.env.PUBLIC_URL + `/media/img.png`}
                             alt="Project Preview"
                         />
                     </PreviewContainer>

@@ -1,14 +1,5 @@
-// @ts-expect-error TypeScript cannot resolve PNG imports
-import Centria from './assets/pictures/centria.png';
-// @ts-expect-error TypeScript cannot resolve PNG imports
-import Ksl from './assets/pictures/ksl.png';
-// @ts-expect-error TypeScript cannot resolve PNG imports
-import Hakalahti from './assets/pictures/hakalahti.png';
-// @ts-expect-error TypeScript cannot resolve PNG imports
-import JobImage from './assets/pictures/vitec.png';
-
 const jobs = [
-    { company: 'Vitec Alma OY', duration: 'May 2025', logo: JobImage, link: 'https://www.vitec-alma.com/' },
+    { company: 'Vitec Alma OY', duration: 'May 2025', name: 'vitec', link: 'https://www.vitec-alma.com/' },
 ];
 
 const skillsList = [
@@ -40,7 +31,7 @@ const education = [
     {
         id: 0,
         school: 'Centria University of Applied Sciences',
-        schoolLogo: Centria,
+        schoolAlias: 'Centria',
         links: {
             website: 'https://net.centria.fi/',
             facebook: 'https://www.facebook.com/centriaamk/',
@@ -301,7 +292,7 @@ const education = [
     {
         id: 1,
         school: 'Kokkolan suomalainen lukio',
-        schoolLogo: Ksl,
+        schoolAlias: 'Ksl',
         links: {
             website: 'https://ksl2016.blogspot.com/',
             x : 'https://twitter.com/KokkolaKarleby',
@@ -309,7 +300,7 @@ const education = [
     },
     {
         id: 2,
-        schoolLogo: Hakalahti,
+        schoolAlias: 'Hakalahti',
         school: 'Hakalahden koulu',
         links: {
             website : 'https://hakalahdenkoulu.wordpress.com/',

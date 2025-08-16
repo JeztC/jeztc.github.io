@@ -2,8 +2,6 @@ import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-// @ts-expect-error TypeScript cannot resolve PNG imports
-import Image from '../assets/pictures/notfound.png';
 import { useTranslation } from 'react-i18next';
 
 const CenteredContainer = styled(Box)({
@@ -24,7 +22,7 @@ const PageNotFound = () => {
             <Typography variant="h5" gutterBottom>
                 {t('pageNotFound')}
             </Typography>
-            <img src={Image} alt="Page Not Found" />
+            <img src={process.env.PUBLIC_URL + `/media/notfound.png`} alt="Page Not Found" />
             <Button variant="contained" onClick={() => navigate('/')}>
                 {t('returnHome')}
             </Button>

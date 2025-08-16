@@ -99,8 +99,8 @@ const Education = () => {
             </TabStyled>
             {education.map((elem) => (
                 <TabPanel value={value} index={elem.id} key={elem.id}>
-                    {elem.schoolLogo && (
-                        <Box component="img" src={elem.schoolLogo} />
+                    {elem.schoolAlias && (
+                        <Box component="img" src={process.env.PUBLIC_URL + `/media/${elem.schoolAlias}.png`} />
                     )}
                     <Box mb={4}>
                         <Typography variant="h5">
