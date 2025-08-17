@@ -6,7 +6,7 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 export const DarkModeToggle: React.FC = () => {
     const { theme, toggleMode } = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const iconFontSize = isMobile ? '37px' : 'inherit';
 
     return (

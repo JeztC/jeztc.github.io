@@ -18,7 +18,7 @@ const ProjectsContainer = styled('div')(({ theme }) => ({
     maxWidth: '1200px',
     margin: '0 auto',
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
         padding: '40px 20px',
         flexDirection: 'column',
         gap: '40px',

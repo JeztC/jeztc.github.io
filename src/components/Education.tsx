@@ -21,7 +21,7 @@ const TabStyled = styled(Tabs)(({ theme }) => ({
     width: '200px',
     height: '100vh',
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
         width: 'inherit',
         height: 'inherit',
         maxWidth: 'inherit',
@@ -51,7 +51,7 @@ const StyledLink = styled(Link)`
 const ResponsiveBox = styled(Box)(({ theme }) => ({
     height: '200%',
     display: 'block',
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
         display: 'flex',
     },
 }));
@@ -61,7 +61,7 @@ const Education = () => {
     const { t } = useTranslation()
     const [value, setValue] = React.useState<number>(0)
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const iconFontSize = isMobile ? '37px' : '25px';
 
     const handleChange = useCallback((event: React.ChangeEvent<object>, newValue: number) => {

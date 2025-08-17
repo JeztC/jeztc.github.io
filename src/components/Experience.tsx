@@ -20,7 +20,7 @@ const Container = styled('div')(({ theme }) => ({
             : '0 12px 24px rgba(255,255,255,0.12)',
     },
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
         marginTop: theme.spacing(2),
         gap: theme.spacing(2),
     },
@@ -28,7 +28,7 @@ const Container = styled('div')(({ theme }) => ({
 
 const StyledBox = styled(Box)(({ theme }) => ({
     padding: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
         padding: theme.spacing(4),
     },
     maxWidth: '100%',
@@ -45,7 +45,7 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
     marginRight: theme.spacing(1.5),
     backgroundColor: '#f5f5f5',
 
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
         width: 200,
         height: 75,
         marginRight: theme.spacing(2.5),
@@ -68,7 +68,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
         boxShadow: theme.shadows[6],
     },
 
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
         padding: theme.spacing(2),
     },
 }));

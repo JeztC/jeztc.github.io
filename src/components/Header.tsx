@@ -46,8 +46,8 @@ const HeaderWrapper = styled('header')(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
     borderBottom: '1px solid rgb(62, 65, 68)',
     color: '#fff',
-    [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(0, 1), // Adjust padding for mobile (8px)
+    [theme.breakpoints.down('md')]: {
+        padding: theme.spacing(0, 1),
     },
 }));
 
@@ -64,7 +64,7 @@ const StyledLink = styled(Link)`
     border-bottom: none !important;
     background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
     border-bottom: 2px solid #308fe8;
-    
+
     &.Mui-selected {
         background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : 'inherit'} !important;
         color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'} !important;
@@ -94,7 +94,7 @@ const StyledHeader = styled(Link)`
     color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'};
 `;
 
-const StyledDrawer = styled('div')`
+const StyledDrawer = styled(Box)`
     flex-shrink: 0;
     width: 250px;
     height: 1000px;
@@ -108,7 +108,7 @@ const Header = () => {
     const { t } = useTranslation();
     const location = useLocation()
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const tabOpened = location?.pathname?.slice(1) || '/';
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
@@ -151,35 +151,33 @@ const Header = () => {
                         onClose={handleDrawerClose}
                     >
                         <StyledDrawer>
-                            <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                                <List>
-                                    <ListItem component={Link} to="/" onClick={handleDrawerClose}>
-                                        <ListItemIcon><AccountCircle /></ListItemIcon>
-                                        <ListItemText primary={t('menu_about')} />
-                                    </ListItem>
-                                    <ListItem component={Link} to="/education" onClick={handleDrawerClose}>
-                                        <ListItemIcon><School /></ListItemIcon>
-                                        <ListItemText primary={t('menu_education')} />
-                                    </ListItem>
-                                    <ListItem component={Link} to="/experience" onClick={handleDrawerClose}>
-                                        <ListItemIcon><Work /></ListItemIcon>
-                                        <ListItemText primary={t('menu_experience')} />
-                                    </ListItem>
-                                    <ListItem component={Link} to="/projects" onClick={handleDrawerClose}>
-                                        <ListItemIcon><Folder /></ListItemIcon>
-                                        <ListItemText primary={"Projects"} />
-                                    </ListItem>
-                                    <ListItem component={Link} to="/github" onClick={handleDrawerClose}>
-                                        <ListItemIcon><GitHub /></ListItemIcon>
-                                        <ListItemText primary={"Github"} />
-                                    </ListItem>
-                                    <ListItem component={Link} to="/links" onClick={handleDrawerClose}>
-                                        <ListItemIcon><LinkIcon /></ListItemIcon>
-                                        <ListItemText primary={t('menu_links')} />
-                                    </ListItem>
-                                </List>
-                            </div>
-                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <List>
+                                <ListItem component={Link} to="/" onClick={handleDrawerClose}>
+                                    <ListItemIcon><AccountCircle /></ListItemIcon>
+                                    <ListItemText primary={t('menu_about')} />
+                                </ListItem>
+                                <ListItem component={Link} to="/education" onClick={handleDrawerClose}>
+                                    <ListItemIcon><School /></ListItemIcon>
+                                    <ListItemText primary={t('menu_education')} />
+                                </ListItem>
+                                <ListItem component={Link} to="/experience" onClick={handleDrawerClose}>
+                                    <ListItemIcon><Work /></ListItemIcon>
+                                    <ListItemText primary={t('menu_experience')} />
+                                </ListItem>
+                                <ListItem component={Link} to="/projects" onClick={handleDrawerClose}>
+                                    <ListItemIcon><Folder /></ListItemIcon>
+                                    <ListItemText primary={t('menu_projects')} />
+                                </ListItem>
+                                <ListItem component={Link} to="/github" onClick={handleDrawerClose}>
+                                    <ListItemIcon><GitHub /></ListItemIcon>
+                                    <ListItemText primary={"Github"} />
+                                </ListItem>
+                                <ListItem component={Link} to="/links" onClick={handleDrawerClose}>
+                                    <ListItemIcon><LinkIcon /></ListItemIcon>
+                                    <ListItemText primary={t('menu_links')} />
+                                </ListItem>
+                            </List>
+                            <Box style={{ display: 'flex', justifyContent: 'center' }}>
                                 <DarkModeToggle/>
                                 <IconButton color="secondary" onClick={handleLanguageMenuOpen} style={{ marginBottom : '10px' }}>
                                     <LanguageIcon style={{ fontSize: '37px' }}/>
@@ -203,7 +201,7 @@ const Header = () => {
                                         </Box>
                                     </LanguageMenuItem>
                                 </Menu>
-                            </div>
+                            </Box>
                         </StyledDrawer>
                     </Drawer>
                 </>
@@ -262,7 +260,7 @@ const Header = () => {
                     />
                 </BottomNavigationStyled>}
             {!isMobile ?
-                <div>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <DarkModeToggle/>
                     <IconButton color="secondary" onClick={handleLanguageMenuOpen} style={{ marginBottom : '10px' }}>
                         <LanguageIcon />

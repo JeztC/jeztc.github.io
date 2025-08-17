@@ -12,7 +12,7 @@ const LinksContainer = styled('div')(({ theme }) => ({
     paddingTop: '150px',
     marginBottom: 0,
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
         flexDirection: 'column',
         paddingTop: '40px',
         marginBottom: '150px',
