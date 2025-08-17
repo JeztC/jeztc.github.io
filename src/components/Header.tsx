@@ -59,7 +59,7 @@ const BottomNavigationStyled = styled(BottomNavigation)`
 `
 
 const StyledLink = styled(Link)`
-    width: 150px;
+    width: 134px;
     border: 1px solid rgb(62, 65, 68) !important;
     border-bottom: none !important;
     background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
