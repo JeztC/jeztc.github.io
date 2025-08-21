@@ -22,7 +22,7 @@ const PageNotFound = () => {
             <Typography variant="h5" gutterBottom>
                 {t('pageNotFound')}
             </Typography>
-            <img src={`/media/notfound.png`} alt="Page Not Found" />
+            <img src={`./media/notfound.png`} alt="Page Not Found" />
             <Button variant="contained" onClick={() => navigate('/')}>
                 {t('returnHome')}
             </Button>

@@ -93,7 +93,7 @@ const Education = () => {
             {education.map((elem) => (
                 <TabPanel value={value} index={elem.id} key={elem.id}>
                     {elem.schoolAlias && (
-                        <Box component="img" src={`/media/${elem.schoolAlias}.png`} />
+                        <Box component="img" src={`./media/${elem.schoolAlias}.png`} />
                     )}
                     <Box mb={4}>
                         <Typography variant="h5">

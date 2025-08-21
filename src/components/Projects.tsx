@@ -77,7 +77,7 @@ const Projects: React.FC = () => {
                 >
                     <PreviewContainer>
                         <PreviewGif
-                            src={`/media/demo.gif`}
+                            src={`./media/demo.gif`}
                             alt="Project Preview"
                         />
                     </PreviewContainer>
@@ -92,7 +92,7 @@ const Projects: React.FC = () => {
                 >
                     <PreviewContainer>
                         <PreviewGif
-                            src={`/media/img.png`}
+                            src={`./media/img.png`}
                             alt="Project Preview"
                         />
                     </PreviewContainer>
