@@ -64,7 +64,7 @@ const Education = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const iconFontSize = isMobile ? '37px' : '25px';
 
-    const handleChange = useCallback((event: React.ChangeEvent<object>, newValue: number) => {
+    const handleChange = useCallback((_event: React.ChangeEvent<object>, newValue: number) => {
         setValue(newValue);
     }, []);
 
@@ -93,7 +93,7 @@ const Education = () => {
             {education.map((elem) => (
                 <TabPanel value={value} index={elem.id} key={elem.id}>
                     {elem.schoolAlias && (
-                        <Box component="img" src={process.env.PUBLIC_URL + `/media/${elem.schoolAlias}.png`} />
+                        <Box component="img" src={`/media/${elem.schoolAlias}.png`} />
                     )}
                     <Box mb={4}>
                         <Typography variant="h5">

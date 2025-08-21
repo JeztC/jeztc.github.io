@@ -81,7 +81,7 @@ const About: React.FC = () => {
                 overlap="circular"
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
-                <AvatarContainer src={process.env.PUBLIC_URL + '/media/avatar.png'} alt="Description"/>
+                <AvatarContainer src={'/media/avatar.png'} alt="Description"/>
             </Badge>
             <AboutContainer>
                 <h1>{t('menu_about')}</h1>

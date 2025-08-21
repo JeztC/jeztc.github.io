@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Avatar, Typography, Link } from '@mui/material';
 import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
@@ -91,7 +90,7 @@ export const Experience = () => {
                         underline="none"
                     >
                         <StyledAvatar
-                            src={process.env.PUBLIC_URL + `/media/${job.name}.png`}
+                            src={`/media/${job.name}.png`}
                             alt={`${job.company} logo`}
                             variant="rounded"
                         />

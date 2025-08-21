@@ -5,7 +5,6 @@ const Container = styled('div')`
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 `;
 
 const ProjectsContainer = styled('div')(({ theme }) => ({
@@ -78,7 +77,7 @@ const Projects: React.FC = () => {
                 >
                     <PreviewContainer>
                         <PreviewGif
-                            src={process.env.PUBLIC_URL + `/media/demo.gif`}
+                            src={`/media/demo.gif`}
                             alt="Project Preview"
                         />
                     </PreviewContainer>
@@ -93,7 +92,7 @@ const Projects: React.FC = () => {
                 >
                     <PreviewContainer>
                         <PreviewGif
-                            src={process.env.PUBLIC_URL + `/media/img.png`}
+                            src={`/media/img.png`}
                             alt="Project Preview"
                         />
                     </PreviewContainer>

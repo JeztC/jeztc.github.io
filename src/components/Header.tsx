@@ -1,7 +1,7 @@
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { styled } from "@mui/material/styles";
-import React, { ChangeEvent, useState, MouseEvent } from "react";
+import { ChangeEvent, useState, MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
     AccountCircle,
@@ -120,7 +120,7 @@ const Header = () => {
         setIsDrawerOpen(false);
     };
 
-    const handleChange = (event: ChangeEvent<object>, newValue: string) => {
+    const handleChange = (_event: ChangeEvent<object>, newValue: string) => {
         setValue(newValue);
     }
 

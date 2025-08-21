@@ -2,7 +2,6 @@ import { Email, GitHub, LinkedIn } from "@mui/icons-material";
 import Icon from "./Icon";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import React from "react";
 
 const LinksContainer = styled('div')(({ theme }) => ({
     display: 'flex',
