@@ -18,6 +18,8 @@
 # Sensitive information is here
 .env
 
+/dist
+
 # misc
 .DS_Store
 .env.local

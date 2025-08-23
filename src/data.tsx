@@ -3,15 +3,13 @@ const jobs = [
 ];
 
 const skillsList = [
-    { title: 'JavaScript', value: 0.85 },
     { title: 'TypeScript', value: 0.85 },
-    { title: 'Fullstack', value: 0.85 },
-    { title: 'React', value: 0.75 },
-    { title: 'React Native', value: 0.75 },
+    { title: 'React', value: 0.85 },
+    { title: 'React Native', value: 0.85 },
     { title: 'UI/UX', value: 0.75 },
     { title: 'Express JS ', value: 0.75 },
     { title: 'Node JS ', value: 0.60 },
-    { title: 'Python', value: 0.70 },
+    { title: 'Python', value: 0.80 },
     { title: 'Java', value: 0.5 },
     { title: 'Kotlin', value: 0.5 },
     { title: 'GraphQL', value: 0.5 },
@@ -20,10 +18,10 @@ const skillsList = [
     { title: 'C++', value: 0.50 },
     { title: 'SQL', value: 0.80 },
     { title: 'Linux', value: 1 },
-    { title: 'Redux ', value: 0.70 },
+    { title: 'Redux', value: 0.70 },
     { title: 'MongoDB ', value: 0.70 },
     { title: 'Cypress & Jest ', value: 0.70 },
-    { title: 'CI/CD', value: 0.70 },
+    { title: 'CI/CD & Github Actions', value: 0.70 },
     { title: 'CCNA', value: 0.60 },
 ]
 

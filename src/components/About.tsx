@@ -1,5 +1,5 @@
 import React from "react";
-import { Badge, Rating } from "@mui/material";
+import {Badge, Box, LinearProgress, Rating, Typography} from "@mui/material";
 import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
@@ -26,6 +26,22 @@ const SkillBox = styled('div')`
     margin-bottom: 8px;
     padding: 10px;
     text-align: center;
+`;
+
+const SkillContainer = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 100%;
+  max-width: 400px;
+`;
+
+// SkillLabel: The text label for the skill title
+const SkillLabel = styled(Typography)`
+  font-size: 16px;
+  font-weight: 500;
+  flex: 1;
 `;
 
 const AvatarContainer = styled('img')`
@@ -88,17 +104,18 @@ const About: React.FC = () => {
                 <p>{t('about_desc')}</p>
                 <SkillsContainer>
                     <SkillsColumn>
-                        {skillsList.map(skill => (
-                            <SkillBox key={skill.title}>
-                                {skill.title}
-                                <Rating
-                                    value={skill.value * 5}
-                                    precision={1}
-                                    size="large"
-                                    readOnly
-                                />
-                            </SkillBox>
-                        ))}
+                        {skillsList
+                            .sort((a, b) => b.value - a.value)
+                            .map(skill => (
+                                <SkillContainer key={skill.title}>
+                                    <SkillLabel>{skill.title}</SkillLabel>
+                                    <LinearProgress
+                                        variant="determinate"
+                                        value={skill.value * 100}
+                                        sx={{ width: '60%', height: 10, borderRadius: 5 }}
+                                    />
+                                </SkillContainer>
+                            ))}
                     </SkillsColumn>
                 </SkillsContainer>
             </AboutContainer>
