@@ -9,33 +9,7 @@ import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import FacebookCircularProgress from "./FacebookCircularProgress";
 import dayjs from "dayjs";
-
-interface Repository {
-    id: number;
-    name: string;
-    description: string;
-    html_url: string;
-    stargazers_count: number;
-    forks: number;
-    language: string;
-}
-
-interface User {
-    login: string;
-    id: number;
-    avatar_url: string;
-    name: string;
-    bio: string;
-    html_url: string;
-    followers: number;
-    following: number;
-    description: string;
-    public_repos: number;
-    public_gists: number;
-    starred_url: string;
-    total_starred: number;
-    created_at: string;
-}
+import {getLanguageColor} from "../utils/languageColors";
 
 const StyledUserCard = styled(Card)`
     display: flex;
@@ -83,51 +57,36 @@ const DescriptionTypography = styled(Typography)(() => ({
     color: 'rgb(139, 148, 158)',
 }));
 
-interface LanguageProps {
-    language: string;
-}
-
-const LanguageTypography = styled(Typography)<LanguageProps>(({ language }) => ({
-    marginTop: '20px',
+const CardContainer = styled('div')({
     display: 'flex',
-    alignItems: 'center',
-    color: 'rgb(139, 148, 158)',
-    '&:before': {
-        content: '""',
-        display: 'inline-block',
-        width: '14px',
-        height: '14px',
-        borderRadius: '50%',
-        marginRight: '5px',
-        backgroundColor: getLanguageColor(language),
-    },
-}));
+    justifyContent: 'center',
+    paddingTop: '50px',
+    marginBottom: '50px',
+    marginTop: '25px',
+    boxSizing: 'border-box',
+    borderRadius: '5px',
+});
 
-const getLanguageColor = (language : string) => {
-    if (!language) return 'transparent';
+const LanguageTypography = styled(Typography)<LanguageProps>(({ language }) => {
+    const safeLanguage = typeof language === 'string' ? language : '';
 
-    const normalizedLang = language.trim().toLowerCase();
-
-    const colorMap: Record<string, string> = {
-        javascript: '#f1e05a',
-        python: '#3572A5',
-        java: '#b07219',
-        'c++': '#f34b7d',
-        c: '#555555',
-        ruby: '#701516',
-        swift: '#ffac45',
-        go: '#00ADD8',
-        php: '#4F5D95',
-        html: '#e44b23',
-        css: '#563d7c',
-        kotlin: '#F18E33',
-        'c#': '#178600',
-        typescript: '#3178C6',
-        nix: '#7e7eff',
-        shell: '#89e051',
+    return {
+        marginTop: '20px',
+        display: 'flex',
+        alignItems: 'center',
+        color: 'rgb(139, 148, 158)',
+        '&:before': {
+            content: '""',
+            display: 'inline-block',
+            width: '14px',
+            height: '14px',
+            borderRadius: '50%',
+            marginRight: '5px',
+            backgroundColor: getLanguageColor(safeLanguage),
+        },
     };
-    return colorMap[normalizedLang] || 'transparent';
-};
+});
+
 
 const Github: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
@@ -172,7 +131,6 @@ const Github: React.FC = () => {
                 setRepositories(reposResult.data);
                 setLoading(false);
 
-                // Save to localStorage
                 localStorage.setItem('user', JSON.stringify(userData));
                 localStorage.setItem('repositories', JSON.stringify(reposResult.data));
             } catch (error) {
@@ -200,7 +158,7 @@ const Github: React.FC = () => {
             ) : (
                 !loading && (
                     <>
-                        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '50px', marginBottom: '50px', marginTop: '25px', boxSizing: 'border-box', borderRadius: '5px' }}>
+                        <CardContainer>
                             <StyledUserCard>
                                 <CardHeader
                                     avatar={<AvatarContainer src={user?.avatar_url} alt={`Avatar for ${user?.login}`} />}
@@ -229,7 +187,7 @@ const Github: React.FC = () => {
                                     </StyledUserCardSection>
                                 </CardContent>
                             </StyledUserCard>
-                        </div>
+                        </CardContainer>
                         <Grid container style={{ marginTop: '40px', marginLeft: '20px', marginBottom: '5%' }}>
                             {filteredRepositories.map((repository) => (
                                 <Grid key={repository.id}>

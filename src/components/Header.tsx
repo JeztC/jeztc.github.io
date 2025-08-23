@@ -260,7 +260,7 @@ const Header = () => {
                     />
                 </BottomNavigationStyled>}
             {!isMobile ?
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Box display="flex" justifyContent="center">
                     <DarkModeToggle/>
                     <IconButton color="secondary" onClick={handleLanguageMenuOpen} style={{ marginBottom : '10px' }}>
                         <LanguageIcon />
@@ -284,7 +284,7 @@ const Header = () => {
                             </Box>
                         </LanguageMenuItem>
                     </Menu>
-                </div> : <div/>}
+                </Box> : <div/>}
         </HeaderWrapper>
     );
 }
