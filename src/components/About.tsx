@@ -10,24 +10,6 @@ const AboutContainer = styled('div')`
     text-align: center
 `
 
-const SkillBox = styled('div')`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #308fe8;
-    min-width: 50px;
-    width: auto;
-    height: auto;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 4px;
-    margin-right: 8px;
-    margin-bottom: 8px;
-    padding: 10px;
-    text-align: center;
-`;
-
 const SkillContainer = styled(Box)`
   display: flex;
   align-items: center;
@@ -37,7 +19,6 @@ const SkillContainer = styled(Box)`
   max-width: 400px;
 `;
 
-// SkillLabel: The text label for the skill title
 const SkillLabel = styled(Typography)`
   font-size: 16px;
   font-weight: 500;

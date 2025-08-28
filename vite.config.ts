@@ -1,7 +1,16 @@
 import { defineConfig } from 'vite'
+// @ts-ignore
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
     plugins: [react()],
+    optimizeDeps: {
+        exclude: ['node_modules']
+    },
+    server: {
+        port: 3000,
+        watch: {
+            ignored: ['**/node_modules/**', '**/dist/**']
+        }
+    }
 })
