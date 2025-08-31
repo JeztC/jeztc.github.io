@@ -19,6 +19,11 @@ const Container = styled('div')(({ theme }) => ({
             : '0 12px 24px rgba(255,255,255,0.12)',
     },
 
+    boxShadow:
+        theme.palette.mode === 'light'
+            ? '0 4px 6px rgba(0, 0, 0, 0.1)'
+            : '0 4px 6px rgba(255, 255, 255, 0.08)',
+
     [theme.breakpoints.down('md')]: {
         marginTop: theme.spacing(2),
         gap: theme.spacing(2),

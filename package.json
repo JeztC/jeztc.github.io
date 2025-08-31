@@ -22,7 +22,7 @@
     "react-world-flags": "^1.6.0"
   },
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "vite build",
     "predeploy": "npm run build",
     "deploy" : "gh-pages -d dist",

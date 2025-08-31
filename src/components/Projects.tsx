@@ -24,23 +24,29 @@ const ProjectsContainer = styled('div')(({ theme }) => ({
     },
 }));
 
-const ProjectCard = styled('a')`
-    display: flex;
-    flex-direction: column;
-    width: 600px;
-    height: 400px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+const ProjectCard = styled('a')(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    width: '600px',
+    height: '400px',
+    borderRadius: '12px',
+    textDecoration: 'none',
+    overflow: 'hidden',
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+    boxShadow:
+        theme.palette.mode === 'light'
+            ? '0 4px 6px rgba(0, 0, 0, 0.1)'
+            : '0 4px 6px rgba(255, 255, 255, 0.08)',
 
-    &:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    }
-`;
+    '&:hover': {
+        transform: 'translateY(-10px)',
+        boxShadow:
+            theme.palette.mode === 'light'
+                ? '0 12px 24px rgba(0, 0, 0, 0.15)'
+                : '0 12px 24px rgba(255, 255, 255, 0.12)',
+    },
+}));
+
 
 const PreviewContainer = styled('div')`
     width: 100%;
@@ -59,12 +65,22 @@ const ProjectInfo = styled('div')`
     text-align: center;
 `;
 
-const ProjectTitle = styled('h3')`
-    margin: 0;
-    color: #333;
-    font-size: 1.25rem;
-    font-weight: 600;
-`;
+const ProjectTitle = styled('h3')(({ theme }) => ({
+    margin: 0,
+    color: theme.palette.text.primary,
+    fontSize: '1.25rem',
+    fontWeight: 600,
+    '&:visited': {
+        color: theme.palette.text.primary,
+    },
+    '&:hover': {
+        color: theme.palette.text.primary,
+    },
+    '&:active': {
+        color: theme.palette.text.primary,
+    },
+}));
+
 
 const Projects: React.FC = () => {
     return (

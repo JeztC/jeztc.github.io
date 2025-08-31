@@ -65,6 +65,10 @@ const StyledLink = styled(Link)`
     background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
     border-bottom: 2px solid #308fe8;
 
+    &:not(:last-child) {
+        border-right: none !important;
+    }
+
     &.Mui-selected {
         background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : 'inherit'} !important;
         color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'} !important;
@@ -262,7 +266,7 @@ const Header = () => {
             {!isMobile ?
                 <Box display="flex" justifyContent="center">
                     <DarkModeToggle/>
-                    <IconButton color="secondary" onClick={handleLanguageMenuOpen} style={{ marginBottom : '10px' }}>
+                    <IconButton onClick={handleLanguageMenuOpen} style={{ marginBottom : '10px' }}>
                         <LanguageIcon />
                     </IconButton>
                     <Menu

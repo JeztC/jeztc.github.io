@@ -3,6 +3,9 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 
 const darkTheme = createTheme({
+    typography: {
+        fontFamily: '"Segoe UI", "Helvetica", "Arial", sans-serif',
+    },
     palette: {
         background: {
             default: 'black',
@@ -21,6 +24,9 @@ const darkTheme = createTheme({
 });
 
 const lightTheme = createTheme({
+    typography: {
+        fontFamily: '"Segoe UI", "Helvetica", "Arial", sans-serif',
+    },
     palette: {
         mode: 'light',
         background: {
