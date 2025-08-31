@@ -11,7 +11,11 @@ export default defineConfig({
         port: 3000,
         open: true,
         watch: {
-            ignored: ['**/node_modules/**', '**/dist/**']
+            ignored: ['**/node_modules/**', '**/build/**']
         }
+    },
+    build: {
+        outDir: 'build',
+        sourcemap: false,
     }
 })
