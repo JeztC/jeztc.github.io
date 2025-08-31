@@ -106,6 +106,11 @@ const StyledDrawer = styled(Box)`
     background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
 `;
 
+const MobileListItemLink = styled(Link)`
+    color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'};
+`;
+
+
 const Header = () => {
     const [, setValue] = useState<string>('/')
     const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
@@ -156,27 +161,27 @@ const Header = () => {
                     >
                         <StyledDrawer>
                             <List>
-                                <ListItem component={Link} to="/" onClick={handleDrawerClose}>
+                                <ListItem component={MobileListItemLink} to="/" onClick={handleDrawerClose}>
                                     <ListItemIcon><AccountCircle /></ListItemIcon>
                                     <ListItemText primary={t('menu_about')} />
                                 </ListItem>
-                                <ListItem component={Link} to="/education" onClick={handleDrawerClose}>
+                                <ListItem component={MobileListItemLink} to="/education" onClick={handleDrawerClose}>
                                     <ListItemIcon><School /></ListItemIcon>
                                     <ListItemText primary={t('menu_education')} />
                                 </ListItem>
-                                <ListItem component={Link} to="/experience" onClick={handleDrawerClose}>
+                                <ListItem component={MobileListItemLink} to="/experience" onClick={handleDrawerClose}>
                                     <ListItemIcon><Work /></ListItemIcon>
                                     <ListItemText primary={t('menu_experience')} />
                                 </ListItem>
-                                <ListItem component={Link} to="/projects" onClick={handleDrawerClose}>
+                                <ListItem component={MobileListItemLink} to="/projects" onClick={handleDrawerClose}>
                                     <ListItemIcon><Folder /></ListItemIcon>
                                     <ListItemText primary={t('menu_projects')} />
                                 </ListItem>
-                                <ListItem component={Link} to="/github" onClick={handleDrawerClose}>
+                                <ListItem component={MobileListItemLink} to="/github" onClick={handleDrawerClose}>
                                     <ListItemIcon><GitHub /></ListItemIcon>
                                     <ListItemText primary={"Github"} />
                                 </ListItem>
-                                <ListItem component={Link} to="/links" onClick={handleDrawerClose}>
+                                <ListItem component={MobileListItemLink} to="/links" onClick={handleDrawerClose}>
                                     <ListItemIcon><LinkIcon /></ListItemIcon>
                                     <ListItemText primary={t('menu_links')} />
                                 </ListItem>
