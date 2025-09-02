@@ -2,6 +2,7 @@ import { Email, GitHub, LinkedIn } from "@mui/icons-material";
 import Icon from "./Icon";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
+import { Typography } from "@mui/material";
 
 const LinksContainer = styled('div')(({ theme }) => ({
     display: 'flex',
@@ -38,7 +39,7 @@ const Links = () => {
                 <Icon size={250} href="https://github.com/JeztC/" target="_blank">
                     <GitHub />
                 </Icon>
-                <p>GitHub</p>
+                <Typography variant="body1">GitHub</Typography>
             </Box>
             <Box>
                 <Icon size={250} href={`mailto:"jesse.lagland@gmail.com"`} target="_blank">
@@ -50,7 +51,7 @@ const Links = () => {
                 <Icon size={250} href={`https://www.linkedin.com/in/jesse-l%C3%A5gland-3213a0347/`} target="_blank">
                     <LinkedIn />
                 </Icon>
-                <p>LinkedIn</p>
+                <Typography variant="body1">LinkedIn</Typography>
             </Box>
         </LinksContainer>
     )

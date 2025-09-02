@@ -293,7 +293,7 @@ const Header = () => {
                             </Box>
                         </LanguageMenuItem>
                     </Menu>
-                </Box> : <div/>}
+                </Box> : <Box/>}
         </HeaderWrapper>
     );
 }

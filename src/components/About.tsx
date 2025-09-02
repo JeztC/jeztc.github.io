@@ -1,5 +1,5 @@
 import React from "react";
-import {Badge, Box, LinearProgress, Rating, Typography} from "@mui/material";
+import {Badge, Box, LinearProgress, Typography} from "@mui/material";
 import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
@@ -54,7 +54,6 @@ const MainContainer = styled('div')`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top : 50px;
     padding-top: 60px;
     height: 80vh;
     margin: 16px;
@@ -81,8 +80,12 @@ const About: React.FC = () => {
                 <AvatarContainer src={'./media/avatar.png'} alt="Description"/>
             </Badge>
             <AboutContainer>
-                <h1>{t('menu_about')}</h1>
-                <p>{t('about_desc')}</p>
+                <Typography variant="h4" gutterBottom>
+                    {t('menu_about')}
+                </Typography>
+                <Typography variant="body1">
+                    {t('about_desc')}
+                </Typography>
                 <SkillsContainer>
                     <SkillsColumn>
                         {skillsList
