@@ -3,6 +3,7 @@ import Icon from "./Icon";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { Typography } from "@mui/material";
+import React from "react";
 
 const LinksContainer = styled('div')(({ theme }) => ({
     display: 'flex',
@@ -45,7 +46,7 @@ const Links = () => {
                 <Icon size={250} href={`mailto:"jesse.lagland@gmail.com"`} target="_blank">
                     <Email />
                 </Icon>
-                <p>{t('links_email')}</p>
+                <Typography variant="body1">{t('links_email')}</Typography>
             </Box>
             <Box>
                 <Icon size={250} href={`https://www.linkedin.com/in/jesse-l%C3%A5gland-3213a0347/`} target="_blank">
