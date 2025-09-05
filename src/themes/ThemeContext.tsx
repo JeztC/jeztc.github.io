@@ -54,17 +54,16 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const [mode, setMode] = useState<'light' | 'dark'>(() => {
-        const savedMode = localStorage.getItem('mode');
-        return savedMode === 'light' || savedMode === 'dark' ? savedMode : 'dark';
-    })
+    const [mode, setMode] = useState<'light' | 'dark'>(
+        () => (localStorage.getItem('mode') as 'light' | 'dark') || 'dark'
+    );
 
     const theme = mode === 'light' ? lightTheme : darkTheme;
 
     const toggleMode = () => {
         const newMode = mode === 'light' ? 'dark' : 'light';
-        setMode(newMode);
         localStorage.setItem('mode', newMode);
+        setMode(newMode);
     };
 
     return (
