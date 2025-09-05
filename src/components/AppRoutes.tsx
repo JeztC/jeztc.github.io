@@ -1,10 +1,11 @@
-import {Navigate, Route, Routes} from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import About from "./About";
 import Education from "./Education";
 import Experience from "./Experience";
 import Links from "./Links";
 import Projects from "./Projects";
 import Github from "./Github";
+import React from "react";
 
 const AppRoutes = () => {
     return (

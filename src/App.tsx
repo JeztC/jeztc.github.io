@@ -5,6 +5,7 @@ import {
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from "./components/Header";
 import AppRoutes from "./components/AppRoutes";
+import React from "react";
 
 const App = () => {
     return (
