@@ -1,13 +1,9 @@
 import { Box, CircularProgress, circularProgressClasses, CircularProgressProps } from "@mui/material";
+import React from "react";
 
 function FacebookCircularProgress(props: CircularProgressProps) {
     return (
-        <Box sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '40vh',
-        }}>
+        <Box sx={{ position: 'relative'  }}>
             <CircularProgress
                 variant="determinate"
                 sx={(theme) => ({
