@@ -3,6 +3,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { styled } from "@mui/material/styles";
 import { ChangeEvent, useState, MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
+import React from "react";
 import {
     AccountCircle,
     School,
@@ -28,7 +29,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
 import { DarkModeToggle } from "../themes/DarkModeToggle";
-import Flag from 'react-world-flags';
+import ReactCountryFlag from "react-country-flag";
 
 const HeaderWrapper = styled('header')(({ theme }) => ({
     display: 'flex',
@@ -199,13 +200,29 @@ const Header = () => {
                                 >
                                     <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
                                         <Box display="flex" alignItems="center" gap={1}>
-                                            <Flag code="FI" style={{ width: 24, height: 16 }} />
+                                            <ReactCountryFlag
+                                                countryCode="FI"
+                                                svg
+                                                style={{
+                                                    width: '1.5em',
+                                                    height: '1em',
+                                                }}
+                                                title="Finnish"
+                                            />
                                             {t('finnish')}
                                         </Box>
                                     </LanguageMenuItem>
                                     <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
                                         <Box display="flex" alignItems="center" gap={1}>
-                                            <Flag code="GB" style={{ width: 24, height: 16 }} />
+                                            <ReactCountryFlag
+                                                countryCode="GB"
+                                                svg
+                                                style={{
+                                                    width: '1.5em',
+                                                    height: '1em',
+                                                }}
+                                                title="English"
+                                            />
                                             {t('english')}
                                         </Box>
                                     </LanguageMenuItem>
@@ -282,13 +299,29 @@ const Header = () => {
                     >
                         <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
                             <Box display="flex" alignItems="center" gap={1}>
-                                <Flag code="FI" style={{ width: 24, height: 16 }} />
+                                <ReactCountryFlag
+                                    countryCode="FI"
+                                    svg
+                                    style={{
+                                        width: '1.5em',
+                                        height: '1em',
+                                    }}
+                                    title="Finnish"
+                                />
                                 {t('finnish')}
                             </Box>
                         </LanguageMenuItem>
                         <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
                             <Box display="flex" alignItems="center" gap={1}>
-                                <Flag code="GB" style={{ width: 24, height: 16 }} />
+                                <ReactCountryFlag
+                                    countryCode="GB"
+                                    svg
+                                    style={{
+                                        width: '1.5em',
+                                        height: '1em',
+                                    }}
+                                    title="English"
+                                />
                                 {t('english')}
                             </Box>
                         </LanguageMenuItem>
