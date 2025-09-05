@@ -2,7 +2,12 @@ import { Box, CircularProgress, circularProgressClasses, CircularProgressProps }
 
 function FacebookCircularProgress(props: CircularProgressProps) {
     return (
-        <Box sx={{ position: 'relative'  }}>
+        <Box sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '40vh',
+        }}>
             <CircularProgress
                 variant="determinate"
                 sx={(theme) => ({

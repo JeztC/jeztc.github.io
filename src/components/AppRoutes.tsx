@@ -1,11 +1,10 @@
-import { Route, Routes } from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import About from "./About";
 import Education from "./Education";
 import Experience from "./Experience";
 import Links from "./Links";
 import Projects from "./Projects";
 import Github from "./Github";
-import PageNotFound from "./PageNotFound";
 
 const AppRoutes = () => {
     return (
@@ -16,7 +15,7 @@ const AppRoutes = () => {
             <Route path="/links" element={<Links/>} />
             <Route path="/projects" element={<Projects/>} />
             <Route path="/github" element={<Github/>} />
-            <Route path="*" element={<PageNotFound />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );
 }
