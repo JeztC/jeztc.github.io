@@ -20,7 +20,7 @@ const skillsList = [
     { title: 'Linux', value: 1 },
     { title: 'Redux', value: 0.70 },
     { title: 'MongoDB ', value: 0.70 },
-    { title: 'Cypress & Jest ', value: 0.70 },
+    { title: 'Playwright & Vitest', value: 0.70 },
     { title: 'CI/CD & Github Actions', value: 0.70 },
     { title: 'CCNA', value: 0.60 },
 ]
