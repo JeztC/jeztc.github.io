@@ -1,0 +1,3 @@
+interface LanguageProps {
+    language: string;
+}
