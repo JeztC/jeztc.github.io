@@ -6,7 +6,6 @@ import Links from "./Links";
 import Projects from "./Projects";
 import Github from "./Github";
 import React from "react";
-import { CVPage } from "./CVPage";
 
 const AppRoutes = () => {
     return (
@@ -17,7 +16,6 @@ const AppRoutes = () => {
             <Route path="/links" element={<Links/>} />
             <Route path="/projects" element={<Projects/>} />
             <Route path="/github" element={<Github/>} />
-            <Route path="/cvpage" element={<CVPage/>} />
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );

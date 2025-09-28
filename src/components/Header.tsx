@@ -278,14 +278,6 @@ const Header = () => {
                     />
                     <BottomNavigationAction
                         component={StyledLink}
-                        to="/cvpage"
-                        value="cvpage"
-                        id='cvpage'
-                        label={'CV'}
-                        icon={<Description />}
-                    />
-                    <BottomNavigationAction
-                        component={StyledLink}
                         to="/links"
                         value="links"
                         id='links'
