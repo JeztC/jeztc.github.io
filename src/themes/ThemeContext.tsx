@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { useMediaQuery } from "@mui/material";
 
 const darkTheme = createTheme({
     typography: {
@@ -54,16 +55,15 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const [mode, setMode] = useState<'light' | 'dark'>(
-        () => (localStorage.getItem('mode') as 'light' | 'dark') || 'dark'
-    );
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+    const [mode, setMode] = useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light');
 
-    const theme = mode === 'light' ? lightTheme : darkTheme;
+    const theme = useMemo(() => (
+        mode === 'light' ? lightTheme : darkTheme
+    ), [mode]);
 
     const toggleMode = () => {
-        const newMode = mode === 'light' ? 'dark' : 'light';
-        localStorage.setItem('mode', newMode);
-        setMode(newMode);
+        setMode(prev => (prev === 'light' ? 'dark' : 'light'));
     };
 
     return (

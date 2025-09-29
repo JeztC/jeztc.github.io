@@ -1,8 +1,8 @@
 import React from 'react';
-import { useTheme } from './ThemeContext';
 import { IconButton, useMediaQuery } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { useTheme } from "./ThemeContext";
 
 export const DarkModeToggle = () => {
     const { theme, toggleMode } = useTheme();
@@ -15,7 +15,7 @@ export const DarkModeToggle = () => {
             onClick={toggleMode}
             color="secondary"
         >
-            {theme.palette.mode === 'dark' ? <LightModeIcon sx={{ fontSize: iconFontSize }} /> : <DarkModeIcon sx={{ fontSize: iconFontSize }} />}
+            {theme.palette.mode === 'dark' ? <DarkModeIcon sx={{ fontSize: iconFontSize }} /> : <LightModeIcon sx={{ fontSize: iconFontSize }} />}
         </IconButton>
     );
 };
