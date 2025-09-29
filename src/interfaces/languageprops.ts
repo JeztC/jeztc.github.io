@@ -1,3 +1,0 @@
-interface LanguageProps {
-    language: string;
-}
