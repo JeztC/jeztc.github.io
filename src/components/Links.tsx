@@ -2,10 +2,10 @@ import { Email, GitHub, LinkedIn } from "@mui/icons-material";
 import Icon from "./Icon";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
-const LinksContainer = styled('div')(({ theme }) => ({
+const LinksContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -20,7 +20,7 @@ const LinksContainer = styled('div')(({ theme }) => ({
     },
 }));
 
-const Box = styled('div')`
+const LinksBox = styled(Box)`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,24 +36,24 @@ const Links = () => {
     const { t } = useTranslation()
     return (
         <LinksContainer>
-            <Box>
+            <LinksBox>
                 <Icon size={250} href={import.meta.env.VITE_USER_URL} target="_blank">
                     <GitHub />
                 </Icon>
                 <Typography variant="body1">GitHub</Typography>
-            </Box>
-            <Box>
+            </LinksBox>
+            <LinksBox>
                 <Icon size={250} href={`mailto:${import.meta.env.VITE_USER_EMAIL}`} target="_blank">
                     <Email />
                 </Icon>
                 <Typography variant="body1">{t('links_email')}</Typography>
-            </Box>
-            <Box>
+            </LinksBox>
+            <LinksBox>
                 <Icon size={250} href={import.meta.env.VITE_LINKEDIN_URL} target="_blank">
                     <LinkedIn />
                 </Icon>
                 <Typography variant="body1">LinkedIn</Typography>
-            </Box>
+            </LinksBox>
         </LinksContainer>
     )
 }

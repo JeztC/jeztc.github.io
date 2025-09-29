@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles";
 import { jobs } from "../data";
 import React from "react";
 
-const Container = styled('div')(({ theme }) => ({
+const Container = styled(Box)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     marginTop: theme.spacing(4),

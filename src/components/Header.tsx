@@ -11,7 +11,7 @@ import {
     Link as LinkIcon,
     Menu as MenuIcon,
     Close,
-    Folder, Work, Description
+    Folder, Work,
 } from "@mui/icons-material";
 import {
     Box,

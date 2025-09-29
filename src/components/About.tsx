@@ -3,10 +3,9 @@ import { Badge, Box, LinearProgress, Typography } from "@mui/material";
 import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
-import dayjs from "dayjs";
 import { getAgeFromEnvStamp } from "../utils/dateUtils";
 
-const AboutContainer = styled('div')`
+const AboutContainer = styled(Box)`
     margin-left: 0;
     margin-top: 16px;
     text-align: center
@@ -37,14 +36,14 @@ const AvatarContainer = styled('img')`
     border-color: ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
 `
 
-const SkillsColumn = styled('div')`
+const SkillsColumn = styled(Box)`
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     width: 100%;
 `;
 
-const SkillsContainer = styled('div')`
+const SkillsContainer = styled(Box)`
     max-width: 950px;
     display: flex;
     flex-wrap: wrap;
@@ -52,7 +51,7 @@ const SkillsContainer = styled('div')`
     margin-bottom : 150px;
 `;
 
-const MainContainer = styled('div')`
+const MainContainer = styled(Box)`
     display: flex;
     flex-direction: column;
     align-items: center;

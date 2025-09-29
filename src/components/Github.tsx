@@ -46,7 +46,7 @@ const AvatarContainer = styled('img')`
     border-color: ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
 `
 
-const StyledUserCardSection = styled('div')`
+const StyledUserCardSection = styled(Box)`
     display: flex;
     align-items: center;
     padding-bottom: 10px;
@@ -57,7 +57,7 @@ const DescriptionTypography = styled(Typography)(() => ({
     color: 'rgb(139, 148, 158)',
 }));
 
-const CardContainer = styled('div')({
+const CardContainer = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
     paddingTop: '50px',

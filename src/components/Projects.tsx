@@ -1,13 +1,14 @@
 import { styled } from "@mui/material/styles";
 import React from 'react';
+import { Box } from "@mui/material";
 
-const Container = styled('div')`
+const Container = styled(Box)`
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 
-const ProjectsContainer = styled('div')(({ theme }) => ({
+const ProjectsContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -48,7 +49,7 @@ const ProjectCard = styled('a')(({ theme }) => ({
 }));
 
 
-const PreviewContainer = styled('div')`
+const PreviewContainer = styled(Box)`
     width: 100%;
     height: 300px;
     overflow: hidden;
@@ -60,7 +61,7 @@ const PreviewGif = styled('img')`
     object-fit: cover;
 `;
 
-const ProjectInfo = styled('div')`
+const ProjectInfo = styled(Box)`
     padding: 20px;
     text-align: center;
 `;
