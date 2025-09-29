@@ -23,7 +23,7 @@ import {
     ListItemText,
     Menu,
     MenuItem,
-    Tooltip,
+    Tooltip, Typography,
     useMediaQuery, useTheme
 } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
@@ -45,9 +45,8 @@ const HeaderWrapper = styled('header')(({ theme }) => ({
     position: 'sticky',
     top: 0,
     zIndex: 1000,
-    backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
     borderBottom: '1px solid rgb(62, 65, 68)',
-    color: '#fff',
+    backgroundColor: theme.palette.background.default,
     [theme.breakpoints.down('md')]: {
         padding: theme.spacing(0, 1),
     },
@@ -64,21 +63,19 @@ const StyledLink = styled(Link)`
     width: 134px;
     border: 1px solid rgb(62, 65, 68) !important;
     border-bottom: none !important;
-    background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
-    border-bottom: 2px solid #308fe8;
+    border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main}`};
 
     &:not(:last-child) {
         border-right: none !important;
     }
 
     &.Mui-selected {
-        background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : 'inherit'} !important;
-        color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'} !important;
-        border-bottom: 2px solid #308fe8 !important;
+        color: ${({ theme }) => theme.palette.text.primary} !important;
+        border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main} !important`};
     }
 
     &:hover {
-        background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#EAEDF1' : '#181919'} !important;
+        background-color: ${({ theme }) => theme.palette.action.hover} !important;
     }
 `
 
@@ -86,7 +83,7 @@ const LanguageMenuItem = styled(MenuItem)`
     width: 200px;
 `;
 
-const StyledHeader = styled(Link)`
+const StyledHeader = styled(Typography)`
     font-size: 24px;
     font-weight: bold;
     text-transform: uppercase;
@@ -97,19 +94,18 @@ const StyledHeader = styled(Link)`
         text-decoration: none;
     }
     padding-bottom: 15px;
-    color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'};
 `;
 
-const StyledDrawer = styled(Box)`
-    flex-shrink: 0;
-    width: 250px;
-    height: 1000px;
-    padding: 16px;
-    background-color: ${({ theme }) => theme.palette.mode === 'light' ? '#fff' : '#000'};
-`;
+const StyledDrawer = styled(Box)(({ theme }) => ({
+    flexShrink: 0,
+    width: 250,
+    height: 1000,
+    padding: 16,
+    backgroundColor: theme.palette.background.default,
+}));
 
 const MobileListItemLink = styled(Link)`
-    color: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'};
+    color: ${({ theme }) => theme.palette.text.primary};
 `;
 
 
@@ -150,7 +146,7 @@ const Header = () => {
 
     return (
         <HeaderWrapper>
-            {!isMobile && <StyledHeader to="/">Portfolio</StyledHeader>}
+            {!isMobile && <StyledHeader>Portfolio</StyledHeader>}
             {isMobile ?
                 <>
                     <IconButton onClick={handleDrawerOpen} style={{ marginRight: '10px' }}>

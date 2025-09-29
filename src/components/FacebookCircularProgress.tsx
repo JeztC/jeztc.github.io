@@ -29,7 +29,7 @@ function FacebookCircularProgress(props: CircularProgressProps) {
                         strokeLinecap: 'round',
                     },
                     ...theme.applyStyles('dark', {
-                        color: '#308fe8',
+                        color: theme.palette.primary.main,
                     }),
                 })}
                 size={40}
