@@ -33,10 +33,10 @@ const TabStyled = styled(Tabs)(({ theme }) => ({
 const EducationTab = styled(Tab)(({ theme }) => ({
     '&.Mui-selected': {
         color: theme.palette.text.primary,
-        backgroundColor: theme.palette.mode === 'light' ? '#EAEDF1' : '#181919',
+        backgroundColor: theme.palette.action.hover,
     },
     '&:hover': {
-        backgroundColor: theme.palette.mode === 'light' ? '#EAEDF1' : '#181919',
+        backgroundColor: theme.palette.action.hover,
     },
 }));
 
