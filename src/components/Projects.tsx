@@ -17,7 +17,6 @@ const ProjectsContainer = styled(Box)(({ theme }) => ({
     gap: '60px',
     maxWidth: '1200px',
     margin: '0 auto',
-
     [theme.breakpoints.down('md')]: {
         padding: '40px 20px',
         flexDirection: 'column',
@@ -34,17 +33,10 @@ const ProjectCard = styled('a')(({ theme }) => ({
     textDecoration: 'none',
     overflow: 'hidden',
     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-    boxShadow:
-        theme.palette.mode === 'light'
-            ? '0 4px 6px rgba(0, 0, 0, 0.1)'
-            : '0 4px 6px rgba(255, 255, 255, 0.08)',
-
+    boxShadow: `0 4px 6px ${theme.palette.action.hover}`,
     '&:hover': {
         transform: 'translateY(-10px)',
-        boxShadow:
-            theme.palette.mode === 'light'
-                ? '0 12px 24px rgba(0, 0, 0, 0.15)'
-                : '0 12px 24px rgba(255, 255, 255, 0.12)',
+        boxShadow: `0 12px 24px ${theme.palette.action.hover}`
     },
 }));
 
