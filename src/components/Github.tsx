@@ -105,16 +105,6 @@ const Github = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const cachedUser = localStorage.getItem('user');
-            const cachedRepos = localStorage.getItem('repositories');
-
-            if (cachedUser && cachedRepos) {
-                setUser(JSON.parse(cachedUser));
-                setRepositories(JSON.parse(cachedRepos));
-                setLoading(false);
-                return;
-            }
-
             try {
                 const [userResult, starredResult, reposResult] = await Promise.all([
                     axios.get<User>(import.meta.env.VITE_USER_API_URL),
@@ -130,9 +120,6 @@ const Github = () => {
                 setUser(userData);
                 setRepositories(reposResult.data);
                 setLoading(false);
-
-                localStorage.setItem('user', JSON.stringify(userData));
-                localStorage.setItem('repositories', JSON.stringify(reposResult.data));
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setLoading(false);
