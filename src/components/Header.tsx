@@ -23,6 +23,7 @@ import {
     ListItemText,
     Menu,
     MenuItem,
+    Tooltip,
     useMediaQuery, useTheme
 } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
@@ -287,10 +288,30 @@ const Header = () => {
                 </BottomNavigationStyled>}
             {!isMobile ?
                 <Box display="flex" justifyContent="center">
-                    <DarkModeToggle/>
-                    <IconButton onClick={handleLanguageMenuOpen} style={{ marginBottom : '10px' }}>
-                        <LanguageIcon />
-                    </IconButton>
+                    <DarkModeToggle />
+
+                    <Tooltip
+                        title={t('changeLanguage')}
+                        arrow
+                        slotProps={{
+                            tooltip: {
+                                sx: {
+                                    backgroundColor: '#333',
+                                    color: '#fff',
+                                },
+                            },
+                            arrow: {
+                                sx: {
+                                    color: '#333',
+                                },
+                            },
+                        }}
+                    >
+                        <IconButton onClick={handleLanguageMenuOpen} style={{ marginBottom: '10px' }}>
+                            <LanguageIcon />
+                        </IconButton>
+                    </Tooltip>
+
                     <Menu
                         anchorEl={languageMenuAnchor}
                         keepMounted
@@ -302,10 +323,7 @@ const Header = () => {
                                 <ReactCountryFlag
                                     countryCode="FI"
                                     svg
-                                    style={{
-                                        width: '1.5em',
-                                        height: '1em',
-                                    }}
+                                    style={{ width: '1.5em', height: '1em' }}
                                     title="Finnish"
                                 />
                                 {t('finnish')}
@@ -316,10 +334,7 @@ const Header = () => {
                                 <ReactCountryFlag
                                     countryCode="GB"
                                     svg
-                                    style={{
-                                        width: '1.5em',
-                                        height: '1em',
-                                    }}
+                                    style={{ width: '1.5em', height: '1em' }}
                                     title="English"
                                 />
                                 {t('english')}
