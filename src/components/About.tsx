@@ -33,7 +33,7 @@ const AvatarContainer = styled('img')`
     border-radius: 50%;
     border-width: 1px;
     border-style: solid;
-    border-color: ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
+    border-color: ${({ theme }) => theme.palette.divider};
 `
 
 const SkillsColumn = styled(Box)`

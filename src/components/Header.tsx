@@ -1,6 +1,6 @@
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import { styled } from "@mui/material/styles";
+import { keyframes, styled } from "@mui/material/styles";
 import { ChangeEvent, useState, MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import React from "react";
@@ -45,7 +45,8 @@ const HeaderWrapper = styled('header')(({ theme }) => ({
     position: 'sticky',
     top: 0,
     zIndex: 1000,
-    borderBottom: '1px solid rgb(62, 65, 68)',
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderTop: `2px solid ${theme.palette.divider}`,
     backgroundColor: theme.palette.background.default,
     [theme.breakpoints.down('md')]: {
         padding: theme.spacing(0, 1),
@@ -59,17 +60,27 @@ const BottomNavigationStyled = styled(BottomNavigation)`
     justify-content: center;
 `
 
+const bounceUpDown = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
+
 const StyledLink = styled(Link)`
     width: 134px;
-    border: 1px solid rgb(62, 65, 68) !important;
-    border-bottom: none !important;
-    border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main}`};
-
-    &:not(:last-child) {
-        border-right: none !important;
-    }
+    border-bottom: ${({ theme }) => `1px solid ${theme.palette.primary.main}`};
+    text-align: center;
+    background-color: ${({ theme }) => theme.palette.background.default} !important;
 
     &.Mui-selected {
+        background-color: ${({ theme }) => theme.palette.action.hover} !important;
         color: ${({ theme }) => theme.palette.text.primary} !important;
         border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main} !important`};
     }
@@ -77,7 +88,10 @@ const StyledLink = styled(Link)`
     &:hover {
         background-color: ${({ theme }) => theme.palette.action.hover} !important;
     }
-`
+`;
+
+
+
 
 const LanguageMenuItem = styled(MenuItem)`
     width: 200px;

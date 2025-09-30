@@ -17,7 +17,7 @@ import XIcon from '@mui/icons-material/X';
 import { styled } from "@mui/material/styles";
 
 const TabStyled = styled(Tabs)(({ theme }) => ({
-    borderRight: '1px solid rgb(62, 65, 68)',
+    borderRight: `1px solid ${theme.palette.divider}`,
     width: '200px',
     height: '100vh',
 

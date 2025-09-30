@@ -20,7 +20,7 @@ const StyledUserCard = styled(Card)`
     width: 900px;
     height: max-content;
     background: inherit;
-    border: 1px solid ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
+    border: 1px solid ${({ theme }) => theme.palette.divider};
     @media (max-width: 768px) {
         width: 90%;
         margin: 0 auto;
@@ -31,7 +31,7 @@ const ProjectBox = styled(Box)`
     background: inherit;
     margin: 23px;
     border-radius: 0;
-    border: 1px solid ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
+    border: 1px solid ${({ theme }) => theme.palette.divider};
     width: 420px;
     height: 150px;
     box-shadow: none;
@@ -46,7 +46,7 @@ const AvatarContainer = styled('img')`
     border-radius: 50%;
     border-style: solid;
     border-width: 1px;
-    border-color: ${({ theme }) => theme.palette.mode === 'light' ? '#D0D7DE' : 'rgb(35, 35, 35)'};
+    border-color: ${({ theme }) => theme.palette.divider};
 `
 
 const StyledUserCardSection = styled(Box)`
