@@ -64,24 +64,30 @@ const StyledLink = styled(Link)`
     width: 134px;
     text-align: center;
     background-color: ${({ theme }) => theme.palette.background.default} !important;
+    
+    border-top: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
+    border-left: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
+    border-right: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
+    border-bottom: ${({ theme }) => `2px solid ${theme.palette.divider}`} !important;
 
-    /* Grey indicator for inactive tabs */
-    border-bottom: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
-
-    &.Mui-selected {
-        background-color: ${({ theme }) => theme.palette.action.hover} !important;
-        color: ${({ theme }) => theme.palette.text.primary} !important;
-
-        /* Blue indicator for active tab */
-        border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main} !important`};
+    &:not(:last-child) {
+        border-right: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
     }
 
     &:hover {
         background-color: ${({ theme }) => theme.palette.action.hover} !important;
     }
+
+    &.Mui-selected {
+        background-color: ${({ theme }) => theme.palette.action.hover} !important;
+        color: ${({ theme }) => theme.palette.text.primary} !important;
+        border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main}`} !important;
+    }
+
+    &:hover.Mui-selected {
+        border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main}`} !important;
+    }
 `;
-
-
 
 
 const LanguageMenuItem = styled(MenuItem)`
