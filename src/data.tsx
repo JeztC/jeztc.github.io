@@ -2,6 +2,19 @@ const jobs = [
     { company: 'Vitec Alma OY', duration: 'May 2025', name: 'vitec', link: 'https://www.vitec-alma.com/' },
 ];
 
+const projectData: Project[] = [
+    {
+        title: "Freegle",
+        href: "https://github.com/JeztC/freegle",
+        imgSrc: "./media/demo.gif",
+    },
+    {
+        title: "Portfolio",
+        href: "https://github.com/JeztC/jeztc.github.io/",
+        imgSrc: "./media/img.png",
+    },
+];
+
 const skillsList = [
     { title: 'TypeScript', value: 0.85 },
     { title: 'React', value: 0.85 },
@@ -58,4 +71,4 @@ const education = [
     },
 ]
 
-export { skillsList, education, jobs }
+export { skillsList, education, jobs, projectData }

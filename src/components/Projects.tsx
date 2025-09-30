@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
 import React from 'react';
 import { Box } from "@mui/material";
+import { projectData } from "../data";
 
 const Container = styled(Box)`
     display: flex;
@@ -74,41 +75,28 @@ const ProjectTitle = styled('h3')(({ theme }) => ({
     },
 }));
 
-
 const Projects = () => {
     return (
         <Container>
             <ProjectsContainer>
-                <ProjectCard
-                    href="https://github.com/JeztC/freegle"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <PreviewContainer>
-                        <PreviewGif
-                            src={`./media/demo.gif`}
-                            alt="Project Preview"
-                        />
-                    </PreviewContainer>
-                    <ProjectInfo>
-                        <ProjectTitle>Freegle</ProjectTitle>
-                    </ProjectInfo>
-                </ProjectCard>
-                <ProjectCard
-                    href="https://github.com/JeztC/jeztc.github.io/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <PreviewContainer>
-                        <PreviewGif
-                            src={`./media/img.png`}
-                            alt="Project Preview"
-                        />
-                    </PreviewContainer>
-                    <ProjectInfo>
-                        <ProjectTitle>Portfolio</ProjectTitle>
-                    </ProjectInfo>
-                </ProjectCard>
+                {projectData.map((project, index) => (
+                    <ProjectCard
+                        key={index}
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <PreviewContainer>
+                            <PreviewGif
+                                src={project.imgSrc}
+                                alt="Project Preview"
+                            />
+                        </PreviewContainer>
+                        <ProjectInfo>
+                            <ProjectTitle>{project.title}</ProjectTitle>
+                        </ProjectInfo>
+                    </ProjectCard>
+                ))}
             </ProjectsContainer>
         </Container>
     );

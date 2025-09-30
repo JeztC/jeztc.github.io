@@ -1,6 +1,6 @@
 {
-  "Centria University of Applied Sciences": "Centria AMK",
-  "Hakalahden koulu": "Hakalahden koulu",
+  "Centria University of Applied Sciences": "Centria",
+  "Hakalahden koulu": "Hakalahden yläkoulu",
   "Kokkolan suomalainen lukio": "Lukio",
   "about_desc": "Olen {{age}}-vuotias motivoitunut insinööri, ja intohimoni on\nerityisesti ohjelmistokehitys. Persoonaltani olen analyyttinen ja\nratkaisukeskeinen, hyödyntäen ensimmäisten periaatteiden ajattelua\nongelmien juurisyiden selvittämiseksi ja tehokkaiden ratkaisujen\nlöytämiseksi. Vapaa-ajallani ohjelmoin, pelaan videopelejä ja pyöräilen.",
   "contact_email": "Sähköposti",
@@ -18,7 +18,7 @@
   "experience_1_education": "Ylioppilastutkinto",
   "experience_1_overview": "Ylioppilastutkinto sisälsi pitkän matematiikan ja englannin lisäksi lyhyen äidinkielen ja ruotsin kirjoitukset.",
   "experience_2_duration": "Elokuu 2013 - Toukokuu 2016",
-  "experience_2_education": "Peruskoulu",
+  "experience_2_education": "Hakalahden yläkoulu",
   "experience_2_overview": "Peruskoulun tutkinto.",
   "finnish": "Suomi",
   "followers": "seuraajaa",

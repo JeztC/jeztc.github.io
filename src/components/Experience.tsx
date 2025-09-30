@@ -60,11 +60,9 @@ const StyledLink = styled(Link)(({ theme }) => ({
     border: `1px solid ${theme.palette.divider}`,
     transition: 'box-shadow 0.2s',
     textDecoration: 'none',
-
     '&:hover': {
         boxShadow: theme.shadows[6],
     },
-
     [theme.breakpoints.up('md')]: {
         padding: theme.spacing(2),
     },
