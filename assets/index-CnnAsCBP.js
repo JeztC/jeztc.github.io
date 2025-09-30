@@ -265,7 +265,7 @@ export default theme;`}function dy(e){return typeof e=="number"?`${(e*100).toFix
     border-bottom: ${({theme:e})=>`2px solid ${e.palette.divider}`} !important;
 
     &:not(:last-child) {
-        border-left: ${({theme:e})=>`1px solid ${e.palette.divider}`} !important;
+        border-right: ${({theme:e})=>`1px solid ${e.palette.divider}`} !important;
     }
 
     &:hover {
