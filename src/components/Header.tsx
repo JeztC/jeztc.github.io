@@ -1,6 +1,6 @@
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import { keyframes, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { ChangeEvent, useState, MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import React from "react";
