@@ -258,20 +258,28 @@ export default theme;`}function dy(e){return typeof e=="number"?`${(e*100).toFix
     width: 134px;
     text-align: center;
     background-color: ${({theme:e})=>e.palette.background.default} !important;
+    
+    border-top: ${({theme:e})=>`1px solid ${e.palette.divider}`} !important;
+    border-left: ${({theme:e})=>`1px solid ${e.palette.divider}`} !important;
+    border-right: ${({theme:e})=>`1px solid ${e.palette.divider}`} !important;
+    border-bottom: ${({theme:e})=>`2px solid ${e.palette.divider}`} !important;
 
-    /* Grey indicator for inactive tabs */
-    border-bottom: ${({theme:e})=>`1px solid ${e.palette.divider}`} !important;
-
-    &.Mui-selected {
-        background-color: ${({theme:e})=>e.palette.action.hover} !important;
-        color: ${({theme:e})=>e.palette.text.primary} !important;
-
-        /* Blue indicator for active tab */
-        border-bottom: ${({theme:e})=>`2px solid ${e.palette.primary.main} !important`};
+    &:not(:last-child) {
+        border-left: ${({theme:e})=>`1px solid ${e.palette.divider}`} !important;
     }
 
     &:hover {
         background-color: ${({theme:e})=>e.palette.action.hover} !important;
+    }
+
+    &.Mui-selected {
+        background-color: ${({theme:e})=>e.palette.action.hover} !important;
+        color: ${({theme:e})=>e.palette.text.primary} !important;
+        border-bottom: ${({theme:e})=>`2px solid ${e.palette.primary.main}`} !important;
+    }
+
+    &:hover.Mui-selected {
+        border-bottom: ${({theme:e})=>`2px solid ${e.palette.primary.main}`} !important;
     }
 `,ql=ie(tO)`
     width: 200px;
