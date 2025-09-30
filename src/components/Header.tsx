@@ -60,28 +60,19 @@ const BottomNavigationStyled = styled(BottomNavigation)`
     justify-content: center;
 `
 
-const bounceUpDown = keyframes`
-  0% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(-4px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-`;
-
-
 const StyledLink = styled(Link)`
     width: 134px;
-    border-bottom: ${({ theme }) => `1px solid ${theme.palette.primary.main}`};
     text-align: center;
     background-color: ${({ theme }) => theme.palette.background.default} !important;
+
+    /* Grey indicator for inactive tabs */
+    border-bottom: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
 
     &.Mui-selected {
         background-color: ${({ theme }) => theme.palette.action.hover} !important;
         color: ${({ theme }) => theme.palette.text.primary} !important;
+
+        /* Blue indicator for active tab */
         border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main} !important`};
     }
 
