@@ -10,7 +10,6 @@ export const DarkModeToggle = () => {
     const { t } = useTranslation();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const iconFontSize = isMobile ? '37px' : 'inherit';
-
     const tooltipText = theme.palette.mode === 'dark' ? t('changeLightTheme') : t('changeDarkTheme');
 
     return (

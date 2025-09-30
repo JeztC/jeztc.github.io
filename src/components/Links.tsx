@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import { LinkItem } from "../interfaces/linkItem";
 
 const LinksContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
@@ -32,30 +33,43 @@ const LinksBox = styled(Box)`
     transition: all 0.2s;
 `;
 
+const linksData: LinkItem[] = [
+    {
+        label: "GitHub",
+        icon: <GitHub />,
+        href: import.meta.env.VITE_USER_URL,
+    },
+    {
+        label: "links_email",
+        icon: <Email />,
+        href: `mailto:${import.meta.env.VITE_USER_EMAIL}`,
+    },
+    {
+        label: "LinkedIn",
+        icon: <LinkedIn />,
+        href: import.meta.env.VITE_LINKEDIN_URL,
+    },
+];
+
+
 const Links = () => {
-    const { t } = useTranslation()
+    const { t } = useTranslation();
+
     return (
         <LinksContainer>
-            <LinksBox>
-                <Icon size={250} href={import.meta.env.VITE_USER_URL} target="_blank">
-                    <GitHub />
-                </Icon>
-                <Typography variant="body1">GitHub</Typography>
-            </LinksBox>
-            <LinksBox>
-                <Icon size={250} href={`mailto:${import.meta.env.VITE_USER_EMAIL}`} target="_blank">
-                    <Email />
-                </Icon>
-                <Typography variant="body1">{t('links_email')}</Typography>
-            </LinksBox>
-            <LinksBox>
-                <Icon size={250} href={import.meta.env.VITE_LINKEDIN_URL} target="_blank">
-                    <LinkedIn />
-                </Icon>
-                <Typography variant="body1">LinkedIn</Typography>
-            </LinksBox>
+            {linksData.map((link, index) => (
+                <LinksBox key={index}>
+                    <Icon size={250} href={link.href} target="_blank">
+                        {link.icon}
+                    </Icon>
+                    <Typography variant="body1">
+                        {link.label === "links_email" ? t(link.label) : link.label}
+                    </Typography>
+                </LinksBox>
+            ))}
         </LinksContainer>
-    )
-}
+    );
+};
+
 
 export default Links

@@ -10,6 +10,9 @@ import { useTranslation } from "react-i18next";
 import FacebookCircularProgress from "./FacebookCircularProgress";
 import dayjs from "dayjs";
 import { getLanguageColor } from "../utils/languageColors";
+import { Repository } from "../interfaces/repository";
+import { User } from "../interfaces/user";
+import { LanguageProps } from "../interfaces/languageProps";
 
 const StyledUserCard = styled(Card)`
     display: flex;
