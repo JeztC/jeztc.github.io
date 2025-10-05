@@ -18,7 +18,7 @@ import { styled } from "@mui/material/styles";
 
 const TabStyled = styled(Tabs)(({ theme }) => ({
     borderRight: `1px solid ${theme.palette.divider}`,
-    width: '200px',
+    width: '300px',
     height: '100vh',
 
     [theme.breakpoints.down('md')]: {
@@ -33,7 +33,7 @@ const TabStyled = styled(Tabs)(({ theme }) => ({
 const EducationTab = styled(Tab)(({ theme }) => ({
     '&.Mui-selected': {
         color: theme.palette.text.primary,
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: theme.palette.action.selected,
     },
     '&:hover': {
         backgroundColor: theme.palette.action.hover,

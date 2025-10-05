@@ -55,9 +55,9 @@ const StyledUserCardSection = styled(Box)`
     padding-bottom: 10px;
 `
 
-const DescriptionTypography = styled(Typography)(() => ({
+const DescriptionTypography = styled(Typography)(({ theme }) => ({
     marginTop: '-30px',
-    color: 'rgb(139, 148, 158)',
+    color: theme.palette.secondary.main,
 }));
 
 const CardContainer = styled(Box)({
@@ -70,14 +70,14 @@ const CardContainer = styled(Box)({
     borderRadius: '5px',
 });
 
-const LanguageTypography = styled(Typography)<LanguageProps>(({ language }) => {
+const LanguageTypography = styled(Typography)<LanguageProps>(({ theme, language }) => {
     const safeLanguage = typeof language === 'string' ? language : '';
 
     return {
         marginTop: '20px',
         display: 'flex',
         alignItems: 'center',
-        color: 'rgb(139, 148, 158)',
+        color: theme.palette.secondary.main,
         '&:before': {
             content: '""',
             display: 'inline-block',
@@ -135,14 +135,7 @@ const Github = () => {
     return (
         <>
             {loading ? (
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: '40vh',
-                    }}
-                >
+                <Box display="flex" justifyContent="center" alignItems="center" height="40vh">
                     <FacebookCircularProgress />
                 </Box>
             ) : (
@@ -155,13 +148,16 @@ const Github = () => {
                                     title={<Typography variant="h6">{user?.name}</Typography>}
                                 />
                                 <CardContent>
-                                    <Typography sx={{ fontSize: '20px' }} color="rgb(139, 148, 158)" variant="h5">
+                                    <Typography sx={{ fontSize: '20px', color: (theme) => theme.palette.secondary.main, }} variant="h5">
                                         <Link href={user?.html_url} target="_blank">{user?.login}</Link>
                                     </Typography>
                                     <Typography sx={{ marginTop: '20px', marginBottom: '20px', fontSize: '18px' }} color="inherit" variant="subtitle1">{user?.bio}</Typography>
                                     <StyledUserCardSection>
-                                        <GroupIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
-                                        <Typography color="#999999" variant="body2">{user?.followers} {t('followers')} · {user?.following} {t('following')}</Typography>
+                                        <GroupIcon sx={{ color: (theme) => theme.palette.secondary.main, marginRight: '5px', }}/>
+                                        <Typography
+                                            sx={{ color: (theme) => theme.palette.secondary.main }} variant="body2">
+                                            {user?.followers} {t('followers')} · {user?.following} {t('following')}
+                                        </Typography>
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
                                         <GithubIcon />
@@ -178,7 +174,7 @@ const Github = () => {
                                 </CardContent>
                             </StyledUserCard>
                         </CardContainer>
-                        <Grid container style={{ marginTop: '40px', marginLeft: '20px', marginBottom: '5%' }}>
+                        <Grid container sx={{ marginTop: '40px', marginLeft: '20px', marginBottom: '5%' }}>
                             {filteredRepositories.map((repository) => (
                                 <Grid key={repository.id}>
                                     <ProjectBox>

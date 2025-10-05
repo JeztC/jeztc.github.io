@@ -1,9 +1,8 @@
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { styled } from "@mui/material/styles";
-import { ChangeEvent, useState, MouseEvent } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import React from "react";
+import { MouseEvent } from "react";
 import {
     AccountCircle,
     School,
@@ -19,32 +18,32 @@ import {
     IconButton,
     List,
     ListItem,
-    ListItemIcon,
     ListItemText,
     Menu,
     MenuItem,
+    Tab,
+    Tabs,
     Tooltip, Typography,
     useMediaQuery, useTheme
 } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
-import i18n from "i18next";
 import { DarkModeToggle } from "../themes/DarkModeToggle";
 import ReactCountryFlag from "react-country-flag";
 
 const HeaderWrapper = styled('header')(({ theme }) => ({
     display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    padding: theme.spacing(0, 2),
-    height: '58px',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: '3px',
+    minHeight: '70px',
     width: '100vw',
     maxWidth: '100vw',
     boxSizing: 'border-box',
-    overflowX: 'hidden',
+    overflowX: 'auto',
     position: 'sticky',
     top: 0,
-    zIndex: 1000,
+    zIndex: 1100,
     borderBottom: `1px solid ${theme.palette.divider}`,
     borderTop: `2px solid ${theme.palette.divider}`,
     backgroundColor: theme.palette.background.default,
@@ -53,43 +52,6 @@ const HeaderWrapper = styled('header')(({ theme }) => ({
     },
 }));
 
-const BottomNavigationStyled = styled(BottomNavigation)`
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: center;
-`
-
-const StyledLink = styled(Link)`
-    width: 134px;
-    text-align: center;
-    background-color: ${({ theme }) => theme.palette.background.default} !important;
-    
-    border-top: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
-    border-left: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
-    border-right: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
-    border-bottom: ${({ theme }) => `2px solid ${theme.palette.divider}`} !important;
-
-    &:not(:last-child) {
-        border-right: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
-    }
-
-    &:hover {
-        background-color: ${({ theme }) => theme.palette.action.hover} !important;
-    }
-
-    &.Mui-selected {
-        background-color: ${({ theme }) => theme.palette.action.hover} !important;
-        color: ${({ theme }) => theme.palette.text.primary} !important;
-        border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main}`} !important;
-    }
-
-    &:hover.Mui-selected {
-        border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main}`} !important;
-    }
-`;
-
-
 const LanguageMenuItem = styled(MenuItem)`
     width: 200px;
 `;
@@ -97,9 +59,7 @@ const LanguageMenuItem = styled(MenuItem)`
 const StyledHeader = styled(Typography)`
     font-size: 24px;
     font-weight: bold;
-    text-transform: uppercase;
     letter-spacing: 2px;
-    margin: 0;
     text-decoration: none;
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
@@ -119,238 +79,167 @@ const MobileListItemLink = styled(Link)`
     color: ${({ theme }) => theme.palette.text.primary};
 `;
 
+const TabsStyled = styled(Tabs)(({ theme }) => ({
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
+    minHeight: '60px',
+    '& .MuiTabs-indicator': {
+        transition: 'none',
+        backgroundColor: theme.palette.primary.main,
+    },
+}));
 
-const Header = () => {
-    const [, setValue] = useState<string>('/')
-    const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
-    const { t } = useTranslation();
-    const location = useLocation()
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-    const tabOpened = location?.pathname?.slice(1) || '/';
-    const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+const StyledNavLink = styled(NavLink)`
+    width: 134px;
+    text-align: center;
+    text-transform: none !important;
+    background-color: ${({ theme }) => theme.palette.background.default} !important;
+    border-top: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
+    border-left: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
+    border-right: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
+    border-bottom: none !important;
 
-    const handleDrawerOpen = () => {
-        setIsDrawerOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setIsDrawerOpen(false);
-    };
-
-    const handleChange = (_event: ChangeEvent<object>, newValue: string) => {
-        setValue(newValue);
+    &:not(:last-child) {
+        border-right: ${({ theme }) => `1px solid ${theme.palette.divider}`} !important;
     }
 
-    const handleLanguageMenuOpen = (event: MouseEvent<HTMLElement>) => {
-        setLanguageMenuAnchor(event.currentTarget);
-    };
+    &:hover {
+        background-color: ${({ theme }) => theme.palette.action.hover} !important;
+    }
 
-    const handleLanguageMenuClose = () => {
-        setLanguageMenuAnchor(null);
-    };
+    &.active {
+        background-color: ${({ theme }) => theme.palette.action.selected} !important;
+        color: ${({ theme }) => theme.palette.text.primary} !important;
+        border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main}`} !important;
+    }
 
-    const handleLanguageChange = (language: string)  => {
-        i18n.changeLanguage(language)
+    &:hover.active {
+        border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main}`} !important;
+    }
+`;
+
+const Header = () => {
+    const { t, i18n } = useTranslation();
+    const location = useLocation();
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+    const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+    const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
+
+    const menuItems = [
+        { path: '/', label: t('menu_about'), icon: <AccountCircle fontSize={'medium'} /> },
+        { path: '/education', label: t('menu_education'), icon: <School fontSize={'medium'} /> },
+        { path: '/experience', label: t('menu_experience'), icon: <Work fontSize={'medium'} /> },
+        { path: '/projects', label: t('menu_projects'), icon: <Folder fontSize={'medium'} /> },
+        { path: '/github', label: 'GitHub', icon: <GitHub fontSize={'medium'} /> },
+        { path: '/links', label: t('menu_links'), icon: <LinkIcon fontSize={'medium'} /> },
+    ];
+
+    const handleDrawerOpen = () => setIsDrawerOpen(true);
+    const handleDrawerClose = () => setIsDrawerOpen(false);
+    const handleLanguageMenuOpen = (event: MouseEvent<HTMLElement>) => setLanguageMenuAnchor(event.currentTarget);
+    const handleLanguageMenuClose = () => setLanguageMenuAnchor(null);
+
+    const handleLanguageChange = (language : string) => {
+        i18n.changeLanguage(language);
         handleLanguageMenuClose();
     };
 
     return (
         <HeaderWrapper>
             {!isMobile && <StyledHeader>Portfolio</StyledHeader>}
-            {isMobile ?
+            {isMobile ? (
                 <>
-                    <IconButton onClick={handleDrawerOpen} style={{ marginRight: '10px' }}>
-                        {isDrawerOpen ? <Close style={{ fontSize: '37px' }} /> : <MenuIcon style={{ fontSize: '37px' }} />}
+                    <IconButton onClick={handleDrawerOpen} sx={{ mr: 1 }}>
+                        {isDrawerOpen ? <Close fontSize="large" /> : <MenuIcon fontSize="large" />}
                     </IconButton>
-                    <Drawer
-                        anchor="left"
-                        open={isDrawerOpen}
-                        onClose={handleDrawerClose}
-                    >
+                    <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerClose}>
                         <StyledDrawer>
                             <List>
-                                <ListItem component={MobileListItemLink} to="/" onClick={handleDrawerClose}>
-                                    <ListItemIcon><AccountCircle /></ListItemIcon>
-                                    <ListItemText primary={t('menu_about')} />
-                                </ListItem>
-                                <ListItem component={MobileListItemLink} to="/education" onClick={handleDrawerClose}>
-                                    <ListItemIcon><School /></ListItemIcon>
-                                    <ListItemText primary={t('menu_education')} />
-                                </ListItem>
-                                <ListItem component={MobileListItemLink} to="/experience" onClick={handleDrawerClose}>
-                                    <ListItemIcon><Work /></ListItemIcon>
-                                    <ListItemText primary={t('menu_experience')} />
-                                </ListItem>
-                                <ListItem component={MobileListItemLink} to="/projects" onClick={handleDrawerClose}>
-                                    <ListItemIcon><Folder /></ListItemIcon>
-                                    <ListItemText primary={t('menu_projects')} />
-                                </ListItem>
-                                <ListItem component={MobileListItemLink} to="/github" onClick={handleDrawerClose}>
-                                    <ListItemIcon><GitHub /></ListItemIcon>
-                                    <ListItemText primary={"Github"} />
-                                </ListItem>
-                                <ListItem component={MobileListItemLink} to="/links" onClick={handleDrawerClose}>
-                                    <ListItemIcon><LinkIcon /></ListItemIcon>
-                                    <ListItemText primary={t('menu_links')} />
-                                </ListItem>
+                                {menuItems.map((item) => (
+                                    <ListItem
+                                        key={item.path}
+                                        component={MobileListItemLink}
+                                        to={item.path}
+                                        onClick={handleDrawerClose}
+                                        sx={{
+                                            marginRight: 40,
+                                            bgcolor: location.pathname === item.path ? theme.palette.action.selected : 'transparent',
+                                        }}
+                                    >
+                                        {item.icon}
+                                        <ListItemText primary={item.label} />
+                                    </ListItem>
+                                ))}
                             </List>
-                            <Box style={{ display: 'flex', justifyContent: 'center' }}>
-                                <DarkModeToggle/>
-                                <IconButton color="secondary" onClick={handleLanguageMenuOpen} style={{ marginBottom : '10px' }}>
-                                    <LanguageIcon style={{ fontSize: '37px' }}/>
+                            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                                <DarkModeToggle />
+                                <IconButton onClick={handleLanguageMenuOpen}>
+                                    <LanguageIcon fontSize="large" />
                                 </IconButton>
-                                <Menu
-                                    anchorEl={languageMenuAnchor}
-                                    keepMounted
-                                    open={Boolean(languageMenuAnchor)}
-                                    onClose={handleLanguageMenuClose}
-                                >
-                                    <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
-                                        <Box display="flex" alignItems="center" gap={1}>
-                                            <ReactCountryFlag
-                                                countryCode="FI"
-                                                svg
-                                                style={{
-                                                    width: '1.5em',
-                                                    height: '1em',
-                                                }}
-                                                title="Finnish"
-                                            />
-                                            {t('finnish')}
-                                        </Box>
-                                    </LanguageMenuItem>
-                                    <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
-                                        <Box display="flex" alignItems="center" gap={1}>
-                                            <ReactCountryFlag
-                                                countryCode="GB"
-                                                svg
-                                                style={{
-                                                    width: '1.5em',
-                                                    height: '1em',
-                                                }}
-                                                title="English"
-                                            />
-                                            {t('english')}
-                                        </Box>
-                                    </LanguageMenuItem>
-                                </Menu>
                             </Box>
                         </StyledDrawer>
                     </Drawer>
                 </>
-                : <BottomNavigationStyled
-                    value={tabOpened}
-                    onChange={handleChange}
-                    showLabels
+            ) : (
+                <TabsStyled
+                    value={location.pathname}
+                    variant="scrollable"
+                    sx={{ borderColor: 'divider' }}
                 >
-                    <BottomNavigationAction
-                        component={StyledLink}
-                        to="/"
-                        label={t('menu_about')}
-                        value="/"
-                        id='/'
-                        icon={<AccountCircle />}
-                    />
-                    <BottomNavigationAction
-                        component={StyledLink}
-                        to="/education"
-                        value="education"
-                        id='education'
-                        label={t('menu_education')}
-                        icon={<School />}
-                    />
-                    <BottomNavigationAction
-                        component={StyledLink}
-                        to="/experience"
-                        value="experience"
-                        id='experience'
-                        label={t('menu_experience')}
-                        icon={<Work />}
-                    />
-                    <BottomNavigationAction
-                        component={StyledLink}
-                        to="/projects"
-                        value="projects"
-                        id='projects'
-                        label={t('menu_projects')}
-                        icon={<Folder/>}
-                    />
-                    <BottomNavigationAction
-                        component={StyledLink}
-                        to="/github"
-                        value="github"
-                        id='github'
-                        label={'GitHub'}
-                        icon={<GitHub />}
-                    />
-                    <BottomNavigationAction
-                        component={StyledLink}
-                        to="/links"
-                        value="links"
-                        id='links'
-                        label={t('menu_links')}
-                        icon={<LinkIcon />}
-                    />
-                </BottomNavigationStyled>}
-            {!isMobile ?
-                <Box display="flex" justifyContent="center">
-                    <DarkModeToggle />
-
-                    <Tooltip
-                        title={t('changeLanguage')}
-                        arrow
-                        slotProps={{
-                            tooltip: {
-                                sx: {
-                                    backgroundColor: '#333',
-                                    color: '#fff',
-                                },
-                            },
-                            arrow: {
-                                sx: {
-                                    color: '#333',
-                                },
-                            },
-                        }}
-                    >
-                        <IconButton onClick={handleLanguageMenuOpen} style={{ marginBottom: '10px' }}>
-                            <LanguageIcon />
-                        </IconButton>
-                    </Tooltip>
-
-                    <Menu
-                        anchorEl={languageMenuAnchor}
-                        keepMounted
-                        open={Boolean(languageMenuAnchor)}
-                        onClose={handleLanguageMenuClose}
-                    >
-                        <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
-                            <Box display="flex" alignItems="center" gap={1}>
-                                <ReactCountryFlag
-                                    countryCode="FI"
-                                    svg
-                                    style={{ width: '1.5em', height: '1em' }}
-                                    title="Finnish"
-                                />
-                                {t('finnish')}
-                            </Box>
-                        </LanguageMenuItem>
-                        <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
-                            <Box display="flex" alignItems="center" gap={1}>
-                                <ReactCountryFlag
-                                    countryCode="GB"
-                                    svg
-                                    style={{ width: '1.5em', height: '1em' }}
-                                    title="English"
-                                />
-                                {t('english')}
-                            </Box>
-                        </LanguageMenuItem>
-                    </Menu>
-                </Box> : <Box/>}
+                    {menuItems.map((item) => (
+                        <Tab
+                            key={item.path}
+                            component={StyledNavLink}
+                            to={item.path}
+                            label={item.label}
+                            icon={item.icon}
+                            value={item.path}
+                        />
+                    ))}
+                </TabsStyled>
+            )}
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: '15px' }}>
+                {!isMobile && (
+                    <>
+                        <DarkModeToggle />
+                        <Tooltip
+                            title={t('changeLanguage')}
+                            arrow
+                            slotProps={{
+                                tooltip: { sx: { backgroundColor: '#333', color: '#fff' } },
+                                arrow: { sx: { color: '#333' } },
+                            }}
+                        >
+                            <IconButton sx={{ color: theme.palette.text.primary }} onClick={handleLanguageMenuOpen}>
+                                <LanguageIcon />
+                            </IconButton>
+                        </Tooltip>
+                    </>
+                )}
+                <Menu
+                    anchorEl={languageMenuAnchor}
+                    open={Boolean(languageMenuAnchor)}
+                    onClose={handleLanguageMenuClose}
+                >
+                    <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
+                        <Box display="flex" alignItems="center" gap={1}>
+                            <ReactCountryFlag countryCode="FI" svg style={{ width: '1.5em', height: '1em' }} />
+                            {t('finnish')}
+                        </Box>
+                    </LanguageMenuItem>
+                    <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
+                        <Box display="flex" alignItems="center" gap={1}>
+                            <ReactCountryFlag countryCode="GB" svg style={{ width: '1.5em', height: '1em' }} />
+                            {t('english')}
+                        </Box>
+                    </LanguageMenuItem>
+                </Menu>
+            </Box>
         </HeaderWrapper>
     );
-}
+};
 
 export default Header;

@@ -18,9 +18,6 @@ const darkTheme = createTheme({
         text: {
             primary: "#FFFFFF"
         },
-        secondary: {
-            main: '#fff',
-        },
     },
 });
 
@@ -38,9 +35,6 @@ const lightTheme = createTheme({
         },
         text: {
             primary: '#000000',
-        },
-        secondary: {
-            main: '#000',
         },
     },
 });
