@@ -32,7 +32,6 @@ import { DarkModeToggle } from "../themes/DarkModeToggle";
 import ReactCountryFlag from "react-country-flag";
 
 const HeaderWrapper = styled('header')(({ theme }) => ({
-    // Default styles (for desktop and tablet)
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -49,7 +48,6 @@ const HeaderWrapper = styled('header')(({ theme }) => ({
     borderTop: `2px solid ${theme.palette.divider}`,
     backgroundColor: theme.palette.background.default,
 
-    // Mobile overrides
     [theme.breakpoints.down('sm')]: {
         display: 'block',
         justifyContent: 'initial',
