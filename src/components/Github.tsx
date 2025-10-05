@@ -55,7 +55,7 @@ const StyledUserCardSection = styled(Box)`
     padding-bottom: 10px;
 `
 
-const DescriptionTypography = styled(Typography)(({ theme }) => ({
+const DescriptionTypography = styled(Typography)(() => ({
     marginTop: '-30px',
     color: '#999999',
 }));
@@ -70,7 +70,7 @@ const CardContainer = styled(Box)({
     borderRadius: '5px',
 });
 
-const LanguageTypography = styled(Typography)<LanguageProps>(({ theme, language }) => {
+const LanguageTypography = styled(Typography)<LanguageProps>(({ language }) => {
     const safeLanguage = typeof language === 'string' ? language : '';
 
     return {
@@ -109,7 +109,7 @@ const Github = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [userResult, starredResult, reposResult] = await Promise.all([
+                const [userResult, starredResult, reposResult] = await axios.all([
                     axios.get<User>(import.meta.env.VITE_USER_API_URL),
                     axios.get(import.meta.env.VITE_USER_API_URL_STARRED),
                     axios.get<Repository[]>(import.meta.env.VITE_USER_API_PROJECTS),
