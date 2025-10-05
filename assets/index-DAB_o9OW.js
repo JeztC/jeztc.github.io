@@ -260,7 +260,7 @@ export default theme;`}function ry(e){return typeof e=="number"?`${(e*100).toFix
         text-decoration: none;
     }
     padding-bottom: 15px;
-`,zO=se(De)(({theme:e})=>({flexShrink:0,width:250,height:"100vh",padding:16,backgroundColor:e.palette.background.default})),UO=se(Qd)`
+`,zO=se(De)(({theme:e})=>({flexShrink:0,width:250,height:"100vh",padding:16,borderRight:`1px solid ${e.palette.divider}`,backgroundColor:e.palette.background.default})),UO=se(Qd)`
     color: ${({theme:e})=>e.palette.text.primary};
 `,HO=se(l1)(({theme:e})=>({marginLeft:"auto",marginRight:"auto",display:"flex",justifyContent:"center",minHeight:"60px","& .MuiTabs-indicator":{transition:"none",backgroundColor:e.palette.primary.main}})),VO=se(Dv)`
     width: 134px;
