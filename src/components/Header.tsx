@@ -28,7 +28,7 @@ import {
 } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
-import { DarkModeToggle } from "../themes/DarkModeToggle";
+import { DarkModeToggle } from "./DarkModeToggle";
 import ReactCountryFlag from "react-country-flag";
 
 const HeaderWrapper = styled('header')(({ theme }: { theme: Theme }) => ({
