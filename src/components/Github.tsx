@@ -57,7 +57,7 @@ const StyledUserCardSection = styled(Box)`
 
 const DescriptionTypography = styled(Typography)(({ theme }) => ({
     marginTop: '-30px',
-    color: theme.palette.secondary.main,
+    color: '#999999',
 }));
 
 const CardContainer = styled(Box)({
@@ -77,7 +77,7 @@ const LanguageTypography = styled(Typography)<LanguageProps>(({ theme, language 
         marginTop: '20px',
         display: 'flex',
         alignItems: 'center',
-        color: theme.palette.secondary.main,
+        color: '#999999',
         '&:before': {
             content: '""',
             display: 'inline-block',
@@ -148,14 +148,14 @@ const Github = () => {
                                     title={<Typography variant="h6">{user?.name}</Typography>}
                                 />
                                 <CardContent>
-                                    <Typography sx={{ fontSize: '20px', color: (theme) => theme.palette.secondary.main, }} variant="h5">
+                                    <Typography sx={{ fontSize: '20px', color: '#999999', }} variant="h5">
                                         <Link href={user?.html_url} target="_blank">{user?.login}</Link>
                                     </Typography>
                                     <Typography sx={{ marginTop: '20px', marginBottom: '20px', fontSize: '18px' }} color="inherit" variant="subtitle1">{user?.bio}</Typography>
                                     <StyledUserCardSection>
-                                        <GroupIcon sx={{ color: (theme) => theme.palette.secondary.main, marginRight: '5px', }}/>
+                                        <GroupIcon sx={{ color: '#999999', marginRight: '5px', }}/>
                                         <Typography
-                                            sx={{ color: (theme) => theme.palette.secondary.main }} variant="body2">
+                                            sx={{ color: '#999999' }} variant="body2">
                                             {user?.followers} {t('followers')} · {user?.following} {t('following')}
                                         </Typography>
                                     </StyledUserCardSection>

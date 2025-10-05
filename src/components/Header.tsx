@@ -209,7 +209,12 @@ const Header = () => {
                             title={t('changeLanguage')}
                             arrow
                             slotProps={{
-                                tooltip: { sx: { backgroundColor: '#333', color: '#fff' } },
+                                tooltip: {
+                                    sx: {
+                                        backgroundColor: '#1B1A1A',
+                                        color: '#fff',
+                                        backdropFilter: 'none',
+                                        boxShadow: 'none' } },
                                 arrow: { sx: { color: '#333' } },
                             }}
                         >
