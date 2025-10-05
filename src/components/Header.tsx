@@ -1,4 +1,4 @@
-import { styled } from "@mui/material/styles";
+import { styled, Theme } from "@mui/material/styles";
 import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import React from "react";
@@ -31,7 +31,7 @@ import { useTranslation } from 'react-i18next';
 import { DarkModeToggle } from "../themes/DarkModeToggle";
 import ReactCountryFlag from "react-country-flag";
 
-const HeaderWrapper = styled('header')(({ theme }) => ({
+const HeaderWrapper = styled('header')(({ theme }: { theme: Theme }) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -48,7 +48,7 @@ const HeaderWrapper = styled('header')(({ theme }) => ({
     borderTop: `2px solid ${theme.palette.divider}`,
     backgroundColor: theme.palette.background.default,
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
         display: 'block',
         justifyContent: 'initial',
         alignItems: 'initial',
@@ -61,6 +61,7 @@ const HeaderWrapper = styled('header')(({ theme }) => ({
         backgroundColor: 'transparent',
     },
 }));
+
 
 const LanguageMenuItem = styled(MenuItem)`
     width: 200px;
@@ -80,7 +81,7 @@ const StyledHeader = styled(Typography)`
 const StyledDrawer = styled(Box)(({ theme }) => ({
     flexShrink: 0,
     width: 250,
-    height: 1000,
+    height: '100vh',
     padding: 16,
     backgroundColor: theme.palette.background.default,
 }));
@@ -170,7 +171,7 @@ const Header = () => {
                             {isDrawerOpen ? <Close fontSize="large" /> : <MenuIcon fontSize="large" />}
                         </IconButton>
                     </Box>
-                    <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerClose}>
+                    <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerClose} >
                         <StyledDrawer>
                             <List>
                                 {menuItems.map((item) => (
