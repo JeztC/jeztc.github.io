@@ -32,6 +32,7 @@ import { DarkModeToggle } from "../themes/DarkModeToggle";
 import ReactCountryFlag from "react-country-flag";
 
 const HeaderWrapper = styled('header')(({ theme }) => ({
+    // Default styles (for desktop and tablet)
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -47,8 +48,19 @@ const HeaderWrapper = styled('header')(({ theme }) => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
     borderTop: `2px solid ${theme.palette.divider}`,
     backgroundColor: theme.palette.background.default,
-    [theme.breakpoints.down('md')]: {
-        padding: theme.spacing(0, 1),
+
+    // Mobile overrides
+    [theme.breakpoints.down('sm')]: {
+        display: 'block',
+        justifyContent: 'initial',
+        alignItems: 'initial',
+        paddingTop: 0,
+        minHeight: 'auto',
+        overflowX: 'visible',
+        position: 'static',
+        borderBottom: 'none',
+        borderTop: 'none',
+        backgroundColor: 'transparent',
     },
 }));
 
@@ -138,8 +150,11 @@ const Header = () => {
     ];
 
     const handleDrawerOpen = () => setIsDrawerOpen(true);
+
     const handleDrawerClose = () => setIsDrawerOpen(false);
+
     const handleLanguageMenuOpen = (event: MouseEvent<HTMLElement>) => setLanguageMenuAnchor(event.currentTarget);
+
     const handleLanguageMenuClose = () => setLanguageMenuAnchor(null);
 
     const handleLanguageChange = (language : string) => {
@@ -152,9 +167,11 @@ const Header = () => {
             {!isMobile && <StyledHeader>Portfolio</StyledHeader>}
             {isMobile ? (
                 <>
-                    <IconButton onClick={handleDrawerOpen} sx={{ mr: 1 }}>
-                        {isDrawerOpen ? <Close fontSize="large" /> : <MenuIcon fontSize="large" />}
-                    </IconButton>
+                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+                        <IconButton onClick={handleDrawerOpen} sx={{ mr: 2 }}>
+                            {isDrawerOpen ? <Close fontSize="large" /> : <MenuIcon fontSize="large" />}
+                        </IconButton>
+                    </Box>
                     <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerClose}>
                         <StyledDrawer>
                             <List>
@@ -169,8 +186,10 @@ const Header = () => {
                                             bgcolor: location.pathname === item.path ? theme.palette.action.selected : 'transparent',
                                         }}
                                     >
-                                        {item.icon}
-                                        <ListItemText primary={item.label} />
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            {item.icon}
+                                            <ListItemText primary={item.label} />
+                                        </Box>
                                     </ListItem>
                                 ))}
                             </List>
@@ -229,16 +248,16 @@ const Header = () => {
                     open={Boolean(languageMenuAnchor)}
                     onClose={handleLanguageMenuClose}
                 >
-                    <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
-                        <Box display="flex" alignItems="center" gap={1}>
-                            <ReactCountryFlag countryCode="FI" svg style={{ width: '1.5em', height: '1em' }} />
-                            {t('finnish')}
-                        </Box>
-                    </LanguageMenuItem>
                     <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
                         <Box display="flex" alignItems="center" gap={1}>
                             <ReactCountryFlag countryCode="GB" svg style={{ width: '1.5em', height: '1em' }} />
                             {t('english')}
+                        </Box>
+                    </LanguageMenuItem>
+                    <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
+                        <Box display="flex" alignItems="center" gap={1}>
+                            <ReactCountryFlag countryCode="FI" svg style={{ width: '1.5em', height: '1em' }} />
+                            {t('finnish')}
                         </Box>
                     </LanguageMenuItem>
                 </Menu>
