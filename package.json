@@ -8,6 +8,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.2",
     "@mui/material": "^7.3.2",
+    "@octokit/types": "^15.0.0",
     "@types/react": "^18.3.24",
     "@types/react-dom": "^18.3.7",
     "axios": "^1.12.2",

@@ -10,9 +10,9 @@ import { useTranslation } from "react-i18next";
 import FacebookCircularProgress from "./FacebookCircularProgress";
 import dayjs from "dayjs";
 import { getLanguageColor } from "../utils/languageColors";
-import { Repository } from "../interfaces/repository";
-import { User } from "../interfaces/user";
 import { LanguageProps } from "../interfaces/languageProps";
+import { GithubRepository } from "../types/githubRepository";
+import { GitHubUser } from "../types/githubUser";
 
 const StyledUserCard = styled(Card)`
     display: flex;
@@ -92,8 +92,9 @@ const LanguageTypography = styled(Typography)<LanguageProps>(({ language }) => {
 
 
 const Github = () => {
-    const [user, setUser] = useState<User | null>(null);
-    const [repositories, setRepositories] = useState<Repository[]>([]);
+    const [user, setUser] = useState<GitHubUser | null>(null);
+    const [starred, setStarred] = useState<number>(0);
+    const [repositories, setRepositories] = useState<GithubRepository[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const { t } = useTranslation();
 
@@ -102,24 +103,20 @@ const Github = () => {
     }, [user?.created_at]);
 
     const filteredRepositories = useMemo(() => {
-        return repositories
-            .filter(repo => repo.language !== null)
+        return repositories.filter(repo => repo.language !== null)
     }, [repositories]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const [userResult, starredResult, reposResult] = await axios.all([
-                    axios.get<User>(import.meta.env.VITE_USER_API_URL),
+                    axios.get<GitHubUser>(import.meta.env.VITE_USER_API_URL),
                     axios.get(import.meta.env.VITE_USER_API_URL_STARRED),
-                    axios.get<Repository[]>(import.meta.env.VITE_USER_API_PROJECTS),
+                    axios.get<GithubRepository[]>(import.meta.env.VITE_USER_API_PROJECTS),
                 ]);
 
-                const userData = {
-                    ...userResult.data,
-                    total_starred: starredResult.data.length,
-                };
-
+                const userData = userResult.data;
+                setStarred(starredResult.data.length)
                 setUser(userData);
                 setRepositories(reposResult.data);
                 setLoading(false);
@@ -165,7 +162,7 @@ const Github = () => {
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
                                         <Star style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
-                                        <Typography color="#999999" variant="body2">{t('stars')}: {user?.total_starred}</Typography>
+                                        <Typography color="#999999" variant="body2">{t('stars')}: {starred}</Typography>
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
                                         <CalendarMonthIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
@@ -187,7 +184,7 @@ const Github = () => {
                                             <DescriptionTypography variant="body2">
                                                 {repository.description}
                                             </DescriptionTypography>
-                                            <LanguageTypography variant="body2" language={repository.language}>
+                                            <LanguageTypography variant="body2" language={repository.language ?? ''}>
                                                 {repository.language}
                                             </LanguageTypography>
                                         </CardContent>
