@@ -195,7 +195,7 @@ const Header = () => {
                             </List>
                             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                                 <DarkModeToggle />
-                                <IconButton onClick={handleLanguageMenuOpen}>
+                                <IconButton sx={{ color: theme.palette.text.primary }} onClick={handleLanguageMenuOpen}>
                                     <LanguageIcon fontSize="large" />
                                 </IconButton>
                             </Box>
