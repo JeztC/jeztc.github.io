@@ -3,7 +3,7 @@ import React from "react";
 
 function FacebookCircularProgress(props: CircularProgressProps) {
     return (
-        <Box sx={{ position: 'relative'  }}>
+        <Box sx={{ position: 'relative' }}>
             <CircularProgress
                 variant="determinate"
                 sx={(theme) => ({

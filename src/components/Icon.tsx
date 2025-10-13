@@ -11,7 +11,6 @@ const Icon = styled('a')<{ size: number }>`
 
   &:hover {
     transform: scale(1.3);
-    color: white;
   }
 
   svg {
@@ -21,7 +20,7 @@ const Icon = styled('a')<{ size: number }>`
   }
 
   &:hover svg {
-    fill: ${({ theme }) => theme.palette.mode === 'light' ? '#000' : '#fff'};
+    fill: ${({ theme }) => theme.palette.text.primary};
   }
 `;
 

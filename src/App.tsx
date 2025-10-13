@@ -6,17 +6,20 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Header from "./components/Header";
 import AppRoutes from "./components/AppRoutes";
 import React from "react";
+import { ThemeProvider } from "./themes/ThemeContext";
 
 const App = () => {
     return (
         <>
-            <CssBaseline />
-            <Router>
-                <Fragment>
-                    <Header/>
-                    <AppRoutes/>
-                </Fragment>
-            </Router>
+            <ThemeProvider>
+                <CssBaseline />
+                <Router>
+                    <Fragment>
+                        <Header/>
+                        <AppRoutes/>
+                    </Fragment>
+                </Router>
+            </ThemeProvider>
         </>
     )
 }

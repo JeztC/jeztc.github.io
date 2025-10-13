@@ -41,7 +41,6 @@ const ProjectCard = styled('a')(({ theme }) => ({
     },
 }));
 
-
 const PreviewContainer = styled(Box)`
     width: 100%;
     height: 300px;
@@ -64,15 +63,6 @@ const ProjectTitle = styled('h3')(({ theme }) => ({
     color: theme.palette.text.primary,
     fontSize: '1.25rem',
     fontWeight: 600,
-    '&:visited': {
-        color: theme.palette.text.primary,
-    },
-    '&:hover': {
-        color: theme.palette.text.primary,
-    },
-    '&:active': {
-        color: theme.palette.text.primary,
-    },
 }));
 
 const Projects = () => {
