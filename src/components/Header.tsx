@@ -1,4 +1,4 @@
-import { styled, Theme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { MouseEvent } from "react";
@@ -26,7 +26,7 @@ import { DarkModeToggle } from "./DarkModeToggle";
 import ReactCountryFlag from "react-country-flag";
 import { routesConfig } from "./AppRoutes";
 
-const HeaderWrapper = styled('header')(({ theme }: { theme: Theme }) => ({
+const HeaderWrapper = styled(Box)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',

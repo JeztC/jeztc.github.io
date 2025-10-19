@@ -71,7 +71,7 @@ const MainContainer = styled(Box)`
 
 const About = () => {
     const { t } = useTranslation();
-    const actualAge = getAgeFromEnvStamp();
+    const age = getAgeFromEnvStamp();
     return (
         <MainContainer>
             <Badge
@@ -85,7 +85,7 @@ const About = () => {
                     {t('menu_about')}
                 </Typography>
                 <Typography variant="body1" sx={{ maxWidth: '900px', margin: '0 auto' }}>
-                    {t('about_desc', { age: actualAge })}
+                    {t('about_desc', { age })}
                 </Typography>
                 <SkillsContainer>
                     <SkillsColumn>

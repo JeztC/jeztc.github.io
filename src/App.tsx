@@ -5,12 +5,14 @@ import {
 import CssBaseline from '@mui/material/CssBaseline';
 import Header from "./components/Header";
 import AppRoutes from "./components/AppRoutes";
-import { ThemeProvider } from "./themes/ThemeContext";
+import { theme } from "./themes/theme";
+import { ThemeProvider } from "@mui/material/styles";
+
 
 const App = () => {
     return (
         <>
-            <ThemeProvider>
+            <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Router>
                     <Fragment>

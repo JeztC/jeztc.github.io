@@ -1,15 +1,23 @@
-import { IconButton, useMediaQuery, Tooltip } from '@mui/material';
+import {
+    IconButton,
+    useMediaQuery,
+    Tooltip,
+    useColorScheme,
+} from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { useTheme } from "../themes/ThemeContext";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 export const DarkModeToggle = () => {
-    const { theme, toggleMode } = useTheme();
+    const { mode, setMode } = useColorScheme();
     const { t } = useTranslation();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+    const isMobile = useMediaQuery('(max-width:960px)');
     const iconFontSize = isMobile ? '37px' : 'inherit';
-    const tooltipText = theme.palette.mode === 'dark' ? t('changeLightTheme') : t('changeDarkTheme');
+    const tooltipText = mode === 'dark' ? t('changeLightTheme') : t('changeDarkTheme');
+
+    const toggleMode = () => {
+        setMode(mode === 'light' ? 'dark' : 'light');
+    };
 
     return (
         <Tooltip
@@ -31,13 +39,19 @@ export const DarkModeToggle = () => {
                 },
             }}
         >
-            <IconButton
-                onClick={toggleMode}
-            >
-                {theme.palette.mode === 'dark' ? (
-                    <LightModeIcon sx={{ fontSize: iconFontSize, color: theme.palette.text.primary }} />
+            <IconButton onClick={toggleMode}>
+                {mode === 'dark' ? (
+                    <LightModeIcon
+                        sx={(theme) => ({
+                            fontSize: iconFontSize, color: theme.palette.text.primary
+                        })}
+                    />
                 ) : (
-                    <DarkModeIcon sx={{ fontSize: iconFontSize, color: theme.palette.text.primary }} />
+                    <DarkModeIcon
+                        sx={(theme) => ({
+                            fontSize: iconFontSize, color: theme.palette.text.primary
+                        })}
+                    />
                 )}
             </IconButton>
         </Tooltip>
