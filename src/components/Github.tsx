@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader, Grid, Link, Typography, Box } from '@mui/material';
 import axios from 'axios';
 import GithubIcon from "./GithubIcon";

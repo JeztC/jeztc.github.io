@@ -1,4 +1,3 @@
-import React from "react";
 import { Badge, Box, LinearProgress, Typography } from "@mui/material";
 import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";

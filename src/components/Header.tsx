@@ -1,16 +1,10 @@
 import { styled, Theme } from "@mui/material/styles";
 import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import React from "react";
 import { MouseEvent } from "react";
 import {
-    AccountCircle,
-    School,
-    GitHub,
-    Link as LinkIcon,
     Menu as MenuIcon,
     Close,
-    Folder, Work,
 } from "@mui/icons-material";
 import {
     Box,
@@ -24,12 +18,13 @@ import {
     Tab,
     Tabs,
     Tooltip, Typography,
-    useMediaQuery, useTheme
+    useMediaQuery,
 } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
 import { DarkModeToggle } from "./DarkModeToggle";
 import ReactCountryFlag from "react-country-flag";
+import { routesConfig } from "./AppRoutes";
 
 const HeaderWrapper = styled('header')(({ theme }: { theme: Theme }) => ({
     display: 'flex',
@@ -135,19 +130,9 @@ const StyledNavLink = styled(NavLink)`
 const Header = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+    const isMobile = useMediaQuery('(max-width:960px)');
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
     const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
-
-    const menuItems = [
-        { path: '/', label: t('menu_about'), icon: <AccountCircle fontSize={'medium'} /> },
-        { path: '/education', label: t('menu_education'), icon: <School fontSize={'medium'} /> },
-        { path: '/experience', label: t('menu_experience'), icon: <Work fontSize={'medium'} /> },
-        { path: '/projects', label: t('menu_projects'), icon: <Folder fontSize={'medium'} /> },
-        { path: '/github', label: 'GitHub', icon: <GitHub fontSize={'medium'} /> },
-        { path: '/links', label: t('menu_links'), icon: <LinkIcon fontSize={'medium'} /> },
-    ];
 
     const handleDrawerOpen = () => setIsDrawerOpen(true);
 
@@ -175,27 +160,29 @@ const Header = () => {
                     <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerClose} >
                         <StyledDrawer>
                             <List>
-                                {menuItems.map((item) => (
+                                {routesConfig.map((item) => (
                                     <ListItem
                                         key={item.path}
                                         component={MobileListItemLink}
                                         to={item.path}
                                         onClick={handleDrawerClose}
-                                        sx={{
+                                        sx={(theme) => ({
                                             marginRight: 40,
-                                            bgcolor: location.pathname === item.path ? theme.palette.action.selected : 'transparent',
-                                        }}
+                                            bgcolor: location.pathname === item.path
+                                                ? theme.palette.action.selected
+                                                : 'transparent',
+                                        })}
                                     >
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                             {item.icon}
-                                            <ListItemText primary={item.label} />
+                                            <ListItemText primary={t(item.labelKey)} />
                                         </Box>
                                     </ListItem>
                                 ))}
                             </List>
                             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                                 <DarkModeToggle />
-                                <IconButton sx={{ color: theme.palette.text.primary }} onClick={handleLanguageMenuOpen}>
+                                <IconButton sx={(theme) => ({ color: theme.palette.text.primary })} onClick={handleLanguageMenuOpen}>
                                     <LanguageIcon fontSize="large" />
                                 </IconButton>
                             </Box>
@@ -208,12 +195,12 @@ const Header = () => {
                     variant="scrollable"
                     sx={{ borderColor: 'divider' }}
                 >
-                    {menuItems.map((item) => (
+                    {routesConfig.map((item) => (
                         <Tab
                             key={item.path}
                             component={StyledNavLink}
                             to={item.path}
-                            label={item.label}
+                            label={t(item.labelKey)}
                             icon={item.icon}
                             value={item.path}
                         />
@@ -237,7 +224,12 @@ const Header = () => {
                                 arrow: { sx: { color: '#333' } },
                             }}
                         >
-                            <IconButton sx={{ color: theme.palette.text.primary }} onClick={handleLanguageMenuOpen}>
+                            <IconButton
+                                sx={(theme) => ({
+                                    color: theme.palette.text.primary,
+                                })}
+                                onClick={handleLanguageMenuOpen}
+                            >
                                 <LanguageIcon />
                             </IconButton>
                         </Tooltip>

@@ -2,7 +2,6 @@ import { Box, Avatar, Typography, Link } from '@mui/material';
 import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
 import { jobs } from "../data";
-import React from "react";
 
 const Container = styled(Box)(({ theme }) => ({
     display: 'flex',

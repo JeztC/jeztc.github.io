@@ -1,10 +1,10 @@
-import React, { useCallback } from 'react'
+import { ChangeEvent, ReactNode, useCallback, useState } from 'react'
 import {
     Tabs,
     Tab,
     Typography,
     Box,
-    Link, useMediaQuery, useTheme,
+    Link, useMediaQuery,
 } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { education } from '../data'
@@ -59,12 +59,11 @@ const ResponsiveBox = styled(Box)(({ theme }) => ({
 
 const Education = () => {
     const { t } = useTranslation()
-    const [value, setValue] = React.useState<number>(0)
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+    const [value, setValue] = useState<number>(0)
+    const isMobile = useMediaQuery('(max-width:960px)');
     const iconFontSize = isMobile ? '37px' : '25px';
 
-    const handleChange = useCallback((_event: React.ChangeEvent<object>, newValue: number) => {
+    const handleChange = useCallback((_event: ChangeEvent<object>, newValue: number) => {
         setValue(newValue);
     }, []);
 
@@ -152,7 +151,7 @@ const Education = () => {
 }
 
 interface TabPanelProps {
-    children?: React.ReactNode;
+    children?: ReactNode;
     index: number;
     value: number;
 }

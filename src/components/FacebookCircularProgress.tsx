@@ -1,5 +1,4 @@
 import { Box, CircularProgress, circularProgressClasses, CircularProgressProps } from "@mui/material";
-import React from "react";
 
 function FacebookCircularProgress(props: CircularProgressProps) {
     return (

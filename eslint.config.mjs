@@ -25,7 +25,8 @@ export default [
     rules: {
       ...js.configs.recommended.rules,
       ...pluginReact.configs.recommended.rules,
-      "object-curly-spacing": ["error", "always"], // Enforce spaces inside curly braces
+        'react/react-in-jsx-scope': 'off',
+        "object-curly-spacing": ["error", "always"], // Enforce spaces inside curly braces
     },
     settings: {
       react: {
