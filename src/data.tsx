@@ -1,4 +1,4 @@
-import { Project } from "./interfaces/project";
+import type { Project } from "./interfaces/project";
 
 const jobs = [
     { company: 'Vitec Alma OY', duration: 'May 2025', name: 'vitec', link: 'https://www.vitec-alma.com/' },

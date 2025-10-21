@@ -3,7 +3,7 @@ import Icon from "./Icon";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { Box, Typography } from "@mui/material";
-import { LinkItem } from "../interfaces/linkItem";
+import type { LinkItem } from "../interfaces/linkItem";
 
 const LinksContainer = styled(Box)(({ theme }) => ({
     display: 'flex',

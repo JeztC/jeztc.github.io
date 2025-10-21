@@ -10,9 +10,9 @@ import { useTranslation } from "react-i18next";
 import FacebookCircularProgress from "./FacebookCircularProgress";
 import dayjs from "dayjs";
 import { getLanguageColor } from "../utils/languageColors";
-import { LanguageProps } from "../interfaces/languageProps";
-import { GithubRepository } from "../types/githubRepository";
-import { GitHubUser } from "../types/githubUser";
+import type { LanguageProps } from "../interfaces/languageProps";
+import type { GithubRepository } from "../types/githubRepository";
+import type { GitHubUser } from "../types/githubUser";
 
 const StyledUserCard = styled(Card)`
     display: flex;

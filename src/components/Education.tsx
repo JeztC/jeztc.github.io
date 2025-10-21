@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, useCallback, useState } from 'react'
+import { type ChangeEvent, type ReactNode, useCallback, useState } from 'react'
 import {
     Tabs,
     Tab,

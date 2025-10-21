@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { MouseEvent } from "react";
+import type { MouseEvent } from "react";
 import {
     Menu as MenuIcon,
     Close,
