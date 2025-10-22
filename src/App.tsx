@@ -6,7 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Header from "./components/Header";
 import AppRoutes from "./components/AppRoutes";
 import { theme } from "./themes/theme";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 
 const App = () => {
     return (

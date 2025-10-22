@@ -4,22 +4,29 @@ import {
     Tab,
     Typography,
     Box,
-    Link, useMediaQuery,
+    Link,
+    useMediaQuery,
 } from '@mui/material'
+import type { TypographyProps } from '@mui/material/Typography';
+import type { BoxProps } from '@mui/material/Box';
 import { useTranslation } from 'react-i18next'
 import { education } from '../data'
 import {
     Facebook,
     Instagram,
     Language,
+    X
 } from '@mui/icons-material'
-import XIcon from '@mui/icons-material/X';
 import { styled } from "@mui/material/styles";
 
 const TabStyled = styled(Tabs)(({ theme }) => ({
     borderRight: `1px solid ${theme.palette.divider}`,
     width: '300px',
     height: '100vh',
+    position: 'sticky',
+    top: 0,
+    zIndex: 1,
+    flexShrink: 0,
 
     [theme.breakpoints.down('md')]: {
         width: 'inherit',
@@ -40,7 +47,6 @@ const EducationTab = styled(Tab)(({ theme }) => ({
     },
 }));
 
-
 const StyledLink = styled(Link)`
     color: #999999;
     &:hover {
@@ -54,6 +60,15 @@ const ResponsiveBox = styled(Box)(({ theme }) => ({
     [theme.breakpoints.up('md')]: {
         display: 'flex',
     },
+}));
+
+const BreakableTypography = styled(Typography)<TypographyProps>(() => ({
+    wordBreak: 'break-word',
+    whiteSpace: 'pre-line',
+}));
+
+const PaddedBox = styled(Box)<BoxProps>(({ theme }) => ({
+    padding: theme.spacing(3),
 }));
 
 
@@ -74,12 +89,6 @@ const Education = () => {
                 value={value}
                 onChange={handleChange}
                 centered={!isMobile}
-                sx={{
-                    position: 'sticky',
-                    top: 0,
-                    zIndex: 1,
-                    flexShrink: 0
-                }}
             >
                 {education.map((elem) => (
                     <EducationTab
@@ -110,13 +119,12 @@ const Education = () => {
                         </Typography>
                     </Box>
                     <Box mb={4}>
-                        <Typography
+                        <BreakableTypography
                             variant="body1"
                             color="textPrimary"
-                            sx={{ wordBreak: 'break-word', whiteSpace: 'pre-line' }}
                         >
                             {t(`experience_${elem.id}_overview`)}
-                        </Typography>
+                        </BreakableTypography>
                     </Box>
                     {elem.links.website || elem.links.x || elem.links.facebook || elem.links.instagram ? (
                         <Box mt={4}>
@@ -128,7 +136,7 @@ const Education = () => {
                                 )}
                                 {elem.links.x && (
                                     <StyledLink href={elem.links.x} target="_blank">
-                                        <XIcon sx={{ fontSize: iconFontSize }} />
+                                        <X sx={{ fontSize: iconFontSize }} />
                                     </StyledLink>
                                 )}
                                 {elem.links.facebook && (
@@ -167,7 +175,7 @@ function TabPanel(props: TabPanelProps) {
             aria-labelledby={`vertical-tab-${index}`}
             {...other}
         >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+            {value === index && <PaddedBox>{children}</PaddedBox>}
         </Box>
     );
 }

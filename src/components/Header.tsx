@@ -98,6 +98,33 @@ const TabsStyled = styled(Tabs)(({ theme }) => ({
     },
 }));
 
+const StyledBox = styled(Box)(() => ({
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    margin: '15px',
+}));
+
+const FlexEndBox = styled(Box)(() => ({
+    display: 'flex',
+    justifyContent: 'flex-end',
+    width: '100%',
+}));
+
+const CenteredBox = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: theme.spacing(2),
+}));
+
+const GapBox = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacing(1),
+}));
+
+
+
 const StyledNavLink = styled(NavLink)`
     width: 134px;
     text-align: center;
@@ -152,11 +179,11 @@ const Header = () => {
             {!isMobile && <StyledHeader>Portfolio</StyledHeader>}
             {isMobile ? (
                 <>
-                    <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+                    <FlexEndBox>
                         <IconButton onClick={handleDrawerOpen} sx={{ mr: 2 }}>
                             {isDrawerOpen ? <Close fontSize="large" /> : <MenuIcon fontSize="large" />}
                         </IconButton>
-                    </Box>
+                    </FlexEndBox>
                     <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerClose} >
                         <StyledDrawer>
                             <List>
@@ -173,19 +200,19 @@ const Header = () => {
                                                 : 'transparent',
                                         })}
                                     >
-                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <GapBox>
                                             {item.icon}
                                             <ListItemText primary={t(item.labelKey)} />
-                                        </Box>
+                                        </GapBox>
                                     </ListItem>
                                 ))}
                             </List>
-                            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                            <CenteredBox>
                                 <DarkModeToggle />
                                 <IconButton sx={(theme) => ({ color: theme.palette.text.primary })} onClick={handleLanguageMenuOpen}>
                                     <LanguageIcon fontSize="large" />
                                 </IconButton>
-                            </Box>
+                            </CenteredBox>
                         </StyledDrawer>
                     </Drawer>
                 </>
@@ -207,7 +234,7 @@ const Header = () => {
                     ))}
                 </TabsStyled>
             )}
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: '15px' }}>
+            <StyledBox>
                 {!isMobile && (
                     <>
                         <DarkModeToggle />
@@ -242,18 +269,18 @@ const Header = () => {
                 >
                     <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
                         <Box display="flex" alignItems="center" gap={1}>
-                            <ReactCountryFlag countryCode="GB" svg style={{ width: '1.5em', height: '1em' }} />
+                            <ReactCountryFlag countryCode="GB" svg />
                             {t('english')}
                         </Box>
                     </LanguageMenuItem>
                     <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
                         <Box display="flex" alignItems="center" gap={1}>
-                            <ReactCountryFlag countryCode="FI" svg style={{ width: '1.5em', height: '1em' }} />
+                            <ReactCountryFlag countryCode="FI" svg />
                             {t('finnish')}
                         </Box>
                     </LanguageMenuItem>
                 </Menu>
-            </Box>
+            </StyledBox>
         </HeaderWrapper>
     );
 };

@@ -1,4 +1,4 @@
-import { Badge, Box, LinearProgress, Typography } from "@mui/material";
+import { Badge, Box, LinearProgress, LinearProgressProps, Typography, TypographyProps } from "@mui/material";
 import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
@@ -69,6 +69,18 @@ const MainContainer = styled(Box)`
     }
 `;
 
+const StyledLinearProgress = styled(LinearProgress)<LinearProgressProps>(() => ({
+    width: '60%',
+    height: 10,
+    borderRadius: 5,
+}));
+
+const CenteredTypography = styled(Typography)<TypographyProps>(() => ({
+    maxWidth: '900px',
+    margin: '0 auto',
+}));
+
+
 const About = () => {
     const { t } = useTranslation();
     const age = getAgeFromEnvStamp();
@@ -84,9 +96,9 @@ const About = () => {
                 <Typography variant="h4" gutterBottom>
                     {t('menu_about')}
                 </Typography>
-                <Typography variant="body1" sx={{ maxWidth: '900px', margin: '0 auto' }}>
+                <CenteredTypography variant="body1">
                     {t('about_desc', { age })}
-                </Typography>
+                </CenteredTypography>
                 <SkillsContainer>
                     <SkillsColumn>
                         {skillsList
@@ -94,10 +106,9 @@ const About = () => {
                             .map(skill => (
                                 <SkillContainer key={skill.title}>
                                     <SkillLabel>{skill.title}</SkillLabel>
-                                    <LinearProgress
+                                    <StyledLinearProgress
                                         variant="determinate"
                                         value={skill.value * 100}
-                                        sx={{ width: '60%', height: 10, borderRadius: 5 }}
                                     />
                                 </SkillContainer>
                             ))}
