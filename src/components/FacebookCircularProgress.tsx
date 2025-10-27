@@ -1,41 +1,53 @@
-import { Box, CircularProgress, circularProgressClasses, type CircularProgressProps } from "@mui/material";
+import {
+    Box,
+    CircularProgress,
+    circularProgressClasses,
+    type CircularProgressProps,
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+const Wrapper = styled(Box)({
+    position: 'relative',
+});
+
+const DeterminateProgress = styled(CircularProgress)(({ theme }) => ({
+    color: theme.palette.grey[200],
+    ...theme.applyStyles?.('dark', {
+        color: theme.palette.grey[800],
+    }),
+}));
+
+const IndeterminateProgress = styled(CircularProgress)(({ theme }) => ({
+    color: '#1a90ff',
+    animationDuration: '550ms',
+    position: 'absolute',
+    left: 0,
+    [`& .${circularProgressClasses.circle}`]: {
+        strokeLinecap: 'round',
+    },
+    ...theme.applyStyles?.('dark', {
+        color: theme.palette.primary.main,
+    }),
+}));
 
 function FacebookCircularProgress(props: CircularProgressProps) {
     return (
-        <Box sx={{ position: 'relative' }}>
-            <CircularProgress
+        <Wrapper>
+            <DeterminateProgress
                 variant="determinate"
-                sx={(theme) => ({
-                    color: theme.palette.grey[200],
-                    ...theme.applyStyles('dark', {
-                        color: theme.palette.grey[800],
-                    }),
-                })}
                 size={40}
                 thickness={4}
-                {...props}
                 value={100}
+                {...props}
             />
-            <CircularProgress
+            <IndeterminateProgress
                 variant="indeterminate"
                 disableShrink
-                sx={(theme) => ({
-                    color: '#1a90ff',
-                    animationDuration: '550ms',
-                    position: 'absolute',
-                    left: 0,
-                    [`& .${circularProgressClasses.circle}`]: {
-                        strokeLinecap: 'round',
-                    },
-                    ...theme.applyStyles('dark', {
-                        color: theme.palette.primary.main,
-                    }),
-                })}
                 size={40}
                 thickness={4}
                 {...props}
             />
-        </Box>
+        </Wrapper>
     );
 }
 

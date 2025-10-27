@@ -72,6 +72,34 @@ const PaddedBox = styled(Box)<BoxProps>(({ theme }) => ({
 }));
 
 
+const StyledImage = styled('img')({
+    maxWidth: '300px',
+    objectFit: 'contain',
+});
+
+const SectionBox = styled(Box)(({ theme }) => ({
+    marginBottom: theme.spacing(4),
+}));
+
+const TopMarginBox = styled(Box)(({ theme }) => ({
+    marginTop: theme.spacing(4),
+}));
+
+const SmallTopMarginBox = styled(Box)(({ theme }) => ({
+    marginTop: theme.spacing(1),
+}));
+
+const StyledDurationText = styled(Typography)(({ theme }) => ({
+    fontSize: '14px',
+    color: theme.palette.text.secondary,
+}));
+
+const StyledIcon = styled('svg', {
+    shouldForwardProp: (prop) => prop !== 'iconFontSize',
+})(({ iconFontSize }: { iconFontSize: string }) => ({
+    fontSize: iconFontSize,
+}));
+
 const Education = () => {
     const { t } = useTranslation()
     const [value, setValue] = useState<number>(0)
@@ -101,57 +129,59 @@ const Education = () => {
             {education.map((elem) => (
                 <TabPanel value={value} index={elem.id} key={elem.id}>
                     {elem.schoolAlias && (
-                        <Box component="img" src={`./media/${elem.schoolAlias}.png`} />
+                        <StyledImage src={`./media/${elem.schoolAlias}.png`} alt={elem.schoolAlias} />
                     )}
-                    <Box mb={4}>
+
+                    <SectionBox>
                         <Typography variant="h5">
                             {t(`experience_${elem.id}_education`)}
-                            <Link
+                            <StyledLink
                                 href={
-                                    elem.links.website || elem.links.x || elem.links.facebook || elem.links.instagram
+                                    elem.links.website ||
+                                    elem.links.x ||
+                                    elem.links.facebook ||
+                                    elem.links.instagram
                                 }
-                                color="#ffffff"
                                 target="_blank"
-                            ></Link>
+                            />
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" fontSize="14">
+                        <StyledDurationText variant="body2">
                             {t(`experience_${elem.id}_duration`)}
-                        </Typography>
-                    </Box>
-                    <Box mb={4}>
-                        <BreakableTypography
-                            variant="body1"
-                            color="textPrimary"
-                        >
+                        </StyledDurationText>
+                    </SectionBox>
+
+                    <SectionBox>
+                        <BreakableTypography variant="body1" color="textPrimary">
                             {t(`experience_${elem.id}_overview`)}
                         </BreakableTypography>
-                    </Box>
-                    {elem.links.website || elem.links.x || elem.links.facebook || elem.links.instagram ? (
-                        <Box mt={4}>
-                            <Box mt={1}>
+                    </SectionBox>
+
+                    {(elem.links.website || elem.links.x || elem.links.facebook || elem.links.instagram) && (
+                        <TopMarginBox>
+                            <SmallTopMarginBox>
                                 {elem.links.website && (
                                     <StyledLink href={elem.links.website} target="_blank">
-                                        <Language sx={{ fontSize: iconFontSize }} />
+                                        <StyledIcon as={Language} iconFontSize={iconFontSize} />
                                     </StyledLink>
                                 )}
                                 {elem.links.x && (
                                     <StyledLink href={elem.links.x} target="_blank">
-                                        <X sx={{ fontSize: iconFontSize }} />
+                                        <StyledIcon as={X} iconFontSize={iconFontSize} />
                                     </StyledLink>
                                 )}
                                 {elem.links.facebook && (
                                     <StyledLink href={elem.links.facebook} target="_blank">
-                                        <Facebook sx={{ fontSize: iconFontSize }} />
+                                        <StyledIcon as={Facebook} iconFontSize={iconFontSize} />
                                     </StyledLink>
                                 )}
                                 {elem.links.instagram && (
                                     <StyledLink href={elem.links.instagram} target="_blank">
-                                        <Instagram sx={{ fontSize: iconFontSize }} />
+                                        <StyledIcon as={Instagram} iconFontSize={iconFontSize} />
                                     </StyledLink>
                                 )}
-                            </Box>
-                        </Box>
-                    ) : null}
+                            </SmallTopMarginBox>
+                        </TopMarginBox>
+                    )}
                 </TabPanel>
             ))}
         </ResponsiveBox>

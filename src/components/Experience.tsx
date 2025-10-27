@@ -68,6 +68,21 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 
+const JobDurationText = styled(Typography)(({ theme }) => ({
+    marginTop: theme.spacing(0.5),
+    color: theme.palette.text.secondary,
+}));
+
+const JobTitleText = styled(Typography)(({ theme }) => ({
+    marginTop: theme.spacing(0.5),
+    color: theme.palette.text.secondary,
+    fontWeight: 'bold',
+}));
+
+const CompanyNameText = styled(Typography)(() => ({
+    fontWeight: 'bold',
+}));
+
 export const Experience = () => {
     const { t } = useTranslation();
     return (
@@ -82,7 +97,6 @@ export const Experience = () => {
                         href={job.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        underline="none"
                     >
                         <StyledAvatar
                             src={`./media/${job.name}.png`}
@@ -90,15 +104,15 @@ export const Experience = () => {
                             variant="rounded"
                         />
                         <Box>
-                            <Typography variant="subtitle1" fontWeight="bold">
+                            <CompanyNameText variant="subtitle1">
                                 {job.company}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                            </CompanyNameText>
+                            <JobDurationText>
                                 {t(`job_${index}_duration`)}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, fontWeight: 'bold' }}>
+                            </JobDurationText>
+                            <JobTitleText>
                                 {t(`experience_${index}_job`)}
-                            </Typography>
+                            </JobTitleText>
                         </Box>
                     </StyledLink>
                 ))}

@@ -1,12 +1,39 @@
 import {
     IconButton,
-    Tooltip,
+    Tooltip, tooltipClasses,
     useMediaQuery,
 } from '@mui/material';
-import { useColorScheme } from '@mui/material/styles';
+import { styled, useColorScheme } from '@mui/material/styles';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useTranslation } from 'react-i18next';
+import { StyledModeIconProps } from "../interfaces/styledModeIconProps";
+
+const CustomTooltip = styled(Tooltip)(() => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+        backgroundColor: '#1B1A1A',
+        color: '#fff',
+        backdropFilter: 'none',
+        boxShadow: 'none',
+    },
+    [`& .${tooltipClasses.arrow}`]: {
+        color: '#333',
+    },
+}));
+
+const StyledDarkModeIcon = styled(DarkModeIcon, {
+    shouldForwardProp: (prop) => prop !== 'iconFontSize',
+})<StyledModeIconProps>(({ theme, iconFontSize }) => ({
+    fontSize: iconFontSize,
+    color: theme.palette.text.primary,
+}))
+
+const StyledLightModeIcon = styled(LightModeIcon, {
+    shouldForwardProp: (prop) => prop !== 'iconFontSize',
+})<StyledModeIconProps>(({ theme, iconFontSize }) => ({
+    fontSize: iconFontSize,
+    color: theme.palette.text.primary,
+}))
 
 export const DarkModeToggle = () => {
     const { mode, setMode } = useColorScheme();
@@ -20,40 +47,17 @@ export const DarkModeToggle = () => {
     };
 
     return (
-        <Tooltip
+        <CustomTooltip
             title={tooltipText}
             arrow
-            slotProps={{
-                tooltip: {
-                    sx: {
-                        backgroundColor: '#1B1A1A',
-                        color: '#fff',
-                        backdropFilter: 'none',
-                        boxShadow: 'none',
-                    },
-                },
-                arrow: {
-                    sx: {
-                        color: '#333',
-                    },
-                },
-            }}
         >
             <IconButton onClick={toggleMode}>
                 {mode === 'dark' ? (
-                    <LightModeIcon
-                        sx={(theme) => ({
-                            fontSize: iconFontSize, color: theme.palette.text.primary
-                        })}
-                    />
+                    <StyledLightModeIcon iconFontSize={iconFontSize}/>
                 ) : (
-                    <DarkModeIcon
-                        sx={(theme) => ({
-                            fontSize: iconFontSize, color: theme.palette.text.primary
-                        })}
-                    />
+                    <StyledDarkModeIcon iconFontSize={iconFontSize}/>
                 )}
             </IconButton>
-        </Tooltip>
+        </CustomTooltip>
     );
 };
