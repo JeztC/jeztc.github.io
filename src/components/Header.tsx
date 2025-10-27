@@ -8,7 +8,7 @@ import {
 } from "@mui/icons-material";
 import {
     Box,
-    Drawer,
+    SwipeableDrawer,
     IconButton,
     List,
     ListItem,
@@ -73,7 +73,7 @@ const StyledHeader = styled(Typography)`
     padding-bottom: 15px;
 `;
 
-const StyledDrawer = styled(Box)(({ theme }) => ({
+const StyledDrawerBox = styled(Box)(({ theme }) => ({
     flexShrink: 0,
     width: 250,
     height: '100vh',
@@ -184,8 +184,8 @@ const Header = () => {
                             {isDrawerOpen ? <Close fontSize="large" /> : <MenuIcon fontSize="large" />}
                         </IconButton>
                     </FlexEndBox>
-                    <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerClose} >
-                        <StyledDrawer>
+                    <SwipeableDrawer anchor="left" open={isDrawerOpen} onOpen={handleDrawerOpen} onClose={handleDrawerClose} >
+                        <StyledDrawerBox>
                             <List>
                                 {routesConfig.map((item) => (
                                     <ListItem
@@ -213,8 +213,8 @@ const Header = () => {
                                     <LanguageIcon fontSize="large" />
                                 </IconButton>
                             </CenteredBox>
-                        </StyledDrawer>
-                    </Drawer>
+                        </StyledDrawerBox>
+                    </SwipeableDrawer>
                 </>
             ) : (
                 <TabsStyled
