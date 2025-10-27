@@ -18,7 +18,7 @@ import {
     Tab,
     Tabs,
     Tooltip, Typography,
-    useMediaQuery, tooltipClasses,
+    useMediaQuery,
 } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import { useTranslation } from 'react-i18next';
@@ -141,18 +141,6 @@ const FlexBox = styled(Box)(({ theme }) => ({
     gap: theme.spacing(1),
 }));
 
-const CustomTooltip = styled(Tooltip)(() => ({
-    [`& .${tooltipClasses.tooltip}`]: {
-        backgroundColor: '#1B1A1A',
-        color: '#fff',
-        backdropFilter: 'none',
-        boxShadow: 'none',
-    },
-    [`& .${tooltipClasses.arrow}`]: {
-        color: '#333',
-    },
-}));
-
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
     color: theme.palette.text.primary,
 }));
@@ -264,7 +252,7 @@ const Header = () => {
                 {!isMobile && (
                     <>
                         <DarkModeToggle />
-                        <CustomTooltip
+                        <Tooltip
                             title={t('changeLanguage')}
                             arrow
                         >
@@ -273,7 +261,7 @@ const Header = () => {
                             >
                                 <LanguageIcon />
                             </StyledIconButton>
-                        </CustomTooltip>
+                        </Tooltip>
                     </>
                 )}
                 <Menu

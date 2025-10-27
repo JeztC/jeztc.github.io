@@ -1,6 +1,6 @@
 import {
     IconButton,
-    Tooltip, tooltipClasses,
+    Tooltip,
     useMediaQuery,
 } from '@mui/material';
 import { styled, useColorScheme } from '@mui/material/styles';
@@ -8,18 +8,6 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useTranslation } from 'react-i18next';
 import { StyledModeIconProps } from "../interfaces/styledModeIconProps";
-
-const CustomTooltip = styled(Tooltip)(() => ({
-    [`& .${tooltipClasses.tooltip}`]: {
-        backgroundColor: '#1B1A1A',
-        color: '#fff',
-        backdropFilter: 'none',
-        boxShadow: 'none',
-    },
-    [`& .${tooltipClasses.arrow}`]: {
-        color: '#333',
-    },
-}));
 
 const StyledDarkModeIcon = styled(DarkModeIcon, {
     shouldForwardProp: (prop) => prop !== 'iconFontSize',
@@ -47,7 +35,7 @@ export const DarkModeToggle = () => {
     };
 
     return (
-        <CustomTooltip
+        <Tooltip
             title={tooltipText}
             arrow
         >
@@ -58,6 +46,6 @@ export const DarkModeToggle = () => {
                     <StyledDarkModeIcon iconFontSize={iconFontSize}/>
                 )}
             </IconButton>
-        </CustomTooltip>
+        </Tooltip>
     );
 };

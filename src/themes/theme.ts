@@ -4,6 +4,21 @@ export const theme = createTheme({
     typography: {
         fontFamily: '"Segoe UI", "Helvetica", "Arial", sans-serif',
     },
+    components: {
+        MuiTooltip: {
+            styleOverrides: {
+                tooltip: {
+                    backgroundColor: '#1B1A1A',
+                    color: '#fff',
+                    backdropFilter: 'none',
+                    boxShadow: 'none',
+                },
+                arrow: {
+                    color: '#333',
+                },
+            },
+        },
+    },
     colorSchemes: {
         light: {
             palette: {
