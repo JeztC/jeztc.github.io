@@ -25,7 +25,6 @@ import { useTranslation } from 'react-i18next';
 import { DarkModeToggle } from "./DarkModeToggle";
 import ReactCountryFlag from "react-country-flag";
 import { routesConfig } from "./AppRoutes";
-import { StyledListItemProps } from "../interfaces/styledListItemProps";
 
 const HeaderWrapper = styled(Box)(({ theme }) => ({
     display: 'flex',
@@ -92,7 +91,6 @@ const TabsStyled = styled(Tabs)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
     minHeight: '60px',
-    borderColor: 'divider',
     '& .MuiTabs-indicator': {
         transition: 'none',
         backgroundColor: theme.palette.primary.main,
@@ -124,29 +122,9 @@ const GapBox = styled(Box)(({ theme }) => ({
     gap: theme.spacing(1),
 }));
 
-const StyledListItem = styled(ListItem, {
-    shouldForwardProp: (prop) => prop !== 'isActive',
-})<StyledListItemProps>(({ theme, isActive }) => ({
-    marginRight: 40,
-    backgroundColor: isActive ? theme.palette.action.selected : 'transparent',
-}));
-
-const DrawerToggleButton = styled(IconButton)(({ theme }) => ({
-    marginRight: theme.spacing(2),
-}));
-
-const FlexBox = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    gap: theme.spacing(1),
-}));
-
-const StyledIconButton = styled(IconButton)(({ theme }) => ({
-    color: theme.palette.text.primary,
-}));
 
 const StyledNavLink = styled(NavLink)`
-    width: 134px;
+    width: 120.6px; /* 134px * 0.9 */
     text-align: center;
     text-transform: none !important;
     background-color: ${({ theme }) => theme.palette.background.default} !important;
@@ -172,7 +150,7 @@ const StyledNavLink = styled(NavLink)`
     &:hover.active {
         border-bottom: ${({ theme }) => `2px solid ${theme.palette.primary.main}`} !important;
     }
-`;
+`
 
 const Header = () => {
     const { t, i18n } = useTranslation();
@@ -200,33 +178,38 @@ const Header = () => {
             {isMobile ? (
                 <>
                     <FlexEndBox>
-                        <DrawerToggleButton onClick={handleDrawerOpen}>
+                        <IconButton onClick={handleDrawerOpen} sx={{ mr: 2 }}>
                             {isDrawerOpen ? <Close fontSize="large" /> : <MenuIcon fontSize="large" />}
-                        </DrawerToggleButton>
+                        </IconButton>
                     </FlexEndBox>
                     <SwipeableDrawer anchor="left" open={isDrawerOpen} onOpen={handleDrawerOpen} onClose={handleDrawerClose} >
                         <StyledDrawerBox>
                             <List>
                                 {routesConfig.map((item) => (
-                                    <StyledListItem
+                                    <ListItem
                                         key={item.path}
                                         component={MobileListItemLink}
                                         to={item.path}
                                         onClick={handleDrawerClose}
-                                        isActive={location.pathname === item.path}
+                                        sx={(theme) => ({
+                                            marginRight: 40,
+                                            bgcolor: location.pathname === item.path
+                                                ? theme.palette.action.selected
+                                                : 'transparent',
+                                        })}
                                     >
                                         <GapBox>
                                             {item.icon}
                                             <ListItemText primary={t(item.labelKey)} />
                                         </GapBox>
-                                    </StyledListItem>
+                                    </ListItem>
                                 ))}
                             </List>
                             <CenteredBox>
                                 <DarkModeToggle />
-                                <StyledIconButton onClick={handleLanguageMenuOpen}>
+                                <IconButton sx={(theme) => ({ color: theme.palette.text.primary })} onClick={handleLanguageMenuOpen}>
                                     <LanguageIcon fontSize="large" />
-                                </StyledIconButton>
+                                </IconButton>
                             </CenteredBox>
                         </StyledDrawerBox>
                     </SwipeableDrawer>
@@ -235,6 +218,7 @@ const Header = () => {
                 <TabsStyled
                     value={location.pathname}
                     variant="scrollable"
+                    sx={{ borderColor: 'divider' }}
                 >
                     {routesConfig.map((item) => (
                         <Tab
@@ -255,12 +239,24 @@ const Header = () => {
                         <Tooltip
                             title={t('changeLanguage')}
                             arrow
+                            slotProps={{
+                                tooltip: {
+                                    sx: {
+                                        backgroundColor: '#1B1A1A',
+                                        color: '#fff',
+                                        backdropFilter: 'none',
+                                        boxShadow: 'none' } },
+                                arrow: { sx: { color: '#333' } },
+                            }}
                         >
-                            <StyledIconButton
+                            <IconButton
+                                sx={(theme) => ({
+                                    color: theme.palette.text.primary,
+                                })}
                                 onClick={handleLanguageMenuOpen}
                             >
                                 <LanguageIcon />
-                            </StyledIconButton>
+                            </IconButton>
                         </Tooltip>
                     </>
                 )}
@@ -270,16 +266,16 @@ const Header = () => {
                     onClose={handleLanguageMenuClose}
                 >
                     <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
-                        <FlexBox>
+                        <Box display="flex" alignItems="center" gap={1}>
                             <ReactCountryFlag countryCode="GB" svg />
                             {t('english')}
-                        </FlexBox>
+                        </Box>
                     </LanguageMenuItem>
                     <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
-                        <FlexBox>
+                        <Box display="flex" alignItems="center" gap={1}>
                             <ReactCountryFlag countryCode="FI" svg />
                             {t('finnish')}
-                        </FlexBox>
+                        </Box>
                     </LanguageMenuItem>
                 </Menu>
             </StyledBox>

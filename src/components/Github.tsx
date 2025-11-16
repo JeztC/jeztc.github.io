@@ -70,58 +70,9 @@ const CardContainer = styled(Box)({
     borderRadius: '5px',
 });
 
-const StyledGridContainer = styled(Grid)(() => ({
-    marginTop: '40px',
-    marginLeft: '20px',
-    marginBottom: '5%',
-}));
-
-const StyledIcon = styled('svg')(() => ({
-    color: 'rgb(139, 148, 158)',
-    marginRight: '5px',
-    fontSize: 'inherit',
-}));
-
-const StyledRepoText = styled(Typography)(() => ({
-    color: '#999999',
-}));
-
-const StyledRepoTextPadding = styled(Typography)(() => ({
-    paddingLeft: '5px',
-    color: '#999999',
-}));
-
-const StyledGroupIcon = styled(GroupIcon)(() => ({
-    marginRight: '5px',
-    color: '#999999',
-}));
-
-const StyledSubtitle = styled(Typography)(() => ({
-    marginTop: '20px',
-    marginBottom: '20px',
-    fontSize: '18px',
-    color: 'inherit',
-}));
-
-const StyledHeading = styled(Typography)(() => ({
-    fontSize: '20px',
-    color: '#999999',
-}));
-
-const CenteredBox = styled(Box)(() => ({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '40vh',
-}));
-
-const RepoMetaText = styled(Typography)(() => ({
-    color: 'rgb(139, 148, 158)',
-    component: 'p'
-}));
-
 const LanguageTypography = styled(Typography)<LanguageProps>(({ language }) => {
     const safeLanguage = typeof language === 'string' ? language : '';
+
     return {
         marginTop: '20px',
         display: 'flex',
@@ -138,10 +89,6 @@ const LanguageTypography = styled(Typography)<LanguageProps>(({ language }) => {
         },
     };
 });
-
-const CardTitleText = styled(Typography)(({ theme }) => ({
-    ...theme.typography.h6,
-}));
 
 
 const Github = () => {
@@ -185,9 +132,9 @@ const Github = () => {
     return (
         <>
             {loading ? (
-                <CenteredBox>
+                <Box display="flex" justifyContent="center" alignItems="center" height="40vh">
                     <FacebookCircularProgress />
-                </CenteredBox>
+                </Box>
             ) : (
                 !loading && (
                     <>
@@ -195,43 +142,43 @@ const Github = () => {
                             <StyledUserCard>
                                 <CardHeader
                                     avatar={<AvatarContainer src={user?.avatar_url} alt={`Avatar for ${user?.login}`} />}
-                                    title={<CardTitleText>{user?.name}</CardTitleText>}
+                                    title={<Typography variant="h6">{user?.name}</Typography>}
                                 />
                                 <CardContent>
-                                    <StyledHeading variant="h5">
+                                    <Typography sx={{ fontSize: '20px', color: '#999999', }} variant="h5">
                                         <Link href={user?.html_url} target="_blank">{user?.login}</Link>
-                                    </StyledHeading>
-                                    <StyledSubtitle variant="subtitle1">{user?.bio}</StyledSubtitle>
+                                    </Typography>
+                                    <Typography sx={{ marginTop: '20px', marginBottom: '20px', fontSize: '18px' }} color="inherit" variant="subtitle1">{user?.bio}</Typography>
                                     <StyledUserCardSection>
-                                        <StyledGroupIcon />
-                                        <StyledRepoText
-                                            variant="body2">
+                                        <GroupIcon sx={{ color: '#999999', marginRight: '5px', }}/>
+                                        <Typography
+                                            sx={{ color: '#999999' }} variant="body2">
                                             {user?.followers} {t('followers')} · {user?.following} {t('following')}
-                                        </StyledRepoText>
+                                        </Typography>
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
                                         <GithubIcon />
-                                        <StyledRepoTextPadding variant="body2">{t('repositories')}: {user?.public_repos}</StyledRepoTextPadding>
+                                        <Typography style={{ paddingLeft: '5px' }} color="#999999" variant="body2">{t('repositories')}: {user?.public_repos}</Typography>
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
-                                        <StyledIcon as={Star} />
-                                        <StyledRepoText variant="body2">{t('stars')}: {starred}</StyledRepoText>
+                                        <Star style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
+                                        <Typography color="#999999" variant="body2">{t('stars')}: {starred}</Typography>
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
-                                        <StyledIcon as={CalendarMonthIcon} />
-                                        <StyledRepoText variant="body2">{t('registered')}: {formattedDate}</StyledRepoText>
+                                        <CalendarMonthIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
+                                        <Typography color="#999999" variant="body2">{t('registered')}: {formattedDate}</Typography>
                                     </StyledUserCardSection>
                                 </CardContent>
                             </StyledUserCard>
                         </CardContainer>
-                        <StyledGridContainer container>
+                        <Grid container sx={{ marginTop: '40px', marginLeft: '20px', marginBottom: '5%' }}>
                             {filteredRepositories.map((repository) => (
                                 <Grid key={repository.id}>
                                     <ProjectBox>
                                         <CardHeader
                                             avatar={<GithubIcon />}
                                             title={<Link href={repository.html_url} target="_blank">{repository.name}</Link>}
-                                            subheader={<RepoMetaText variant="body2">{`${repository.stargazers_count} ${t('stars').toLowerCase()} • ${repository.forks} ${t('forks')}`}</RepoMetaText>}
+                                            subheader={<Typography variant="body2" color="rgb(139, 148, 158)" component="p">{`${repository.stargazers_count} ${t('stars').toLowerCase()} • ${repository.forks} ${t('forks')}`}</Typography>}
                                         />
                                         <CardContent>
                                             <DescriptionTypography variant="body2">
@@ -244,7 +191,7 @@ const Github = () => {
                                     </ProjectBox>
                                 </Grid>
                             ))}
-                        </StyledGridContainer>
+                        </Grid>
                     </>
                 )
             )}

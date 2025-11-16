@@ -3,25 +3,10 @@ import {
     Tooltip,
     useMediaQuery,
 } from '@mui/material';
-import { styled, useColorScheme } from '@mui/material/styles';
+import { useColorScheme } from '@mui/material/styles';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useTranslation } from 'react-i18next';
-import { StyledModeIconProps } from "../interfaces/styledModeIconProps";
-
-const StyledDarkModeIcon = styled(DarkModeIcon, {
-    shouldForwardProp: (prop) => prop !== 'iconFontSize',
-})<StyledModeIconProps>(({ theme, iconFontSize }) => ({
-    fontSize: iconFontSize,
-    color: theme.palette.text.primary,
-}))
-
-const StyledLightModeIcon = styled(LightModeIcon, {
-    shouldForwardProp: (prop) => prop !== 'iconFontSize',
-})<StyledModeIconProps>(({ theme, iconFontSize }) => ({
-    fontSize: iconFontSize,
-    color: theme.palette.text.primary,
-}))
 
 export const DarkModeToggle = () => {
     const { mode, setMode } = useColorScheme();
@@ -38,12 +23,35 @@ export const DarkModeToggle = () => {
         <Tooltip
             title={tooltipText}
             arrow
+            slotProps={{
+                tooltip: {
+                    sx: {
+                        backgroundColor: '#1B1A1A',
+                        color: '#fff',
+                        backdropFilter: 'none',
+                        boxShadow: 'none',
+                    },
+                },
+                arrow: {
+                    sx: {
+                        color: '#333',
+                    },
+                },
+            }}
         >
             <IconButton onClick={toggleMode}>
                 {mode === 'dark' ? (
-                    <StyledLightModeIcon iconFontSize={iconFontSize}/>
+                    <LightModeIcon
+                        sx={(theme) => ({
+                            fontSize: iconFontSize, color: theme.palette.text.primary
+                        })}
+                    />
                 ) : (
-                    <StyledDarkModeIcon iconFontSize={iconFontSize}/>
+                    <DarkModeIcon
+                        sx={(theme) => ({
+                            fontSize: iconFontSize, color: theme.palette.text.primary
+                        })}
+                    />
                 )}
             </IconButton>
         </Tooltip>

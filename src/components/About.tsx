@@ -1,4 +1,4 @@
-import { Badge, Box, LinearProgress, LinearProgressProps, Typography, TypographyProps } from "@mui/material";
+import { Badge, Box, LinearProgress, LinearProgressProps, Typography } from "@mui/material";
 import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
@@ -75,12 +75,6 @@ const StyledLinearProgress = styled(LinearProgress)<LinearProgressProps>(() => (
     borderRadius: 5,
 }));
 
-const CenteredTypography = styled(Typography)<TypographyProps>(() => ({
-    maxWidth: '900px',
-    margin: '0 auto',
-}));
-
-
 const About = () => {
     const { t } = useTranslation();
     const age = getAgeFromEnvStamp();
@@ -93,12 +87,12 @@ const About = () => {
                 <AvatarContainer src={'./media/avatar.png'} alt="Description"/>
             </Badge>
             <AboutContainer>
-                <Typography variant="h4" gutterBottom>
+                <Typography sx={ { maxWidth: '900px',margin: '0 auto' }} variant="h4" gutterBottom>
                     {t('menu_about')}
                 </Typography>
-                <CenteredTypography variant="body1">
+                <Typography sx={ { maxWidth: '900px',margin: '0 auto' }} variant="body1">
                     {t('about_desc', { age })}
-                </CenteredTypography>
+                </Typography>
                 <SkillsContainer>
                     <SkillsColumn>
                         {skillsList
