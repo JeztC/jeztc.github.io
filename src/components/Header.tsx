@@ -267,13 +267,21 @@ const Header = () => {
                 >
                     <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
                         <Box display="flex" alignItems="center" gap={1}>
-                            <ReactCountryFlag countryCode="GB" svg />
+                            <ReactCountryFlag
+                                countryCode="GB"
+                                svg
+                                cdnUrl="/"
+                            />
                             {t('english')}
                         </Box>
                     </LanguageMenuItem>
                     <LanguageMenuItem onClick={() => handleLanguageChange('fi')}>
                         <Box display="flex" alignItems="center" gap={1}>
-                            <ReactCountryFlag countryCode="FI" svg />
+                            <ReactCountryFlag
+                                countryCode="FI"
+                                svg
+                                cdnUrl="/"
+                            />
                             {t('finnish')}
                         </Box>
                     </LanguageMenuItem>
