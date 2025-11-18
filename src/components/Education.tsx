@@ -89,6 +89,8 @@ const Education = () => {
                 value={value}
                 onChange={handleChange}
                 centered={!isMobile}
+                variant={isMobile ? 'scrollable' : 'standard'}
+                scrollButtons={isMobile ? 'auto' : false}
             >
                 {education.map((elem) => (
                     <EducationTab
