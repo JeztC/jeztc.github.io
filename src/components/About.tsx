@@ -84,7 +84,7 @@ const About = () => {
                 overlap="circular"
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
-                <AvatarContainer src={'./media/avatar.png'} alt="Description"/>
+                <AvatarContainer src={'/media/avatar.png'} alt="Description"/>
             </Badge>
             <AboutContainer>
                 <Typography sx={ { maxWidth: '900px',margin: '0 auto' }} variant="h4" gutterBottom>

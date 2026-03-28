@@ -85,7 +85,7 @@ export const Experience = () => {
                         underline="none"
                     >
                         <StyledAvatar
-                            src={`./media/${job.name}.png`}
+                            src={`/media/${job.name}.png`}
                             alt={`${job.company} logo`}
                             variant="rounded"
                         />

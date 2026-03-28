@@ -1,0 +1,32 @@
+[
+    {
+        "id": 0,
+        "school": "Centria University of Applied Sciences",
+        "schoolAlias": "centria",
+        "links": {
+            "website": "https://net.centria.fi/",
+            "facebook": "https://www.facebook.com/centriaamk/",
+            "instagram": "https://www.instagram.com/centriaamk/",
+            "x": "https://x.com/centriaamk"
+        }
+    },
+    {
+        "id": 1,
+        "school": "Kokkolan suomalainen lukio",
+        "schoolAlias": "ksl",
+        "links": {
+            "website": "https://ksl2016.blogspot.com/",
+            "x": "https://twitter.com/KokkolaKarleby"
+        }
+    },
+    {
+        "id": 2,
+        "school": "Hakalahden koulu",
+        "schoolAlias": "hakalahti",
+        "links": {
+            "website": "https://hakalahdenkoulu.wordpress.com/",
+            "instagram": "https://www.instagram.com/hakalahden_koulu/",
+            "x": "https://twitter.com/KokkolaKarleby"
+        }
+    }
+]
