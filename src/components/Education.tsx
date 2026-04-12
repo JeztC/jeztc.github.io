@@ -8,6 +8,9 @@ import {
     Link,
     Tooltip,
     IconButton,
+    MenuItem,
+    Select,
+    FormControl,
     useMediaQuery,
 } from '@mui/material'
 import { useTranslation } from 'react-i18next'
@@ -28,16 +31,6 @@ const SidebarTabs = styled(Tabs)(({ theme }) => ({
     top: 64,
     maxHeight: 'calc(100vh - 64px)',
     overflowY: 'auto',
-
-    [theme.breakpoints.down('md')]: {
-        width: '100%',
-        borderRight: 'none',
-        borderBottom: `1px solid ${theme.palette.divider}`,
-        position: 'static',
-        maxHeight: 'none',
-        overflowX: 'auto',
-        overflowY: 'hidden',
-    },
 }));
 
 const SchoolTab = styled(Tab)(({ theme }) => ({
@@ -147,33 +140,70 @@ const Education = () => {
 
     return (
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, minHeight: 'calc(100vh - 64px)' }}>
-            <SidebarTabs
-                orientation={isMobile ? 'horizontal' : 'vertical'}
-                value={value}
-                onChange={handleChange}
-                variant={isMobile ? 'scrollable' : 'standard'}
-                scrollButtons={isMobile ? 'auto' : false}
-                sx={{
-                    '& .MuiTabs-indicator': {
-                        [isMobile ? 'height' : 'width']: 3,
-                        ...(isMobile ? {} : { display: 'none' }),
-                    },
-                }}
-            >
-                {education.map((elem) => (
-                    <SchoolTab
-                        key={elem.id}
-                        disableFocusRipple
-                        label={
-                            <TabLabel
-                                school={t(elem.school)}
-                                alias={elem.schoolAlias ?? null}
-                                isMobile={isMobile}
-                            />
-                        }
-                    />
-                ))}
-            </SidebarTabs>
+            {isMobile ? (
+                <Box sx={{ px: 2, pt: 2 }}>
+                    <FormControl fullWidth size="small">
+                        <Select
+                            value={value}
+                            onChange={(e) => setValue(e.target.value as number)}
+                            renderValue={(v) => (
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                                    {education[v as number]?.schoolAlias && (
+                                        <Box
+                                            component="img"
+                                            src={`/media/${education[v as number].schoolAlias}.png`}
+                                            alt=""
+                                            sx={{ width: 24, height: 24, objectFit: 'contain', flexShrink: 0 }}
+                                        />
+                                    )}
+                                    <Typography variant="body2" fontWeight={600}>
+                                        {t(education[v as number]?.school ?? '')}
+                                    </Typography>
+                                </Box>
+                            )}
+                        >
+                            {education.map((elem, i) => (
+                                <MenuItem key={elem.id} value={i}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                                        {elem.schoolAlias && (
+                                            <Box
+                                                component="img"
+                                                src={`/media/${elem.schoolAlias}.png`}
+                                                alt=""
+                                                sx={{ width: 28, height: 28, objectFit: 'contain', flexShrink: 0 }}
+                                            />
+                                        )}
+                                        <Box>
+                                            <Typography variant="body2" fontWeight={600}>{t(elem.school)}</Typography>
+                                        </Box>
+                                    </Box>
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Box>
+            ) : (
+                <SidebarTabs
+                    orientation="vertical"
+                    value={value}
+                    onChange={handleChange}
+                    sx={{ '& .MuiTabs-indicator': { display: 'none' } }}
+                >
+                    {education.map((elem) => (
+                        <SchoolTab
+                            key={elem.id}
+                            disableFocusRipple
+                            label={
+                                <TabLabel
+                                    school={t(elem.school)}
+                                    alias={elem.schoolAlias ?? null}
+                                    isMobile={false}
+                                />
+                            }
+                        />
+                    ))}
+                </SidebarTabs>
+            )}
 
             <ContentArea>
                 {education.map((elem) => (
