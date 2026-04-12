@@ -189,6 +189,7 @@ const Header = () => {
                             open={isDrawerOpen}
                             onOpen={handleDrawerOpen}
                             onClose={handleDrawerClose}
+                            disableScrollLock
                         >
                             <StyledDrawerBox>
                                 <DrawerBrand>Portfolio</DrawerBrand>
