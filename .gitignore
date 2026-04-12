@@ -15,8 +15,6 @@
 # production
 /build
 
-/public/media
-
 /public/cv.pdf
 
 # Sensitive information is here
