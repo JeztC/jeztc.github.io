@@ -128,6 +128,7 @@ const PercentLabel = styled(Typography)`
     opacity: 0.8;
 `;
 
+
 const About = () => {
     const { t } = useTranslation();
     const age = getAgeFromEnvStamp();
