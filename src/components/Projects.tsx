@@ -2,6 +2,13 @@ import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import { projectData } from "../data";
 
+interface Project {
+    title: string;
+    href: string;
+    imgSrc: string;
+    liveUrl?: string;
+}
+
 const Container = styled(Box)`
     display: flex;
     justify-content: center;
@@ -44,12 +51,23 @@ const PreviewContainer = styled(Box)`
     width: 100%;
     height: 300px;
     overflow: hidden;
+    position: relative;
+    background: #0d1117;
 `;
 
 const PreviewGif = styled('img')`
     width: 100%;
     height: 100%;
     object-fit: cover;
+`;
+
+const LivePreviewFrame = styled('iframe')`
+    width: 1200px;
+    height: 600px;
+    border: none;
+    transform: scale(0.5);
+    transform-origin: top left;
+    pointer-events: none;
 `;
 
 const ProjectInfo = styled(Box)`
@@ -68,7 +86,7 @@ const Projects = () => {
     return (
         <Container>
             <ProjectsContainer>
-                {projectData.map((project, index) => (
+                {(projectData as Project[]).map((project, index) => (
                     <ProjectCard
                         key={index}
                         href={project.href}
@@ -76,10 +94,16 @@ const Projects = () => {
                         rel="noopener noreferrer"
                     >
                         <PreviewContainer>
-                            <PreviewGif
-                                src={project.imgSrc}
-                                alt="Project Preview"
-                            />
+                            {project.liveUrl ? (
+                                <LivePreviewFrame
+                                    src={project.liveUrl}
+                                    title={project.title}
+                                    loading="lazy"
+                                    sandbox="allow-scripts allow-same-origin"
+                                />
+                            ) : (
+                                <PreviewGif src={project.imgSrc} alt="Project Preview" />
+                            )}
                         </PreviewContainer>
                         <ProjectInfo>
                             <ProjectTitle>{project.title}</ProjectTitle>
