@@ -3,10 +3,6 @@ import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import type { MouseEvent } from "react";
 import {
-    Menu as MenuIcon,
-    Close,
-} from "@mui/icons-material";
-import {
     AppBar,
     Box,
     SwipeableDrawer,
@@ -116,6 +112,26 @@ const ControlsBox = styled(Box)(() => ({
     gap: 4,
 }));
 
+const HamburgerIcon = ({ open }: { open: boolean }) => (
+    <Box sx={{ width: 22, height: 18, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        {([0, 1, 2] as const).map((i) => (
+            <Box
+                key={i}
+                sx={{
+                    width: '100%',
+                    height: 2,
+                    bgcolor: 'text.primary',
+                    borderRadius: 1,
+                    transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease',
+                    ...(open && i === 0 && { transform: 'translateY(8px) rotate(45deg)' }),
+                    ...(open && i === 1 && { opacity: 0, transform: 'scaleX(0)' }),
+                    ...(open && i === 2 && { transform: 'translateY(-8px) rotate(-45deg)' }),
+                }}
+            />
+        ))}
+    </Box>
+);
+
 const Header = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
@@ -149,8 +165,24 @@ const Header = () => {
                     <>
                         <BrandLink to="/">Portfolio</BrandLink>
                         <Box sx={{ flex: 1 }} />
-                        <IconButton onClick={handleDrawerOpen} size="large">
-                            {isDrawerOpen ? <Close /> : <MenuIcon />}
+                        {/* Spacer matching fixed button width */}
+                        <Box sx={{ width: 48, flexShrink: 0 }} />
+                        {/* Fixed button — always above the drawer backdrop */}
+                        <IconButton
+                            onClick={isDrawerOpen ? handleDrawerClose : handleDrawerOpen}
+                            size="large"
+                            sx={({ palette }) => ({
+                                position: 'fixed',
+                                top: 8,
+                                right: 8,
+                                zIndex: 1400,
+                                backgroundColor: palette.mode === 'dark' ? 'rgba(0,0,0,0.75)' : 'rgba(255,255,255,0.75)',
+                                backdropFilter: 'blur(8px)',
+                                border: `1px solid ${palette.divider}`,
+                                '&:hover': { backgroundColor: palette.action.hover },
+                            })}
+                        >
+                            <HamburgerIcon open={isDrawerOpen} />
                         </IconButton>
                         <SwipeableDrawer
                             anchor="left"
