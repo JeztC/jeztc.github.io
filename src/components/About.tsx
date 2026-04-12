@@ -129,6 +129,7 @@ const PercentLabel = styled(Typography)`
 `;
 
 
+
 const About = () => {
     const { t } = useTranslation();
     const age = getAgeFromEnvStamp();
