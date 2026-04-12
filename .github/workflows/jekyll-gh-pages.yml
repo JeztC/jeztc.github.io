@@ -29,6 +29,14 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+        env:
+          VITE_BIRTH_STAMP: ${{ secrets.VITE_BIRTH_STAMP }}
+          VITE_USER_API_URL: ${{ secrets.VITE_USER_API_URL }}
+          VITE_USER_API_URL_STARRED: ${{ secrets.VITE_USER_API_URL_STARRED }}
+          VITE_USER_API_PROJECTS: ${{ secrets.VITE_USER_API_PROJECTS }}
+          VITE_USER_URL: ${{ secrets.VITE_USER_URL }}
+          VITE_USER_EMAIL: ${{ secrets.VITE_USER_EMAIL }}
+          VITE_LINKEDIN_URL: ${{ secrets.VITE_LINKEDIN_URL }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
