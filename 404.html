@@ -1,13 +1,18 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <script>
-      sessionStorage.setItem('spa-redirect', location.pathname + location.search + location.hash);
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <script>
+    // Only redirect for SPA routes, not for missing asset files
+    var path = location.pathname;
+    var isAsset = /\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json|map|txt|tsx|ts)$/i.test(path);
+    if (!isAsset) {
+      sessionStorage.setItem('spa-redirect', path + location.search + location.hash);
       location.replace('/');
-    </script>
-  </head>
-  <body></body>
+    }
+  </script>
+</head>
+<body></body>
 </html>
