@@ -1,4 +1,4 @@
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import type { MouseEvent } from "react";
@@ -135,7 +135,8 @@ const HamburgerIcon = ({ open }: { open: boolean }) => (
 const Header = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
-    const isMobile = useMediaQuery('(max-width:960px)');
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
     const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
 

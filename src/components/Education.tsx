@@ -21,7 +21,7 @@ import {
     Language,
     X,
 } from '@mui/icons-material'
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 
 const SidebarTabs = styled(Tabs)(({ theme }) => ({
     borderRight: `1px solid ${theme.palette.divider}`,
@@ -132,7 +132,8 @@ const TabLabel = ({ school, alias, isMobile }: TabLabelProps) => (
 const Education = () => {
     const { t } = useTranslation();
     const [value, setValue] = useState<number>(0);
-    const isMobile = useMediaQuery('(max-width:960px)');
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
     const handleChange = useCallback((_event: ChangeEvent<object>, newValue: number) => {
         setValue(newValue);
