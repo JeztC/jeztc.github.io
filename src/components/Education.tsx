@@ -94,7 +94,7 @@ const SocialButton = styled(IconButton)(({ theme }) => ({
         transform: 'translateY(-2px)',
         backgroundColor: 'transparent',
     },
-}));
+})) as typeof IconButton;
 
 interface TabLabelProps {
     school: string;

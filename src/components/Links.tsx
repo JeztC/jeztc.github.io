@@ -1,3 +1,4 @@
+import React from "react";
 import { Email, GitHub, LinkedIn } from "@mui/icons-material";
 import { styled, useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
@@ -34,7 +35,7 @@ const CardsRow = styled(Box)(({ theme }) => ({
     },
 }));
 
-const LinkCard = styled(Paper)<{ brandcolor: string }>(({ theme, brandcolor }) => ({
+const LinkCard = styled(Paper)<{ brandcolor: string; component?: React.ElementType; href?: string; target?: string; rel?: string }>(({ theme, brandcolor }) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
