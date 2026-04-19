@@ -13,7 +13,7 @@
     { "title": "C#", "value": 0.50, "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg", "color": "#239120", "link": "https://learn.microsoft.com/dotnet/csharp/" },
     { "title": "C++", "value": 0.50, "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg", "color": "#00599C", "link": "https://isocpp.org/" },
     { "title": "SQL", "value": 0.80, "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg", "color": "#4169E1", "link": "https://www.postgresql.org/" },
-    { "title": "Linux", "value": 1, "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg", "color": "#FCC624", "link": "https://www.linux.org/" },
+    { "title": "Linux", "value": 0.90, "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg", "color": "#FCC624", "link": "https://www.linux.org/" },
     { "title": "Redux", "value": 0.70, "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redux/redux-original.svg", "color": "#764ABC", "link": "https://redux.js.org/" },
     { "title": "MongoDB", "value": 0.70, "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", "color": "#47A248", "link": "https://www.mongodb.com/" },
     { "title": "Playwright & Vitest", "value": 0.70, "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/playwright/playwright-original.svg", "color": "#2EAD33", "link": "https://playwright.dev/" },
