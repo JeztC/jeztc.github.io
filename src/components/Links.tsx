@@ -115,9 +115,6 @@ const Links = () => {
             <Typography variant="h4" fontWeight={700} letterSpacing={1}>
                 {t('links_title')}
             </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
-                {t('links_subtitle')}
-            </Typography>
 
             <CardsRow>
                 {linksData.map((link) => (
