@@ -1,110 +1,99 @@
-import { Box, Avatar, Typography, Link } from '@mui/material';
+import { Box, Typography, Chip } from '@mui/material';
 import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
+import { OpenInNew } from "@mui/icons-material";
 import { jobs } from "../data";
 
-const Container = styled(Box)(({ theme }) => ({
+interface Job {
+    company: string;
+    name: string;
+    link: string;
+}
+
+const PageContainer = styled(Box)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 16px 80px;
+`;
+
+const CardList = styled(Box)`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 760px;
+`;
+
+const JobCard = styled('a')(({ theme }) => ({
     display: 'flex',
-    flexDirection: 'column',
-    marginTop: theme.spacing(4),
+    alignItems: 'center',
     gap: theme.spacing(3),
-    width: '100%',
-    maxWidth: '600px',
-    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+    padding: theme.spacing(3),
+    borderRadius: 16,
+    border: `1px solid ${theme.palette.divider}`,
+    backgroundColor: theme.palette.background.paper,
+    textDecoration: 'none',
+    color: 'inherit',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
     '&:hover': {
-        transform: 'translateY(-10px)',
-        boxShadow: `0 12px 24px ${theme.palette.action.hover}`
+        transform: 'translateY(-4px)',
+        boxShadow: theme.shadows[4],
+        borderColor: theme.palette.primary.main,
     },
-    boxShadow: `0 4px 6px ${theme.palette.action.hover}`,
-    [theme.breakpoints.down('md')]: {
-        marginTop: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+        flexDirection: 'column',
+        alignItems: 'flex-start',
         gap: theme.spacing(2),
     },
 }));
 
-const StyledBox = styled(Box)(({ theme }) => ({
-    padding: theme.spacing(2),
-    [theme.breakpoints.up('md')]: {
-        padding: theme.spacing(4),
-    },
-    maxWidth: '100%',
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    minHeight: '100vh',
-}));
-
-const StyledAvatar = styled(Avatar)(({ theme }) => ({
-    width: 100,
-    height: 50,
-    marginRight: theme.spacing(1.5),
-    backgroundColor: '#f5f5f5',
-
-    [theme.breakpoints.up('md')]: {
-        width: 200,
-        height: 75,
-        marginRight: theme.spacing(2.5),
-    },
-    [theme.breakpoints.up('md')]: {
-        width: 400,
-        height: 150,
-    },
-}));
-
-const StyledLink = styled(Link)(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(1.5),
+const CompanyLogo = styled('img')(({ theme }) => ({
+    width: 120,
+    height: 60,
+    objectFit: 'contain',
+    flexShrink: 0,
+    borderRadius: 8,
     border: `1px solid ${theme.palette.divider}`,
-    transition: 'box-shadow 0.2s',
-    textDecoration: 'none',
-    '&:hover': {
-        boxShadow: theme.shadows[6],
-    },
-    [theme.breakpoints.up('md')]: {
-        padding: theme.spacing(2),
+    padding: 8,
+    backgroundColor: '#fff',
+    [theme.breakpoints.down('sm')]: {
+        width: 100,
+        height: 50,
     },
 }));
 
-
-export const Experience = () => {
+const Experience = () => {
     const { t } = useTranslation();
+
     return (
-        <StyledBox>
-            <Typography variant="h4" component="h1" gutterBottom>
+        <PageContainer>
+            <Typography variant="h4" component="h1" fontWeight={700} gutterBottom sx={{ mb: 5 }}>
                 {t('menu_experience')}
             </Typography>
-            <Container>
-                {jobs.map((job, index) => (
-                    <StyledLink
-                        key={index}
-                        href={job.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        underline="none"
-                    >
-                        <StyledAvatar
-                            src={`/media/${job.name}.png`}
-                            alt={`${job.company} logo`}
-                            variant="rounded"
-                        />
-                        <Box>
-                            <Typography variant="subtitle1" fontWeight="bold">
+            <CardList>
+                {(jobs as Job[]).map((job, index) => (
+                    <JobCard key={index} href={job.link} target="_blank" rel="noopener noreferrer">
+                        <CompanyLogo src={`/media/${job.name}.png`} alt={`${job.company} logo`} />
+                        <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography variant="h6" fontWeight={600} sx={{ lineHeight: 1.2 }}>
                                 {job.company}
                             </Typography>
-                            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                                {t(`job_${index}_duration`)}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, fontWeight: 'bold' }}>
+                            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, fontWeight: 500 }}>
                                 {t(`experience_${index}_job`)}
                             </Typography>
+                            <Chip
+                                label={t(`job_${index}_duration`)}
+                                size="small"
+                                sx={{ mt: 1, height: 22, fontSize: '0.72rem' }}
+                            />
                         </Box>
-                    </StyledLink>
+                        <OpenInNew sx={{ color: 'text.disabled', flexShrink: 0, fontSize: 18 }} />
+                    </JobCard>
                 ))}
-            </Container>
-        </StyledBox>
+            </CardList>
+        </PageContainer>
     );
-}
+};
 
 export default Experience;

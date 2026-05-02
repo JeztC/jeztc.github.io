@@ -17,9 +17,7 @@ const PageWrapper = styled(Box)(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 'calc(100vh - 64px)',
-    padding: '32px 16px',
+    padding: '60px 16px 80px',
 }));
 
 const CardsRow = styled(Box)(({ theme }) => ({

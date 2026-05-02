@@ -1,117 +1,134 @@
 import { styled } from "@mui/material/styles";
-import { Box } from "@mui/material";
+import { Box, Typography, IconButton, Tooltip } from "@mui/material";
+import { GitHub, OpenInNew } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 import { projectData } from "../data";
 
 interface Project {
     title: string;
     href: string;
-    imgSrc: string;
+    imgSrc?: string;
     liveUrl?: string;
 }
 
-const Container = styled(Box)`
+const PageContainer = styled(Box)`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    padding: 60px 16px 80px;
 `;
 
-const ProjectsContainer = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '100px 0',
-    flexDirection: 'row',
-    gap: '60px',
-    maxWidth: '1200px',
-    margin: '0 auto',
+const Grid = styled(Box)(({ theme }) => ({
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: 32,
+    width: '100%',
+    maxWidth: 1100,
     [theme.breakpoints.down('md')]: {
-        padding: '40px 20px',
-        flexDirection: 'column',
-        gap: '40px',
+        gridTemplateColumns: '1fr',
+        gap: 24,
     },
 }));
 
-const ProjectCard = styled('a')(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    width: '600px',
-    height: '400px',
-    borderRadius: '12px',
-    textDecoration: 'none',
+const Card = styled(Box)(({ theme }) => ({
+    borderRadius: 16,
+    border: `1px solid ${theme.palette.divider}`,
     overflow: 'hidden',
-    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-    boxShadow: `0 4px 6px ${theme.palette.action.hover}`,
+    backgroundColor: theme.palette.background.paper,
+    transition: 'transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease',
     '&:hover': {
-        transform: 'translateY(-10px)',
-        boxShadow: `0 12px 24px ${theme.palette.action.hover}`
+        transform: 'translateY(-6px)',
+        boxShadow: theme.shadows[8],
+        borderColor: theme.palette.primary.main,
     },
 }));
 
-const PreviewContainer = styled(Box)`
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-    position: relative;
-    background: #0d1117;
-`;
+const PreviewArea = styled(Box)({
+    height: 220,
+    overflow: 'hidden',
+    position: 'relative',
+    backgroundColor: '#0d1117',
+});
 
-const PreviewGif = styled('img')`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-`;
+// width: 200% + scale(0.5) makes the iframe exactly fill the container width responsively
+const LiveFrame = styled('iframe')({
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '200%',
+    height: 440,
+    border: 'none',
+    transform: 'scale(0.5)',
+    transformOrigin: 'top left',
+    pointerEvents: 'none',
+});
 
-const LivePreviewFrame = styled('iframe')`
-    width: 1200px;
-    height: 600px;
-    border: none;
-    transform: scale(0.5);
-    transform-origin: top left;
-    pointer-events: none;
-`;
+const PreviewImg = styled('img')({
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+});
 
-const ProjectInfo = styled(Box)`
-    padding: 20px;
-    text-align: center;
-`;
-
-const ProjectTitle = styled('h3')(({ theme }) => ({
-    margin: 0,
-    color: theme.palette.text.primary,
-    fontSize: '1.25rem',
-    fontWeight: 600,
+const CardFooter = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: theme.spacing(2, 2.5),
+    borderTop: `1px solid ${theme.palette.divider}`,
 }));
 
 const Projects = () => {
+    const { t } = useTranslation();
+
     return (
-        <Container>
-            <ProjectsContainer>
+        <PageContainer>
+            <Typography variant="h4" component="h1" fontWeight={700} gutterBottom sx={{ mb: 5 }}>
+                {t('menu_projects')}
+            </Typography>
+            <Grid>
                 {(projectData as Project[]).map((project, index) => (
-                    <ProjectCard
-                        key={index}
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <PreviewContainer>
+                    <Card key={index}>
+                        <PreviewArea>
                             {project.liveUrl ? (
-                                <LivePreviewFrame
+                                <LiveFrame
                                     src={project.liveUrl}
                                     title={project.title}
                                     loading="lazy"
                                     sandbox="allow-scripts allow-same-origin"
                                 />
                             ) : (
-                                <PreviewGif src={project.imgSrc} alt="Project Preview" />
+                                <PreviewImg src={project.imgSrc} alt={project.title} />
                             )}
-                        </PreviewContainer>
-                        <ProjectInfo>
-                            <ProjectTitle>{project.title}</ProjectTitle>
-                        </ProjectInfo>
-                    </ProjectCard>
+                        </PreviewArea>
+                        <CardFooter>
+                            <Typography variant="subtitle1" fontWeight={600}>
+                                {project.title}
+                            </Typography>
+                            <Box display="flex" gap={0.5}>
+                                <Tooltip title="GitHub">
+                                    <IconButton
+                                        size="small"
+                                        onClick={() => window.open(project.href, '_blank', 'noopener noreferrer')}
+                                    >
+                                        <GitHub fontSize="small" />
+                                    </IconButton>
+                                </Tooltip>
+                                {project.liveUrl && (
+                                    <Tooltip title={t('view_project')}>
+                                        <IconButton
+                                            size="small"
+                                            onClick={() => window.open(project.liveUrl, '_blank', 'noopener noreferrer')}
+                                        >
+                                            <OpenInNew fontSize="small" />
+                                        </IconButton>
+                                    </Tooltip>
+                                )}
+                            </Box>
+                        </CardFooter>
+                    </Card>
                 ))}
-            </ProjectsContainer>
-        </Container>
+            </Grid>
+        </PageContainer>
     );
 };
 

@@ -46,7 +46,6 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
-    flex: 1,
     minHeight: 64,
     '& .MuiTabs-indicator': {
         height: 3,
@@ -231,7 +230,9 @@ const Header = () => {
                     </>
                 ) : (
                     <>
-                        <BrandLink to="/">Portfolio</BrandLink>
+                        <Box sx={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+                            <BrandLink to="/">Portfolio</BrandLink>
+                        </Box>
                         <StyledTabs
                             value={location.pathname}
                             variant="scrollable"
@@ -249,14 +250,16 @@ const Header = () => {
                                 />
                             ))}
                         </StyledTabs>
-                        <ControlsBox>
-                            <DarkModeToggle />
-                            <Tooltip title={t('changeLanguage')} arrow>
-                                <IconButton onClick={handleLanguageMenuOpen} sx={{ color: 'text.primary' }}>
-                                    <LanguageIcon />
-                                </IconButton>
-                            </Tooltip>
-                        </ControlsBox>
+                        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                            <ControlsBox>
+                                <DarkModeToggle />
+                                <Tooltip title={t('changeLanguage')} arrow>
+                                    <IconButton onClick={handleLanguageMenuOpen} sx={{ color: 'text.primary' }}>
+                                        <LanguageIcon />
+                                    </IconButton>
+                                </Tooltip>
+                            </ControlsBox>
+                        </Box>
                     </>
                 )}
             </Toolbar>
