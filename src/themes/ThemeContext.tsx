@@ -8,7 +8,13 @@ const themeTransition = 'background-color 0.25s ease, color 0.25s ease, border-c
 const sharedComponents = {
     MuiCssBaseline: {
         styleOverrides: {
-            body: { transition: themeTransition },
+            body: {
+                transition: themeTransition,
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
+                textRendering: 'optimizeLegibility',
+                fontFeatureSettings: '"kern" 1, "liga" 1, "calt" 1',
+            },
         },
     },
     MuiPaper: {
@@ -35,7 +41,7 @@ const sharedComponents = {
 
 const darkTheme = createTheme({
     typography: {
-        fontFamily: '"Segoe UI", "Helvetica", "Arial", sans-serif',
+        fontFamily: '"Inter Variable", "Inter", "Segoe UI", sans-serif',
     },
     components: sharedComponents,
     palette: {
@@ -49,7 +55,7 @@ const darkTheme = createTheme({
 
 const lightTheme = createTheme({
     typography: {
-        fontFamily: '"Segoe UI", "Helvetica", "Arial", sans-serif',
+        fontFamily: '"Inter Variable", "Inter", "Segoe UI", sans-serif',
     },
     components: sharedComponents,
     palette: {
