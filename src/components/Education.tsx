@@ -134,6 +134,7 @@ const Education = () => {
     const [value, setValue] = useState<number>(0);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+    const mutedColor = theme.palette.mode === 'light' ? '#59636e' : '#8b949e';
 
     const handleChange = useCallback((_event: ChangeEvent<object>, newValue: number) => {
         setValue(newValue);
@@ -228,7 +229,7 @@ const Education = () => {
                             sx={{ mb: 3, fontWeight: 500 }}
                         />
 
-                        <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 3 }}>
+                        <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 3, color: mutedColor }}>
                             {t(`experience_${elem.id}_overview`)}
                         </Typography>
 

@@ -1,6 +1,6 @@
 import { Box, Typography, Chip } from '@mui/material';
 import { useTranslation } from "react-i18next";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import { OpenInNew } from "@mui/icons-material";
 import { jobs } from "../data";
 
@@ -65,6 +65,8 @@ const CompanyLogo = styled('img')(({ theme }) => ({
 
 const Experience = () => {
     const { t } = useTranslation();
+    const theme = useTheme();
+    const mutedColor = theme.palette.mode === 'light' ? '#59636e' : '#8b949e';
 
     return (
         <PageContainer>
@@ -79,7 +81,7 @@ const Experience = () => {
                             <Typography variant="h6" fontWeight={600} sx={{ lineHeight: 1.2 }}>
                                 {job.company}
                             </Typography>
-                            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, fontWeight: 500 }}>
+                            <Typography variant="body2" sx={{ mt: 0.5, fontWeight: 500, color: mutedColor }}>
                                 {t(`experience_${index}_job`)}
                             </Typography>
                             <Chip
@@ -88,7 +90,7 @@ const Experience = () => {
                                 sx={{ mt: 1, height: 22, fontSize: '0.72rem' }}
                             />
                         </Box>
-                        <OpenInNew sx={{ color: 'text.disabled', flexShrink: 0, fontSize: 18 }} />
+                        <OpenInNew sx={{ color: mutedColor, flexShrink: 0, fontSize: 18 }} />
                     </JobCard>
                 ))}
             </CardList>

@@ -5,7 +5,7 @@ import GithubIcon from "./GithubIcon";
 import GroupIcon from '@mui/icons-material/Group';
 import { Star } from "@mui/icons-material";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import FacebookCircularProgress from "./FacebookCircularProgress";
 import dayjs from "dayjs";
@@ -55,9 +55,9 @@ const StyledUserCardSection = styled(Box)`
     padding-bottom: 10px;
 `
 
-const DescriptionTypography = styled(Typography)(() => ({
+const DescriptionTypography = styled(Typography)(({ theme }) => ({
     marginTop: '-30px',
-    color: '#999999',
+    color: theme.palette.mode === 'light' ? '#59636e' : '#8b949e',
 }));
 
 const CardContainer = styled(Box)({
@@ -70,14 +70,14 @@ const CardContainer = styled(Box)({
     borderRadius: '5px',
 });
 
-const LanguageTypography = styled(Typography)<LanguageProps>(({ language }) => {
+const LanguageTypography = styled(Typography)<LanguageProps>(({ theme, language }) => {
     const safeLanguage = typeof language === 'string' ? language : '';
 
     return {
         marginTop: '20px',
         display: 'flex',
         alignItems: 'center',
-        color: '#999999',
+        color: theme.palette.mode === 'light' ? '#59636e' : '#8b949e',
         '&:before': {
             content: '""',
             display: 'inline-block',
@@ -97,6 +97,8 @@ const Github = () => {
     const [repositories, setRepositories] = useState<GithubRepository[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const { t } = useTranslation();
+    const theme = useTheme();
+    const mutedColor = theme.palette.mode === 'light' ? '#59636e' : '#8b949e';
 
     const formattedDate = useMemo(() => {
         return dayjs(user?.created_at).format('DD/MM/YYYY');
@@ -145,28 +147,27 @@ const Github = () => {
                                     title={<Typography variant="h6">{user?.name}</Typography>}
                                 />
                                 <CardContent>
-                                    <Typography sx={{ fontSize: '20px', color: '#999999', }} variant="h5">
+                                    <Typography sx={{ fontSize: '20px', color: mutedColor }} variant="h5">
                                         <Link href={user?.html_url} target="_blank">{user?.login}</Link>
                                     </Typography>
                                     <Typography sx={{ marginTop: '20px', marginBottom: '20px', fontSize: '18px' }} color="inherit" variant="subtitle1">{user?.bio}</Typography>
                                     <StyledUserCardSection>
-                                        <GroupIcon sx={{ color: '#999999', marginRight: '5px', }}/>
-                                        <Typography
-                                            sx={{ color: '#999999' }} variant="body2">
+                                        <GroupIcon sx={{ color: mutedColor, marginRight: '5px' }}/>
+                                        <Typography sx={{ color: mutedColor }} variant="body2">
                                             {user?.followers} {t('followers')} · {user?.following} {t('following')}
                                         </Typography>
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
                                         <GithubIcon />
-                                        <Typography style={{ paddingLeft: '5px' }} color="#999999" variant="body2">{t('repositories')}: {user?.public_repos}</Typography>
+                                        <Typography style={{ paddingLeft: '5px', color: mutedColor }} variant="body2">{t('repositories')}: {user?.public_repos}</Typography>
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
-                                        <Star style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
-                                        <Typography color="#999999" variant="body2">{t('stars')}: {starred}</Typography>
+                                        <Star style={{ color: mutedColor, marginRight: '5px' }} />
+                                        <Typography style={{ color: mutedColor }} variant="body2">{t('stars')}: {starred}</Typography>
                                     </StyledUserCardSection>
                                     <StyledUserCardSection>
-                                        <CalendarMonthIcon style={{ color: 'rgb(139, 148, 158)', marginRight: '5px' }} />
-                                        <Typography color="#999999" variant="body2">{t('registered')}: {formattedDate}</Typography>
+                                        <CalendarMonthIcon style={{ color: mutedColor, marginRight: '5px' }} />
+                                        <Typography style={{ color: mutedColor }} variant="body2">{t('registered')}: {formattedDate}</Typography>
                                     </StyledUserCardSection>
                                 </CardContent>
                             </StyledUserCard>
@@ -178,7 +179,7 @@ const Github = () => {
                                         <CardHeader
                                             avatar={<GithubIcon />}
                                             title={<Link href={repository.html_url} target="_blank">{repository.name}</Link>}
-                                            subheader={<Typography variant="body2" color="rgb(139, 148, 158)" component="p">{`${repository.stargazers_count} ${t('stars').toLowerCase()} • ${repository.forks} ${t('forks')}`}</Typography>}
+                                            subheader={<Typography variant="body2" style={{ color: mutedColor }} component="p">{`${repository.stargazers_count} ${t('stars').toLowerCase()} • ${repository.forks} ${t('forks')}`}</Typography>}
                                         />
                                         <CardContent>
                                             <DescriptionTypography variant="body2">
