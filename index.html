@@ -21,10 +21,20 @@
         try {
           var m = localStorage.getItem('mui-mode');
           var dark = m === 'dark' || (m !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-          document.documentElement.style.backgroundColor = dark ? '#000000' : '#ffffff';
+          var root = document.documentElement;
+          root.classList.add('preload');
+          root.style.backgroundColor = dark ? '#000000' : '#ffffff';
+          root.style.color = dark ? '#ffffff' : '#000000';
+          root.style.colorScheme = dark ? 'dark' : 'light';
         } catch (e) {}
       })();
     </script>
+    <style>
+      html.preload, html.preload *, html.preload *::before, html.preload *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

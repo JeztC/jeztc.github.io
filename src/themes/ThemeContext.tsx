@@ -4,6 +4,7 @@ import { GlobalStyles, PaletteMode, useMediaQuery } from '@mui/material';
 import CssBaseline from "@mui/material/CssBaseline";
 
 const themeTransition = 'background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease';
+const globalThemeTransition = 'background-color 0.25s ease, border-color 0.25s ease';
 
 const sharedComponents = {
     MuiCssBaseline: {
@@ -69,7 +70,7 @@ const lightTheme = createTheme({
 
 const globalTransitionStyles = {
     '*, *::before, *::after': {
-        transition: themeTransition,
+        transition: globalThemeTransition,
     },
 };
 
