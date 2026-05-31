@@ -3,11 +3,13 @@
         "title": "Portfolio",
         "href": "https://github.com/JeztC/jeztc.github.io/",
         "imgSrc": "/media/img.png",
-        "liveUrl": "https://jeztc.github.io/"
+        "liveUrl": "https://jeztc.github.io/",
+        "tags": ["React.js", "TypeScript", "Material UI"]
     },
     {
         "title": "Freegle",
         "href": "https://github.com/JeztC/freegle",
-        "imgSrc": "/media/demo.gif"
+        "imgSrc": "/media/demo.gif",
+        "tags": ["React.js", "TypeScript", "Material UI"]
     }
 ]

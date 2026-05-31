@@ -208,8 +208,8 @@ const Education = () => {
             )}
 
             <ContentArea>
-                {education.map((elem) => (
-                    <TabPanel value={value} index={elem.id} key={elem.id}>
+                {education.map((elem, idx) => (
+                    <TabPanel value={value} index={idx} key={elem.id}>
                         {elem.schoolAlias && (
                             <SchoolLogoImg
                                 src={`/media/${elem.schoolAlias}.png`}

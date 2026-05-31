@@ -8,7 +8,24 @@ interface Job {
     company: string;
     name: string;
     link: string;
+    tags?: string[];
 }
+
+const tagColors: Record<string, string> = {
+    'Full-Stack Development': '#10b981',
+    'React.js': '#61dafb',
+    'TypeScript': '#3178c6',
+    'GraphQL': '#e535ab',
+    'Material UI': '#007fff',
+};
+
+const hexToRgba = (hex: string, alpha: number) => {
+    const h = hex.replace('#', '');
+    const r = parseInt(h.substring(0, 2), 16);
+    const g = parseInt(h.substring(2, 4), 16);
+    const b = parseInt(h.substring(4, 6), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
 
 const PageContainer = styled(Box)`
     display: flex;
@@ -27,7 +44,7 @@ const CardList = styled(Box)`
 
 const JobCard = styled('a')(({ theme }) => ({
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: theme.spacing(3),
     padding: theme.spacing(3),
     borderRadius: 16,
@@ -45,6 +62,27 @@ const JobCard = styled('a')(({ theme }) => ({
         flexDirection: 'column',
         alignItems: 'flex-start',
         gap: theme.spacing(2),
+    },
+}));
+
+const TagRow = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: theme.spacing(0.75),
+    marginTop: theme.spacing(1.5),
+}));
+
+const TagChip = styled(Chip)<{ tagcolor: string }>(({ theme, tagcolor }) => ({
+    height: 24,
+    fontSize: '0.72rem',
+    fontWeight: 600,
+    letterSpacing: '0.01em',
+    color: tagcolor,
+    backgroundColor: hexToRgba(tagcolor, theme.palette.mode === 'dark' ? 0.14 : 0.1),
+    border: `1px solid ${hexToRgba(tagcolor, theme.palette.mode === 'dark' ? 0.35 : 0.28)}`,
+    borderRadius: 999,
+    '& .MuiChip-label': {
+        padding: '0 10px',
     },
 }));
 
@@ -89,6 +127,18 @@ const Experience = () => {
                                 size="small"
                                 sx={{ mt: 1, height: 22, fontSize: '0.72rem' }}
                             />
+                            {job.tags && job.tags.length > 0 && (
+                                <TagRow>
+                                    {job.tags.map((tag) => (
+                                        <TagChip
+                                            key={tag}
+                                            label={tag}
+                                            size="small"
+                                            tagcolor={tagColors[tag] ?? theme.palette.primary.main}
+                                        />
+                                    ))}
+                                </TagRow>
+                            )}
                         </Box>
                         <OpenInNew sx={{ color: mutedColor, flexShrink: 0, fontSize: 18 }} />
                     </JobCard>

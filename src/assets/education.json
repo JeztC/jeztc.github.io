@@ -1,5 +1,16 @@
 [
     {
+        "id": 3,
+        "school": "Saranen Cloud & DevOps F.E.C.",
+        "schoolAlias": "saranen",
+        "links": {
+            "website": "https://www.saranen.fi/tyonhakijalle/toihin-koulutuksesta/cloud-devops-fec",
+            "facebook": "https://www.facebook.com/SaranenConsulting/",
+            "instagram": "https://www.instagram.com/saranenconsulting/",
+            "x": "https://x.com/SaranenConsult"
+        }
+    },
+    {
         "id": 0,
         "school": "Centria University of Applied Sciences",
         "schoolAlias": "centria",

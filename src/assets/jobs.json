@@ -3,6 +3,13 @@
         "company": "Vitec Alma OY",
         "duration": "May 2025",
         "name": "vitec",
-        "link": "https://www.vitec-alma.com/"
+        "link": "https://www.vitec-alma.com/",
+        "tags": [
+            "Full-Stack Development",
+            "React.js",
+            "TypeScript",
+            "GraphQL",
+            "Material UI"
+        ]
     }
 ]
