@@ -29,7 +29,7 @@ const Panel = styled('div')(({ theme }) => ({
     position: 'fixed',
     top: 0,
     left: 0,
-    height: '100vh',
+    height: '100dvh',
     width: DRAWER_WIDTH,
     zIndex: theme.zIndex.drawer + 1,
     boxShadow: theme.shadows[8],
@@ -41,9 +41,8 @@ const EdgeArea = styled('div')(({ theme }) => ({
     position: 'fixed',
     top: 0,
     left: 0,
-    height: '100vh',
+    height: '100dvh',
     width: EDGE_SWIPE_WIDTH,
-    // Below the AppBar so the brand/links stay clickable, above page content so edge swipes register.
     zIndex: theme.zIndex.appBar - 1,
     touchAction: 'pan-y',
 }));
