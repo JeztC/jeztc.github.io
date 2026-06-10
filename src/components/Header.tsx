@@ -77,7 +77,9 @@ const LanguageMenuItem = styled(MenuItem)`
 
 const StyledDrawerBox = styled(Box)(({ theme }) => ({
     width: 270,
-    height: '100vh',
+    // Fill the panel rather than the full viewport, so the bottom controls stay
+    // above the panel's safe-area padding (and clear of Android's nav bar).
+    height: '100%',
     padding: '16px 0',
     borderRight: `1px solid ${theme.palette.divider}`,
     backgroundColor: theme.palette.background.default,

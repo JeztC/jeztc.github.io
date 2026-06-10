@@ -29,7 +29,13 @@ const Panel = styled('div')(({ theme }) => ({
     position: 'fixed',
     top: 0,
     left: 0,
-    height: '100dvh',
+    // Use the dynamic viewport height so the panel ends above the browser/system
+    // chrome (e.g. Android's bottom navigation bar) instead of behind it; the array
+    // emits both declarations so 100vh acts as a fallback where dvh is unsupported.
+    // The safe-area inset keeps bottom content clear of the nav bar / home indicator.
+    height: ['100vh', '100dvh'],
+    paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+    boxSizing: 'border-box',
     width: DRAWER_WIDTH,
     zIndex: theme.zIndex.drawer + 1,
     boxShadow: theme.shadows[8],
@@ -41,8 +47,9 @@ const EdgeArea = styled('div')(({ theme }) => ({
     position: 'fixed',
     top: 0,
     left: 0,
-    height: '100dvh',
+    height: '100vh',
     width: EDGE_SWIPE_WIDTH,
+    // Below the AppBar so the brand/links stay clickable, above page content so edge swipes register.
     zIndex: theme.zIndex.appBar - 1,
     touchAction: 'pan-y',
 }));
