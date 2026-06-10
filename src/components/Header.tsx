@@ -1,11 +1,10 @@
 import { styled, useTheme } from "@mui/material/styles";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import type { MouseEvent } from "react";
 import {
     AppBar,
     Box,
-    Drawer,
     IconButton,
     List,
     ListItem,
@@ -25,6 +24,7 @@ import { useTranslation } from 'react-i18next';
 import { DarkModeToggle } from "./DarkModeToggle";
 import ReactCountryFlag from "react-country-flag";
 import { routesConfig } from "./AppRoutes";
+import { SwipeableNavDrawer } from "./SwipeableNavDrawer";
 
 const BrandLink = styled(Link)(({ theme }) => ({
     fontWeight: 700,
@@ -142,68 +142,6 @@ const Header = () => {
     const handleDrawerOpen = () => setIsDrawerOpen(true);
     const handleDrawerClose = () => setIsDrawerOpen(false);
 
-    // Swipe right from the left edge to open the drawer, swipe left to close it (mobile only).
-    useEffect(() => {
-        if (!isMobile) return;
-
-        const EDGE_ZONE = 40; // px from the left edge where an opening swipe may start
-        const THRESHOLD = 60; // horizontal distance required to trigger open/close
-        let startX = 0;
-        let startY = 0;
-        let tracking = false;
-
-        const handleTouchStart = (event: TouchEvent) => {
-            const touch = event.touches[0];
-            // When closed, only start tracking near the left edge; when open, anywhere.
-            if (!isDrawerOpen && touch.clientX > EDGE_ZONE) return;
-            startX = touch.clientX;
-            startY = touch.clientY;
-            tracking = true;
-        };
-
-        const handleTouchMove = (event: TouchEvent) => {
-            if (!tracking) return;
-            const touch = event.touches[0];
-            const deltaX = touch.clientX - startX;
-            const deltaY = touch.clientY - startY;
-            // Ignore mostly-vertical swipes (let the page scroll).
-            if (Math.abs(deltaX) <= Math.abs(deltaY)) return;
-
-            // Horizontal swipe we own: suppress the browser's back/forward
-            // navigation gesture while we drive the drawer.
-            if (event.cancelable) event.preventDefault();
-
-            if (!isDrawerOpen && deltaX > THRESHOLD) {
-                tracking = false;
-                setIsDrawerOpen(true);
-            } else if (isDrawerOpen && deltaX < -THRESHOLD) {
-                tracking = false;
-                setIsDrawerOpen(false);
-            }
-        };
-
-        const stopTracking = () => {
-            tracking = false;
-        };
-
-        // Disable Chrome's horizontal overscroll (swipe-to-go-back/forward).
-        const root = document.documentElement;
-        const previousOverscroll = root.style.overscrollBehaviorX;
-        root.style.overscrollBehaviorX = 'none';
-
-        document.addEventListener('touchstart', handleTouchStart, { passive: true });
-        document.addEventListener('touchmove', handleTouchMove, { passive: false });
-        document.addEventListener('touchend', stopTracking, { passive: true });
-        document.addEventListener('touchcancel', stopTracking, { passive: true });
-
-        return () => {
-            root.style.overscrollBehaviorX = previousOverscroll;
-            document.removeEventListener('touchstart', handleTouchStart);
-            document.removeEventListener('touchmove', handleTouchMove);
-            document.removeEventListener('touchend', stopTracking);
-            document.removeEventListener('touchcancel', stopTracking);
-        };
-    }, [isMobile, isDrawerOpen]);
     const handleLanguageMenuOpen = (event: MouseEvent<HTMLElement>) => setLanguageMenuAnchor(event.currentTarget);
     const handleLanguageMenuClose = () => setLanguageMenuAnchor(null);
     const handleLanguageChange = (language: string) => {
@@ -239,19 +177,15 @@ const Header = () => {
                                 top: 8,
                                 right: 8,
                                 zIndex: 1400,
-                                backgroundColor: palette.mode === 'dark' ? 'rgba(0,0,0,0.75)' : 'rgba(255,255,255,0.75)',
-                                backdropFilter: 'blur(8px)',
-                                border: `1px solid ${palette.divider}`,
                                 '&:hover': { backgroundColor: palette.action.hover },
                             })}
                         >
                             <HamburgerIcon open={isDrawerOpen} />
                         </IconButton>
-                        <Drawer
-                            anchor="left"
+                        <SwipeableNavDrawer
                             open={isDrawerOpen}
+                            onOpen={handleDrawerOpen}
                             onClose={handleDrawerClose}
-                            disableScrollLock
                         >
                             <StyledDrawerBox>
                                 <DrawerBrand>Portfolio</DrawerBrand>
@@ -288,7 +222,7 @@ const Header = () => {
                                     </IconButton>
                                 </Box>
                             </StyledDrawerBox>
-                        </Drawer>
+                        </SwipeableNavDrawer>
                     </>
                 ) : (
                     <>
