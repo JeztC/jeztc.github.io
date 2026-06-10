@@ -71,6 +71,7 @@ const Card = styled(Box)(({ theme }) => ({
     border: `1px solid ${theme.palette.divider}`,
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
+    cursor: 'pointer',
     transition: 'transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease',
     '&:hover': {
         transform: 'translateY(-6px)',
@@ -116,6 +117,10 @@ const CardFooter = styled(Box)(({ theme }) => ({
 const Projects = () => {
     const { t } = useTranslation();
 
+    const openInNewTab = (url?: string) => {
+        if (url) window.open(url, '_blank', 'noopener,noreferrer');
+    };
+
     return (
         <PageContainer>
             <Typography variant="h4" component="h1" fontWeight={700} gutterBottom sx={{ mb: 5 }}>
@@ -123,7 +128,19 @@ const Projects = () => {
             </Typography>
             <Grid>
                 {(projectData as Project[]).map((project, index) => (
-                    <Card key={index}>
+                    <Card
+                        key={index}
+                        role="link"
+                        tabIndex={0}
+                        aria-label={project.title}
+                        onClick={() => openInNewTab(project.href)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                openInNewTab(project.href);
+                            }
+                        }}
+                    >
                         <PreviewArea>
                             {project.liveUrl ? (
                                 <LiveFrame
@@ -156,7 +173,10 @@ const Projects = () => {
                                 <Tooltip title="GitHub">
                                     <IconButton
                                         size="small"
-                                        onClick={() => window.open(project.href, '_blank', 'noopener noreferrer')}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            openInNewTab(project.href);
+                                        }}
                                     >
                                         <GitHub fontSize="small" />
                                     </IconButton>
@@ -165,7 +185,10 @@ const Projects = () => {
                                     <Tooltip title={t('view_project')}>
                                         <IconButton
                                             size="small"
-                                            onClick={() => window.open(project.liveUrl, '_blank', 'noopener noreferrer')}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                openInNewTab(project.liveUrl);
+                                            }}
                                         >
                                             <OpenInNew fontSize="small" />
                                         </IconButton>
