@@ -1,5 +1,6 @@
 import { styled, useTheme } from "@mui/material/styles";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import type { MouseEvent } from "react";
 import {
@@ -141,7 +142,12 @@ const Header = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
     const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
 
-    const handleDrawerOpen = () => setIsDrawerOpen(true);
+    const handleDrawerOpen = () => {
+        setIsDrawerOpen(true);
+        // Let open popups (e.g. the Education page's mobile dropdown) dismiss
+        // themselves so they don't float over the drawer.
+        window.dispatchEvent(new Event('navdrawer:open'));
+    };
     const handleDrawerClose = () => setIsDrawerOpen(false);
 
     const handleLanguageMenuOpen = (event: MouseEvent<HTMLElement>) => setLanguageMenuAnchor(event.currentTarget);
@@ -168,22 +174,28 @@ const Header = () => {
                     <>
                         <BrandLink to="/">Portfolio</BrandLink>
                         <Box sx={{ flex: 1 }} />
-                        {/* Spacer matching fixed button width */}
                         <Box sx={{ width: 48, flexShrink: 0 }} />
-                        {/* Fixed button — always above the drawer backdrop */}
-                        <IconButton
-                            onClick={isDrawerOpen ? handleDrawerClose : handleDrawerOpen}
-                            size="large"
-                            sx={({ palette }) => ({
-                                position: 'fixed',
-                                top: 8,
-                                right: 8,
-                                zIndex: 1400,
-                                '&:hover': { backgroundColor: palette.action.hover },
-                            })}
-                        >
-                            <HamburgerIcon open={isDrawerOpen} />
-                        </IconButton>
+                        {createPortal(
+                            <IconButton
+                                onClick={(event) => {
+                                    (isDrawerOpen ? handleDrawerClose : handleDrawerOpen)();
+                                    event.currentTarget.blur();
+                                }}
+                                size="large"
+                                sx={({ palette }) => ({
+                                    position: 'fixed',
+                                    top: 8,
+                                    right: 8,
+                                    zIndex: 560000,
+                                    '@media (hover: hover)': {
+                                        '&:hover': { backgroundColor: palette.action.hover },
+                                    },
+                                })}
+                            >
+                                <HamburgerIcon open={isDrawerOpen} />
+                            </IconButton>,
+                            document.body,
+                        )}
                         <SwipeableNavDrawer
                             open={isDrawerOpen}
                             onOpen={handleDrawerOpen}

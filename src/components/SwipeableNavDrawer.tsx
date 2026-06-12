@@ -183,6 +183,7 @@ export const SwipeableNavDrawer = ({ open, onOpen, onClose, children }: Props) =
                     style={{
                         opacity: progress,
                         transition: dragging ? 'none' : 'opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        zIndex: 1600, // <-- add this
                     }}
                 />
             )}
@@ -194,6 +195,7 @@ export const SwipeableNavDrawer = ({ open, onOpen, onClose, children }: Props) =
                     transition,
                     pointerEvents: open || dragging ? 'auto' : 'none',
                     backgroundColor: theme.palette.background.default,
+                    zIndex: 1601, // <-- add this
                 }}
             >
                 {children}

@@ -97,14 +97,14 @@ const Links = () => {
             sublabel: import.meta.env.VITE_USER_EMAIL,
             icon: <Email />,
             href: `mailto:${import.meta.env.VITE_USER_EMAIL}`,
-            color: '#308fe8',
+            color: githubColor,
         },
         {
             label: 'LinkedIn',
-            sublabel: 'jesse-l-3213a0347',
+            sublabel: import.meta.env.VITE_NAME,
             icon: <LinkedIn />,
             href: import.meta.env.VITE_LINKEDIN_URL,
-            color: '#0A66C2',
+            color: githubColor,
         },
     ];
 
