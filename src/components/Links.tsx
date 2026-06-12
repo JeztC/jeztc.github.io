@@ -3,15 +3,7 @@ import { Email, GitHub, LinkedIn } from "@mui/icons-material";
 import { styled, useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { Box, Paper, Typography } from "@mui/material";
-import type { ReactNode } from "react";
-
-interface LinkItem {
-    label: string;
-    sublabel: string;
-    icon: ReactNode;
-    href: string;
-    color: string;
-}
+import { LinkItem } from "../interfaces/linkItem";
 
 const PageWrapper = styled(Box)(() => ({
     display: 'flex',

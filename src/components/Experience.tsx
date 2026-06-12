@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { styled, useTheme } from "@mui/material/styles";
 import { OpenInNew } from "@mui/icons-material";
 import { jobs } from "../data";
+import { hexToRgba } from "../utils/colorUtils";
 
 interface Job {
     company: string;
@@ -17,14 +18,6 @@ const tagColors: Record<string, string> = {
     'TypeScript': '#3178c6',
     'GraphQL': '#e535ab',
     'Material UI': '#007fff',
-};
-
-const hexToRgba = (hex: string, alpha: number) => {
-    const h = hex.replace('#', '');
-    const r = parseInt(h.substring(0, 2), 16);
-    const g = parseInt(h.substring(2, 4), 16);
-    const b = parseInt(h.substring(4, 6), 16);
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
 const PageContainer = styled(Box)`

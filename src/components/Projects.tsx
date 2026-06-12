@@ -3,6 +3,7 @@ import { Box, Typography, IconButton, Tooltip, Chip } from "@mui/material";
 import { GitHub, OpenInNew } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import { projectData } from "../data";
+import { hexToRgba } from "../utils/colorUtils";
 
 interface Project {
     title: string;
@@ -16,14 +17,6 @@ const tagColors: Record<string, string> = {
     'React.js': '#61dafb',
     'TypeScript': '#3178c6',
     'Material UI': '#007fff',
-};
-
-const hexToRgba = (hex: string, alpha: number) => {
-    const h = hex.replace('#', '');
-    const r = parseInt(h.substring(0, 2), 16);
-    const g = parseInt(h.substring(2, 4), 16);
-    const b = parseInt(h.substring(4, 6), 16);
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
 const TagRow = styled(Box)(({ theme }) => ({
