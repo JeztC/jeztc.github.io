@@ -167,10 +167,6 @@ export const SwipeableNavDrawer = ({ open, onOpen, onClose, children }: Props) =
         : (open ? 0 : -DRAWER_WIDTH);
     const progress = dragging ? (offset as number) / DRAWER_WIDTH : (open ? 1 : 0);
     const transition = dragging ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-
-    // Render into <body> so our position:fixed layers are viewport-relative.
-    // (The AppBar uses backdrop-filter, which would otherwise make it the
-    // containing block and clip the backdrop to the 64px header height.)
     return createPortal(
         <>
             {!open && (
