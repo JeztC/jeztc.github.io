@@ -16,16 +16,20 @@ import type { GitHubUser } from "../types/githubUser";
 
 const StyledUserCard = styled(Card)`
     display: flex;
+    flex-direction: row;
     box-shadow: none;
-    width: 900px;
-    height: max-content;
+    width: 100%;
+    max-width: 900px;
     background: inherit;
     border: 1px solid ${({ theme }) => theme.palette.divider};
+
     @media (max-width: 768px) {
-        width: 90%;
-        margin: 0 auto;
+        flex-direction: column;
+        padding: 12px;
+        gap: 8px;
     }
 `;
+
 
 const ProjectBox = styled(Box)`
     background: inherit;
