@@ -278,6 +278,7 @@ const Header = () => {
                 anchorEl={languageMenuAnchor}
                 open={Boolean(languageMenuAnchor)}
                 onClose={handleLanguageMenuClose}
+                sx={{ zIndex: 2000 }}
             >
                 <LanguageMenuItem onClick={() => handleLanguageChange('en')}>
                     <Box display="flex" alignItems="center" gap={1}>
