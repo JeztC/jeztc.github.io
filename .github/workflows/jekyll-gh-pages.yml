@@ -35,6 +35,7 @@ jobs:
           VITE_USER_API_URL_STARRED: ${{ secrets.VITE_USER_API_URL_STARRED }}
           VITE_USER_API_PROJECTS: ${{ secrets.VITE_USER_API_PROJECTS }}
           VITE_USER_URL: ${{ secrets.VITE_USER_URL }}
+          VITE_NAME: ${{ secrets.VITE_NAME }}
           VITE_USER_EMAIL: ${{ secrets.VITE_USER_EMAIL }}
           VITE_LINKEDIN_URL: ${{ secrets.VITE_LINKEDIN_URL }}
       - name: Upload artifact
