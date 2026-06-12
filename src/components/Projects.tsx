@@ -87,7 +87,6 @@ const PreviewArea = styled(Box)({
     backgroundColor: '#0d1117',
 });
 
-// width: 200% + scale(0.5) makes the iframe exactly fill the container width responsively
 const LiveFrame = styled('iframe')({
     position: 'absolute',
     top: 0,
