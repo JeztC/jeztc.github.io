@@ -165,7 +165,14 @@ const Education = () => {
                             )}
                         >
                             {education.map((elem, i) => (
-                                <MenuItem key={elem.id} value={i}>
+                                <MenuItem key={elem.id} value={i}
+                                          sx={{
+                                              color: theme.palette.text.secondary,
+                                              '&.Mui-selected': {
+                                                  color: theme.palette.text.primary,
+                                                  backgroundColor: theme.palette.action.selected,
+                                              },
+                                          }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                                         {elem.schoolAlias && (
                                             <Box

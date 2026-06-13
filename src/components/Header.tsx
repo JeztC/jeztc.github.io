@@ -229,11 +229,11 @@ const Header = () => {
                                             onClick={handleDrawerClose}
                                             sx={({ palette }) => ({
                                                 bgcolor: location.pathname === item.path
-                                                    ? palette.action.selected
+                                                    ? theme.palette.action.selected
                                                     : 'transparent',
                                                 color: location.pathname === item.path
-                                                    ? palette.primary.main
-                                                    : palette.text.primary,
+                                                    ? theme.palette.text.primary
+                                                    : palette.text.secondary,
                                             })}
                                         >
                                             <ListItemIcon sx={{ minWidth: 36, color: 'inherit' }}>
