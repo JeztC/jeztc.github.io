@@ -35,7 +35,7 @@ const IconRow = styled(Box)(({ theme }) => ({
     gap: theme.spacing(0.75),
 }));
 
-const SocialButton = styled(IconButton)<IconButtonProps<'a'> & { brandcolor: string }>(({ theme, brandcolor }) => ({
+const SocialButton = styled(IconButton)<IconButtonProps<'a'> & { }>(({ theme }) => ({
     width: 44,
     height: 44,
     color: theme.palette.text.secondary,
@@ -44,8 +44,8 @@ const SocialButton = styled(IconButton)<IconButtonProps<'a'> & { brandcolor: str
         fontSize: 26,
     },
     '&:hover': {
-        color: brandcolor,
-        backgroundColor: `${brandcolor}1f`,
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.action.hover,
         transform: 'translateY(-2px)',
     },
 }));
@@ -66,7 +66,6 @@ const Footer = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="GitHub"
-                        brandcolor="#e6edf3"
                     >
                         <GitHub />
                     </SocialButton>
@@ -78,7 +77,6 @@ const Footer = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="LinkedIn"
-                        brandcolor="#0A66C2"
                     >
                         <LinkedIn />
                     </SocialButton>
@@ -88,7 +86,6 @@ const Footer = () => {
                         component="a"
                         href={`mailto:${email}`}
                         aria-label="Email"
-                        brandcolor="#308fe8"
                     >
                         <Email />
                     </SocialButton>
