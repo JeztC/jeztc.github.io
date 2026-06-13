@@ -45,7 +45,7 @@ const SchoolTab = styled(Tab)(({ theme }) => ({
     transition: 'background-color 0.15s ease, color 0.15s ease',
     '&.Mui-selected': {
         backgroundColor: theme.palette.action.selected,
-        color: theme.palette.primary.main,
+        color: theme.palette.text.primary,
         borderLeft: `3px solid ${theme.palette.primary.main}`,
         paddingLeft: 13,
     },

@@ -48,29 +48,46 @@ const StyledNavLink = styled(NavLink)`
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
     minHeight: 64,
+
     '& .MuiTabs-indicator': {
         height: 3,
-        borderRadius: '3px 3px 0 0',
+        borderRadius: '3px',
         backgroundColor: theme.palette.primary.main,
     },
+
     '& .MuiTab-root': {
         textTransform: 'none',
         minHeight: 64,
         fontWeight: 500,
         fontSize: '0.875rem',
-        color: theme.palette.text.secondary,
         padding: '6px 20px',
         transition: 'color 0.2s ease, background-color 0.2s ease',
+
+        // First tab rounded on the left only
+        '&:first-of-type': {
+            borderTopLeftRadius: 12,
+            borderBottomLeftRadius: 12,
+        },
+
+        // Last tab rounded on the right only
+        '&:last-of-type': {
+            borderTopRightRadius: 12,
+            borderBottomRightRadius: 12,
+        },
+
         '&:hover': {
             color: theme.palette.text.primary,
             backgroundColor: theme.palette.action.hover,
         },
+
         '&.Mui-selected': {
-            color: theme.palette.primary.main,
+            color: theme.palette.text.primary,
+            backgroundColor: theme.palette.action.selected,
             fontWeight: 600,
         },
     },
 }));
+
 
 const LanguageMenuItem = styled(MenuItem)`
     width: 200px;
