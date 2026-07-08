@@ -1,23 +1,17 @@
 import { styled, useTheme } from "@mui/material/styles";
 import { useState } from "react";
-import { createPortal } from "react-dom";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import type { MouseEvent } from "react";
 import {
     AppBar,
     Box,
     IconButton,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
     Menu,
     MenuItem,
     Tab,
     Tabs,
     Toolbar,
     Tooltip,
-    Typography,
     useMediaQuery,
 } from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
@@ -25,7 +19,6 @@ import { useTranslation } from 'react-i18next';
 import { DarkModeToggle } from "./DarkModeToggle";
 import ReactCountryFlag from "react-country-flag";
 import { routesConfig } from "./AppRoutes";
-import { SwipeableNavDrawer } from "./SwipeableNavDrawer";
 
 const BrandLink = styled(Link)(({ theme }) => ({
     fontWeight: 700,
@@ -49,9 +42,18 @@ const StyledNavLink = styled(NavLink)`
 const StyledTabs = styled(Tabs)(({ theme }) => ({
     minHeight: 64,
 
+    // Windows 11-style short pill indicator, centered under the active tab.
     '& .MuiTabs-indicator': {
         height: 3,
-        borderRadius: '3px',
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
+    },
+    '& .MuiTabs-indicatorSpan': {
+        width: '100%',
+        maxWidth: 22,
+        height: 3,
+        borderRadius: 3,
         backgroundColor: theme.palette.primary.main,
     },
 
@@ -61,28 +63,15 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
         fontWeight: 500,
         fontSize: '0.875rem',
         padding: '6px 20px',
-        transition: 'color 0.2s ease, background-color 0.2s ease',
-
-        // First tab rounded on the left only
-        '&:first-of-type': {
-            borderTopLeftRadius: 12,
-            borderBottomLeftRadius: 12,
-        },
-
-        // Last tab rounded on the right only
-        '&:last-of-type': {
-            borderTopRightRadius: 12,
-            borderBottomRightRadius: 12,
-        },
+        color: theme.palette.text.secondary,
+        transition: 'color 0.2s ease',
 
         '&:hover': {
             color: theme.palette.text.primary,
-            backgroundColor: theme.palette.action.hover,
         },
 
         '&.Mui-selected': {
             color: theme.palette.text.primary,
-            backgroundColor: theme.palette.action.selected,
             fontWeight: 600,
         },
     },
@@ -93,37 +82,6 @@ const LanguageMenuItem = styled(MenuItem)`
     width: 200px;
 `;
 
-const StyledDrawerBox = styled(Box)(({ theme }) => ({
-    width: 270,
-    // Fill the panel rather than the full viewport, so the bottom controls stay
-    // above the panel's safe-area padding (and clear of Android's nav bar).
-    height: '100%',
-    padding: '16px 0',
-    borderRight: `1px solid ${theme.palette.divider}`,
-    backgroundColor: theme.palette.background.default,
-    display: 'flex',
-    flexDirection: 'column',
-}));
-
-const DrawerBrand = styled(Typography)(({ theme }) => ({
-    fontWeight: 700,
-    fontSize: '1.1rem',
-    letterSpacing: '0.08em',
-    padding: '8px 20px 16px',
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    marginBottom: 8,
-}));
-
-const MobileNavItem = styled(ListItem)<{ component?: React.ElementType; to?: string }>(({ theme }) => ({
-    borderRadius: 8,
-    margin: '2px 8px',
-    width: 'calc(100% - 16px)',
-    transition: 'background-color 0.2s ease',
-    '&:hover': {
-        backgroundColor: theme.palette.action.hover,
-    },
-})) as typeof ListItem;
-
 const ControlsBox = styled(Box)(() => ({
     display: 'flex',
     alignItems: 'center',
@@ -131,41 +89,12 @@ const ControlsBox = styled(Box)(() => ({
     gap: 4,
 }));
 
-const HamburgerIcon = ({ open }: { open: boolean }) => (
-    <Box sx={{ width: 22, height: 18, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-        {([0, 1, 2] as const).map((i) => (
-            <Box
-                key={i}
-                sx={{
-                    width: '100%',
-                    height: 2,
-                    bgcolor: 'text.primary',
-                    borderRadius: 1,
-                    transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease',
-                    ...(open && i === 0 && { transform: 'translateY(8px) rotate(45deg)' }),
-                    ...(open && i === 1 && { opacity: 0, transform: 'scaleX(0)' }),
-                    ...(open && i === 2 && { transform: 'translateY(-8px) rotate(-45deg)' }),
-                }}
-            />
-        ))}
-    </Box>
-);
-
 const Header = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-    const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
     const [languageMenuAnchor, setLanguageMenuAnchor] = useState<null | HTMLElement>(null);
-
-    const handleDrawerOpen = () => {
-        setIsDrawerOpen(true);
-        // Let open popups (e.g. the Education page's mobile dropdown) dismiss
-        // themselves so they don't float over the drawer.
-        window.dispatchEvent(new Event('navdrawer:open'));
-    };
-    const handleDrawerClose = () => setIsDrawerOpen(false);
 
     const handleLanguageMenuOpen = (event: MouseEvent<HTMLElement>) => setLanguageMenuAnchor(event.currentTarget);
     const handleLanguageMenuClose = () => setLanguageMenuAnchor(null);
@@ -191,102 +120,47 @@ const Header = () => {
                     <>
                         <BrandLink to="/">Portfolio</BrandLink>
                         <Box sx={{ flex: 1 }} />
-                        <Box sx={{ width: 48, flexShrink: 0 }} />
-                        {createPortal(
-                            <IconButton
-                                onClick={(event) => {
-                                    (isDrawerOpen ? handleDrawerClose : handleDrawerOpen)();
-                                    event.currentTarget.blur();
-                                }}
-                                size="large"
-                                sx={({ palette }) => ({
-                                    position: 'fixed',
-                                    top: 8,
-                                    right: 8,
-                                    zIndex: 560000,
-                                    '@media (hover: hover)': {
-                                        '&:hover': { backgroundColor: palette.action.hover },
-                                    },
-                                })}
-                            >
-                                <HamburgerIcon open={isDrawerOpen} />
-                            </IconButton>,
-                            document.body,
-                        )}
-                        <SwipeableNavDrawer
-                            open={isDrawerOpen}
-                            onOpen={handleDrawerOpen}
-                            onClose={handleDrawerClose}
-                        >
-                            <StyledDrawerBox>
-                                <DrawerBrand>Portfolio</DrawerBrand>
-                                <List sx={{ flex: 1, py: 0 }}>
-                                    {routesConfig.map((item) => (
-                                        <MobileNavItem
-                                            key={item.path}
-                                            component={Link}
-                                            to={item.path}
-                                            onClick={handleDrawerClose}
-                                            sx={({ palette }) => ({
-                                                bgcolor: location.pathname === item.path
-                                                    ? theme.palette.action.selected
-                                                    : 'transparent',
-                                                color: location.pathname === item.path
-                                                    ? theme.palette.text.primary
-                                                    : palette.text.secondary,
-                                            })}
-                                        >
-                                            <ListItemIcon sx={{ minWidth: 36, color: 'inherit' }}>
-                                                {item.icon}
-                                            </ListItemIcon>
-                                            <ListItemText
-                                                primary={t(item.labelKey)}
-                                                slotProps={{ primary: { fontWeight: location.pathname === item.path ? 600 : 400 } }}
-                                            />
-                                        </MobileNavItem>
-                                    ))}
-                                </List>
-                                <Box sx={{ display: 'flex', alignItems: 'center', px: 2, pt: 1, borderTop: 1, borderColor: 'divider' }}>
-                                    <DarkModeToggle />
-                                    <IconButton onClick={handleLanguageMenuOpen}>
-                                        <LanguageIcon fontSize="large" />
-                                    </IconButton>
-                                </Box>
-                            </StyledDrawerBox>
-                        </SwipeableNavDrawer>
+                        <ControlsBox sx={{ gap: 0 }}>
+                            <DarkModeToggle />
+                            <Tooltip title={t('changeLanguage')} arrow>
+                                <IconButton onClick={handleLanguageMenuOpen} sx={{ color: 'text.primary' }}>
+                                    <LanguageIcon sx={{ fontSize: '37px' }} />
+                                </IconButton>
+                            </Tooltip>
+                        </ControlsBox>
                     </>
                 ) : (
                     <>
-                        <Box sx={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                             <BrandLink to="/">Portfolio</BrandLink>
+                            <StyledTabs
+                                value={location.pathname}
+                                variant="scrollable"
+                                scrollButtons="auto"
+                                slotProps={{ indicator: { children: <span className="MuiTabs-indicatorSpan" /> } }}
+                            >
+                                {routesConfig.map((item) => (
+                                    <Tab
+                                        key={item.path}
+                                        component={StyledNavLink}
+                                        to={item.path}
+                                        label={t(item.labelKey)}
+                                        icon={item.icon}
+                                        iconPosition="start"
+                                        value={item.path}
+                                    />
+                                ))}
+                            </StyledTabs>
                         </Box>
-                        <StyledTabs
-                            value={location.pathname}
-                            variant="scrollable"
-                            scrollButtons="auto"
-                        >
-                            {routesConfig.map((item) => (
-                                <Tab
-                                    key={item.path}
-                                    component={StyledNavLink}
-                                    to={item.path}
-                                    label={t(item.labelKey)}
-                                    icon={item.icon}
-                                    iconPosition="start"
-                                    value={item.path}
-                                />
-                            ))}
-                        </StyledTabs>
-                        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                            <ControlsBox>
-                                <DarkModeToggle />
-                                <Tooltip title={t('changeLanguage')} arrow>
-                                    <IconButton onClick={handleLanguageMenuOpen} sx={{ color: 'text.primary' }}>
-                                        <LanguageIcon />
-                                    </IconButton>
-                                </Tooltip>
-                            </ControlsBox>
-                        </Box>
+                        <Box sx={{ flex: 1 }} />
+                        <ControlsBox>
+                            <DarkModeToggle />
+                            <Tooltip title={t('changeLanguage')} arrow>
+                                <IconButton onClick={handleLanguageMenuOpen} sx={{ color: 'text.primary' }}>
+                                    <LanguageIcon sx={{ fontSize: '30px' }} />
+                                </IconButton>
+                            </Tooltip>
+                        </ControlsBox>
                     </>
                 )}
             </Toolbar>

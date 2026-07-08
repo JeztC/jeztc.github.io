@@ -34,6 +34,7 @@ const SidebarTabs = styled(Tabs)(({ theme }) => ({
 }));
 
 const SchoolTab = styled(Tab)(({ theme }) => ({
+    position: 'relative',
     alignItems: 'flex-start',
     textAlign: 'left',
     textTransform: 'none',
@@ -46,8 +47,19 @@ const SchoolTab = styled(Tab)(({ theme }) => ({
     '&.Mui-selected': {
         backgroundColor: theme.palette.action.selected,
         color: theme.palette.text.primary,
-        borderLeft: `3px solid ${theme.palette.primary.main}`,
-        paddingLeft: 13,
+        // Windows 11-style indicator: short vertical pill on the left,
+        // centered to align with the item's icon.
+        '&::before': {
+            content: '""',
+            position: 'absolute',
+            left: 4,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: 3,
+            height: 24,
+            borderRadius: 3,
+            backgroundColor: theme.palette.primary.main,
+        },
     },
     '&:hover': {
         backgroundColor: theme.palette.action.hover,
@@ -55,11 +67,7 @@ const SchoolTab = styled(Tab)(({ theme }) => ({
     [theme.breakpoints.down('md')]: {
         minHeight: 80,
         alignItems: 'center',
-        borderLeft: 'none',
         paddingLeft: '16px !important',
-        '&.Mui-selected': {
-            borderLeft: 'none',
-        },
     },
 }));
 
@@ -171,6 +179,20 @@ const Education = () => {
                                               '&.Mui-selected': {
                                                   color: theme.palette.text.primary,
                                                   backgroundColor: theme.palette.action.selected,
+                                                  position: 'relative',
+                                                  // Windows 11-style indicator: short vertical pill on the
+                                                  // left, centered to align with the item's icon.
+                                                  '&::before': {
+                                                      content: '""',
+                                                      position: 'absolute',
+                                                      left: 4,
+                                                      top: '50%',
+                                                      transform: 'translateY(-50%)',
+                                                      width: 3,
+                                                      height: 20,
+                                                      borderRadius: 3,
+                                                      backgroundColor: theme.palette.primary.main,
+                                                  },
                                               },
                                           }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
