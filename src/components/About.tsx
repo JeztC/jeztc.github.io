@@ -1,7 +1,7 @@
 import { Badge, Box, LinearProgress, LinearProgressProps, Typography } from "@mui/material";
 import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { getAgeFromEnvStamp } from "../utils/dateUtils";
 import React from "react";
 
@@ -130,11 +130,9 @@ const PercentLabel = styled(Typography)`
 `;
 
 
-
 const About = () => {
     const { t } = useTranslation();
     const age = getAgeFromEnvStamp();
-    useTheme();
 
     return (
         <MainContainer>
