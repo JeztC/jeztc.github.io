@@ -1,7 +1,7 @@
-import { Badge, Box, LinearProgress, LinearProgressProps, Typography } from "@mui/material";
+import { Box, LinearProgress, LinearProgressProps, Typography } from "@mui/material";
 import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import { getAgeFromEnvStamp } from "../utils/dateUtils";
 import { ElementType } from "react";
 
@@ -20,16 +20,6 @@ const MainContainer = styled(Box)`
     align-items: center;
     padding-top: 60px;
     margin: 16px;
-`;
-
-const AvatarContainer = styled('img')`
-    width: 260px;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 50%;
-    border-width: 1px;
-    border-style: solid;
-    border-color: ${({ theme }) => theme.palette.divider};
 `;
 
 const AboutContainer = styled(Box)`
@@ -123,12 +113,11 @@ const PercentLabel = styled(Typography)`
 const About = () => {
     const { t } = useTranslation();
     const age = getAgeFromEnvStamp();
+    const theme = useTheme();
+    const mutedColor = theme.palette.mode === 'light' ? '#59636e' : '#8b949e';
 
     return (
         <MainContainer>
-            <Badge overlap="circular" anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
-                <AvatarContainer src="/media/avatar.png" alt="Avatar" />
-            </Badge>
             <Box sx={{ textAlign: 'center', mt: 3, mb: 2 }}>
                 <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
                     {import.meta.env.VITE_NAME}
@@ -138,7 +127,7 @@ const About = () => {
                 </Typography>
             </Box>
             <AboutContainer>
-                <Typography sx={{ maxWidth: '900px', margin: '0 auto' }} variant="body1">
+                <Typography color={mutedColor} sx={{ maxWidth: '900px', margin: '0 auto' }} variant="body1">
                     {t('about_desc', { age })}
                 </Typography>
 
