@@ -9,7 +9,8 @@
             "React.js",
             "TypeScript",
             "GraphQL",
-            "Material UI"
+            "Material UI",
+            "Playwright"
         ]
     }
 ]

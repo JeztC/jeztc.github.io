@@ -23,8 +23,8 @@ const MainContainer = styled(Box)`
 `;
 
 const AvatarContainer = styled('img')`
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    height: 260px;
     object-fit: cover;
     border-radius: 50%;
     border-width: 1px;
@@ -46,7 +46,6 @@ const SkillsGrid = styled(Box)`
     margin-top: 32px;
     margin-bottom: 80px;
     width: 100%;
-
     @media (max-width: 900px) {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -61,19 +60,12 @@ const SkillCard = styled(Box)<{ brandcolor: string; component?: React.ElementTyp
     align-items: center;
     padding: 16px 12px 12px;
     border-radius: 12px;
-    background: ${({ theme }) =>
-        theme.palette.mode === 'dark'
-            ? 'rgba(255,255,255,0.05)'
-            : 'rgba(0,0,0,0.03)'};
-    border: 1px solid ${({ theme }) =>
-        theme.palette.mode === 'dark'
-            ? 'rgba(255,255,255,0.08)'
-            : 'rgba(0,0,0,0.08)'};
+    background: ${({ theme }) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.03)'};
+    border: 1px solid ${({ theme }) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'};
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.25s ease, background-color 0.25s ease;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-
     &:hover {
         transform: translateY(-3px);
         box-shadow: 0 6px 20px ${({ brandcolor }) => `${brandcolor}40`};
@@ -86,8 +78,7 @@ const SkillIcon = styled('img')<{ darkinvert: string }>`
     height: 40px;
     object-fit: contain;
     margin-bottom: 8px;
-    filter: ${({ darkinvert, theme }) =>
-        darkinvert === 'true' && theme.palette.mode === 'dark' ? 'invert(1)' : 'none'};
+    filter: ${({ darkinvert, theme }) => darkinvert === 'true' && theme.palette.mode === 'dark' ? 'invert(1)' : 'none'};
 `;
 
 const SkillName = styled(Typography)`
@@ -129,7 +120,6 @@ const PercentLabel = styled(Typography)`
     opacity: 0.8;
 `;
 
-
 const About = () => {
     const { t } = useTranslation();
     const age = getAgeFromEnvStamp();
@@ -139,10 +129,15 @@ const About = () => {
             <Badge overlap="circular" anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
                 <AvatarContainer src="/media/avatar.png" alt="Avatar" />
             </Badge>
-            <AboutContainer>
-                <Typography sx={{ maxWidth: '900px', margin: '0 auto' }} variant="h4" gutterBottom>
-                    {t('menu_about')}
+            <Box sx={{ textAlign: 'center', mt: 3, mb: 2 }}>
+                <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
+                    {import.meta.env.VITE_NAME}
                 </Typography>
+                <Typography variant="h6" color="text.secondary" gutterBottom>
+                    {t('experience_0_job')}
+                </Typography>
+            </Box>
+            <AboutContainer>
                 <Typography sx={{ maxWidth: '900px', margin: '0 auto' }} variant="body1">
                     {t('about_desc', { age })}
                 </Typography>
