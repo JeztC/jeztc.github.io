@@ -3,7 +3,7 @@ import { skillsList } from "../data";
 import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
 import { getAgeFromEnvStamp } from "../utils/dateUtils";
-import React from "react";
+import { ElementType } from "react";
 
 interface Skill {
     title: string;
@@ -54,7 +54,7 @@ const SkillsGrid = styled(Box)`
     }
 `;
 
-const SkillCard = styled(Box)<{ brandcolor: string; component?: React.ElementType; href?: string; target?: string; rel?: string }>`
+const SkillCard = styled(Box)<{ brandcolor: string; component?: ElementType; href?: string; target?: string; rel?: string }>`
     display: flex;
     flex-direction: column;
     align-items: center;
